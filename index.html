@@ -3,80 +3,318 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Luisito Jr. Bataller Labita</title>
+
+<title>Luisito Jr. Bataller Labita | Portfolio</title>
 
 <style>
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
 }
 
 body{
-font-family:Arial,Helvetica,sans-serif;
-background:linear-gradient(135deg,#0f172a,#1e3a8a);
+
+background:linear-gradient(135deg,#0F172A,#1E3A8A,#2563EB);
+background-size:300% 300%;
+animation:bg 12s infinite alternate;
 color:white;
+
+}
+
+@keyframes bg{
+
+0%{background-position:left;}
+100%{background-position:right;}
+
+}
+
+nav{
+
+position:fixed;
+top:0;
+width:100%;
+padding:20px 40px;
 display:flex;
-justify-content:center;
+justify-content:space-between;
 align-items:center;
-height:100vh;
+backdrop-filter:blur(15px);
+background:rgba(15,23,42,.35);
+
+}
+
+.logo{
+
+font-size:28px;
+font-weight:bold;
+
+}
+
+nav a{
+
+color:white;
+text-decoration:none;
+margin-left:20px;
+font-weight:bold;
+
+}
+
+.hero{
+
+min-height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+padding:30px;
+
 text-align:center;
-padding:20px;
+
 }
 
-.container{
-max-width:700px;
-}
+.photo{
 
-img{
-width:180px;
-height:180px;
+width:220px;
+
+height:220px;
+
 border-radius:50%;
-border:5px solid white;
-margin-bottom:25px;
+
+border:6px solid white;
+
+overflow:hidden;
+
+margin-bottom:35px;
+
+box-shadow:0 20px 40px rgba(0,0,0,.4);
+
+}
+
+.photo img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
 }
 
 h1{
-font-size:46px;
+
+font-size:56px;
+
 margin-bottom:10px;
+
 }
 
-h2{
-color:#60a5fa;
+.typing{
+
+font-size:28px;
+
+color:#7dd3fc;
+
 margin-bottom:25px;
+
+font-weight:bold;
+
 }
 
 p{
-font-size:18px;
+
+max-width:700px;
+
+font-size:20px;
+
 line-height:1.8;
-color:#dbeafe;
+
+color:#E2E8F0;
+
+margin-bottom:40px;
+
 }
 
-.button{
-display:inline-block;
-margin-top:35px;
-padding:15px 35px;
-background:#2563eb;
-color:white;
+.buttons{
+
+display:flex;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+}
+
+.btn{
+
+padding:18px 38px;
+
+border-radius:50px;
+
 text-decoration:none;
-border-radius:40px;
+
 font-weight:bold;
+
+transition:.3s;
+
 }
 
-.button:hover{
-background:#1d4ed8;
+.primary{
+
+background:#2563EB;
+
+color:white;
+
 }
+
+.secondary{
+
+border:2px solid white;
+
+color:white;
+
+}
+
+.btn:hover{
+
+transform:translateY(-5px);
+
+}
+
+.stats{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:25px;
+
+padding:70px 40px;
+
+max-width:1200px;
+
+margin:auto;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(15px);
+
+padding:35px;
+
+border-radius:20px;
+
+text-align:center;
+
+}
+
+.card h2{
+
+font-size:40px;
+
+color:#7dd3fc;
+
+margin-bottom:10px;
+
+}
+
+footer{
+
+padding:50px;
+
+text-align:center;
+
+color:#CBD5E1;
+
+}
+
+@media(max-width:768px){
+
+h1{
+
+font-size:42px;
+
+}
+
+.typing{
+
+font-size:22px;
+
+}
+
+.photo{
+
+width:170px;
+height:170px;
+
+}
+
+nav{
+
+padding:15px;
+
+}
+
+nav a{
+
+display:none;
+
+}
+
+}
+
 </style>
 
 </head>
 
 <body>
 
-<div class="container">
+<nav>
 
-<h1>Luisito Jr. Bataller Labita</h1>
+<div class="logo">
 
-<h2>IT Infrastructure Specialist</h2>
+LJL
+
+</div>
+
+<div>
+
+<a href="#">Home</a>
+
+<a href="#">About</a>
+
+<a href="#">Resume</a>
+
+<a href="#">Contact</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="photo">
+
+<img src="profile.jpg">
+
+</div>
+
+<h1>
+
+Luisito Jr. Bataller Labita
+
+</h1>
+
+<div class="typing" id="typing"></div>
 
 <p>
 
@@ -87,11 +325,98 @@ LMF Payment Services.
 
 </p>
 
-<a href="#" class="button">
-Portfolio Coming Soon
+<div class="buttons">
+
+<a href="#" class="btn primary">
+
+Download Resume
+
+</a>
+
+<a href="#" class="btn secondary">
+
+Contact Me
+
 </a>
 
 </div>
 
+</section>
+
+<section class="stats">
+
+<div class="card">
+
+<h2>15+</h2>
+
+<p>Years Experience</p>
+
+</div>
+
+<div class="card">
+
+<h2>BSIT</h2>
+
+<p>Graduate</p>
+
+</div>
+
+<div class="card">
+
+<h2>2023</h2>
+
+<p>Founded LMF Payment Services</p>
+
+</div>
+
+<div class="card">
+
+<h2>Enterprise</h2>
+
+<p>IT Infrastructure</p>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 Luisito Jr. Bataller Labita
+
+</footer>
+
+<script>
+
+const words=[
+
+"IT Infrastructure Specialist",
+
+"Systems Administrator",
+
+"Entrepreneur",
+
+"Founder • LMF Payment Services"
+
+];
+
+let i=0;
+
+function change(){
+
+document.getElementById("typing").innerHTML=words[i];
+
+i++;
+
+if(i>=words.length)i=0;
+
+}
+
+change();
+
+setInterval(change,2500);
+
+</script>
+
 </body>
+
 </html>
