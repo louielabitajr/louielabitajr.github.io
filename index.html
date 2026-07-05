@@ -4,313 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Luisito Jr. Bataller Labita | Portfolio</title>
+<title>
+Luisito Jr. Bataller Labita | IT Infrastructure Specialist
+</title>
 
-<style>
+<meta name="description"
+content="Official Portfolio of Luisito Jr. Bataller Labita, IT Infrastructure Specialist, Systems Administrator and Founder of LMF Payment Services.">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
-}
+<meta name="theme-color" content="#0F172A">
 
-body{
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-background:linear-gradient(135deg,#0F172A,#1E3A8A,#2563EB);
-background-size:300% 300%;
-animation:bg 12s infinite alternate;
-color:white;
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-}
+<link rel="stylesheet" href="style.css">
 
-@keyframes bg{
+<link rel="manifest" href="manifest.json">
 
-0%{background-position:left;}
-100%{background-position:right;}
-
-}
-
-nav{
-
-position:fixed;
-top:0;
-width:100%;
-padding:20px 40px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-backdrop-filter:blur(15px);
-background:rgba(15,23,42,.35);
-
-}
-
-.logo{
-
-font-size:28px;
-font-weight:bold;
-
-}
-
-nav a{
-
-color:white;
-text-decoration:none;
-margin-left:20px;
-font-weight:bold;
-
-}
-
-.hero{
-
-min-height:100vh;
-
-display:flex;
-
-flex-direction:column;
-
-justify-content:center;
-
-align-items:center;
-
-padding:30px;
-
-text-align:center;
-
-}
-
-.photo{
-
-width:220px;
-
-height:220px;
-
-border-radius:50%;
-
-border:6px solid white;
-
-overflow:hidden;
-
-margin-bottom:35px;
-
-box-shadow:0 20px 40px rgba(0,0,0,.4);
-
-}
-
-.photo img{
-
-width:100%;
-height:100%;
-object-fit:cover;
-
-}
-
-h1{
-
-font-size:56px;
-
-margin-bottom:10px;
-
-}
-
-.typing{
-
-font-size:28px;
-
-color:#7dd3fc;
-
-margin-bottom:25px;
-
-font-weight:bold;
-
-}
-
-p{
-
-max-width:700px;
-
-font-size:20px;
-
-line-height:1.8;
-
-color:#E2E8F0;
-
-margin-bottom:40px;
-
-}
-
-.buttons{
-
-display:flex;
-
-gap:20px;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-}
-
-.btn{
-
-padding:18px 38px;
-
-border-radius:50px;
-
-text-decoration:none;
-
-font-weight:bold;
-
-transition:.3s;
-
-}
-
-.primary{
-
-background:#2563EB;
-
-color:white;
-
-}
-
-.secondary{
-
-border:2px solid white;
-
-color:white;
-
-}
-
-.btn:hover{
-
-transform:translateY(-5px);
-
-}
-
-.stats{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-
-gap:25px;
-
-padding:70px 40px;
-
-max-width:1200px;
-
-margin:auto;
-
-}
-
-.card{
-
-background:rgba(255,255,255,.12);
-
-backdrop-filter:blur(15px);
-
-padding:35px;
-
-border-radius:20px;
-
-text-align:center;
-
-}
-
-.card h2{
-
-font-size:40px;
-
-color:#7dd3fc;
-
-margin-bottom:10px;
-
-}
-
-footer{
-
-padding:50px;
-
-text-align:center;
-
-color:#CBD5E1;
-
-}
-
-@media(max-width:768px){
-
-h1{
-
-font-size:42px;
-
-}
-
-.typing{
-
-font-size:22px;
-
-}
-
-.photo{
-
-width:170px;
-height:170px;
-
-}
-
-nav{
-
-padding:15px;
-
-}
-
-nav a{
-
-display:none;
-
-}
-
-}
-
-</style>
+<link rel="icon" href="favicon.ico">
 
 </head>
 
 <body>
 
+<div id="particles"></div>
+
+<header>
+
 <nav>
 
 <div class="logo">
 
-🚀 LJL Digital Hub
+LJL Digital Hub
 
 </div>
 
-LJL
+<ul>
 
-</div>
+<li><a href="#home">Home</a></li>
 
-<div>
+<li><a href="#about">About</a></li>
 
-<a href="#">Home</a>
+<li><a href="#experience">Experience</a></li>
 
-<a href="#">About</a>
+<li><a href="#business">Business</a></li>
 
-<a href="#">Resume</a>
+<li><a href="#projects">Projects</a></li>
 
-<a href="#">Contact</a>
+<li><a href="#resume">Resume</a></li>
 
-</div>
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+<button id="theme">
+
+🌙
+
+</button>
 
 </nav>
 
-<section class="hero">
+</header>
+
+<section id="home" class="hero">
+
+<div class="hero-left">
 
 <div class="photo">
 
-<img src="profile.jpg">
+<img
+src="images/profile.jpg"
+alt="Luisito Jr. Bataller Labita">
 
 </div>
+
+</div>
+
+<div class="hero-right">
 
 <h1>
 
@@ -318,26 +90,31 @@ Luisito Jr. Bataller Labita
 
 </h1>
 
-<div class="typing" id="typing"></div>
+<h2 id="typing">
+
+IT Infrastructure Specialist
+
+</h2>
 
 <p>
 
 Building reliable technology solutions,
 strengthening business operations,
 and serving communities through
-LMF Payment Services.
+innovation, leadership,
+and trusted financial services.
 
 </p>
 
-<div class="buttons">
+<div class="hero-buttons">
 
-<a href="#" class="btn primary">
+<a href="#resume" class="btn-primary">
 
 Download Resume
 
 </a>
 
-<a href="#" class="btn secondary">
+<a href="#contact" class="btn-secondary">
 
 Contact Me
 
@@ -345,100 +122,257 @@ Contact Me
 
 </div>
 
+</div>
+
 </section>
 
 <section class="stats">
 
-<div class="card">
+<div class="stat">
 
-<h2>15+</h2>
+<h3>
 
-<p>Years Experience</p>
+15+
 
-</div>
+</h3>
 
-<div class="card">
+<p>
 
-<h2>BSIT</h2>
+Years Experience
 
-<p>Graduate</p>
-
-</div>
-
-<div class="card">
-
-<h2>2023</h2>
-
-<p>Founded LMF Payment Services</p>
+</p>
 
 </div>
 
-<div class="card">
+<div class="stat">
 
-<h2>Enterprise</h2>
+<h3>
 
-<p>IT Infrastructure</p>
+BSIT
+
+</h3>
+
+<p>
+
+Graduate
+
+</p>
+
+</div>
+
+<div class="stat">
+
+<h3>
+
+2023
+
+</h3>
+
+<p>
+
+Founder
+LMF Payment Services
+
+</p>
+
+</div>
+
+<div class="stat">
+
+<h3>
+
+Enterprise
+
+</h3>
+
+<p>
+
+IT Infrastructure
+
+</p>
 
 </div>
 
 </section>
 
-<footer>
+<section id="about">
 
-© 2026 Luisito Jr. Bataller Labita
+<div class="container">
 
-</footer>
+<h2>
 
-<script>
+Professional Profile
 
-const words = [
+</h2>
 
-"IT Infrastructure Specialist",
+<p>
 
-"Systems Administrator",
+I am Luisito Jr. Bataller Labita,
+a Bachelor of Science in Information Technology graduate
+with over fifteen years of professional experience
+in Information Technology,
+Systems Administration,
+Network Infrastructure,
+Technical Support,
+Leadership,
+Business Operations,
+and Customer Service.
 
-"Network Administrator",
+</p>
 
-"Technical Support Engineer",
+<p>
 
-"Entrepreneur",
+My career began in financial services,
+where I developed strong customer service,
+leadership,
+and operational management skills.
 
-"Founder • LMF Payment Services"
+As my experience grew,
+I transitioned into enterprise Information Technology,
+where I specialized in systems administration,
+network infrastructure,
+technical support,
+hardware maintenance,
+software deployment,
+and IT operations.
 
-];
+</p>
 
-let current = 0;
+<p>
 
-const typing = document.getElementById("typing");
+In 2023,
+I founded
+<strong>LMF Payment Services</strong>,
+a community-based payment
+and remittance center
+serving Los Baños,
+Laguna.
 
-function rotateTitle(){
+Today,
+I continue to combine
+technology,
+business,
+and customer service
+to deliver dependable solutions
+to organizations
+and communities.
 
-typing.style.opacity="0";
+</p>
 
-setTimeout(()=>{
+</div>
 
-typing.innerHTML=words[current];
+</section>
 
-typing.style.opacity="1";
+<section class="skills-preview">
 
-current++;
+<div class="container">
 
-if(current>=words.length){
+<h2>
 
-current=0;
+Core Expertise
 
-}
+</h2>
 
-},400);
+<div class="grid">
 
-}
+<div class="card">
 
-rotateTitle();
+<h3>
 
-setInterval(rotateTitle,3000);
+IT Infrastructure
 
-</script>
+</h3>
 
-</body>
+<p>
 
-</html>
+Windows Administration
+
+Networking
+
+Server Support
+
+Backup
+
+Troubleshooting
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Systems Administration
+
+</h3>
+
+<p>
+
+Microsoft Technologies
+
+VMware
+
+Exchange
+
+User Support
+
+Maintenance
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Leadership
+
+</h3>
+
+<p>
+
+Branch Management
+
+Operations
+
+Team Leadership
+
+Problem Solving
+
+Decision Making
+
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>
+
+Business
+
+</h3>
+
+<p>
+
+Founder
+
+LMF Payment Services
+
+Customer Service
+
+Business Operations
+
+Financial Services
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
