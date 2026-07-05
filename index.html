@@ -282,7 +282,7 @@ display:none;
 
 <div class="logo">
 
-🚀 LJL Digital Hub
+LJL
 
 </div>
 
@@ -304,7 +304,7 @@ display:none;
 
 <div class="photo">
 
-<img src="images/profile.jpg">
+<img src="profile.jpg">
 
 </div>
 
@@ -314,51 +314,7 @@ Luisito Jr. Bataller Labita
 
 </h1>
 
-const words = [
-
-"IT Infrastructure Specialist",
-
-"Systems Administrator",
-
-"Network Administrator",
-
-"Technical Support Engineer",
-
-"Entrepreneur",
-
-"Founder • LMF Payment Services"
-
-];
-
-let current = 0;
-
-const typing = document.getElementById("typing");
-
-function rotateTitle(){
-
-typing.style.opacity="0";
-
-setTimeout(()=>{
-
-typing.innerHTML=words[current];
-
-typing.style.opacity="1";
-
-current++;
-
-if(current>=words.length){
-
-current=0;
-
-}
-
-},400);
-
-}
-
-rotateTitle();
-
-setInterval(rotateTitle,3000);
+<div class="typing" id="typing"></div>
 
 <p>
 
