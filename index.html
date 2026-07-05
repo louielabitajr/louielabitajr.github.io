@@ -282,6 +282,10 @@ display:none;
 
 <div class="logo">
 
+🚀 LJL Digital Hub
+
+</div>
+
 LJL
 
 </div>
@@ -387,11 +391,15 @@ Contact Me
 
 <script>
 
-const words=[
+const words = [
 
 "IT Infrastructure Specialist",
 
 "Systems Administrator",
+
+"Network Administrator",
+
+"Technical Support Engineer",
 
 "Entrepreneur",
 
@@ -399,21 +407,35 @@ const words=[
 
 ];
 
-let i=0;
+let current = 0;
 
-function change(){
+const typing = document.getElementById("typing");
 
-document.getElementById("typing").innerHTML=words[i];
+function rotateTitle(){
 
-i++;
+typing.style.opacity="0";
 
-if(i>=words.length)i=0;
+setTimeout(()=>{
+
+typing.innerHTML=words[current];
+
+typing.style.opacity="1";
+
+current++;
+
+if(current>=words.length){
+
+current=0;
 
 }
 
-change();
+},400);
 
-setInterval(change,2500);
+}
+
+rotateTitle();
+
+setInterval(rotateTitle,3000);
 
 </script>
 
