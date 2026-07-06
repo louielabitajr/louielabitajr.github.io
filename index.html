@@ -21,7 +21,7 @@
     <style>
         /* ==========================================
            LJL DIGITAL HUB PORTFOLIO
-           STYLE.CSS - PART 1
+           STYLE.CSS - PART 1, 2 & 3 (COMPLETE)
         ========================================== */
 
         :root {
@@ -123,6 +123,12 @@
             color: var(--primary);
         }
 
+        /* Active navigation link */
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
         #themeToggle {
             width: 46px;
             height: 46px;
@@ -159,10 +165,6 @@
             background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
             background-size: 300% 300%;
             animation: gradient 12s ease infinite;
-        }
-
-        .hero-image {
-            position: relative;
         }
 
         .hero-image img {
@@ -270,7 +272,7 @@
         }
 
         /* ===========================
-           SECTION TITLES
+           SECTIONS
         =========================== */
 
         section {
@@ -289,10 +291,6 @@
             margin: auto auto 40px;
             color: var(--text-light);
         }
-
-        /* ==========================================
-           STYLE.CSS - PART 2
-        ========================================== */
 
         .grid {
             display: grid;
@@ -400,16 +398,6 @@
             text-align: center;
         }
 
-        #business .card h3 {
-            font-size: 1.3rem;
-        }
-
-        #projects .card {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
         .project-image {
             width: 100%;
             height: 180px;
@@ -464,9 +452,9 @@
             margin: 6px 0;
         }
 
-        /* ==========================================
-           STYLE.CSS - PART 3
-        ========================================== */
+        /* ===========================
+           ANIMATIONS & UTILITIES
+        =========================== */
 
         .fade-up {
             opacity: 0;
@@ -606,14 +594,11 @@
 
 <body>
 
-    <!-- BACK TO TOP BUTTON -->
-    <button id="backToTop" aria-label="Back to top">↑</button>
-
     <header>
         <nav class="navbar">
             <div class="logo">LJL Digital Hub</div>
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#business">Business</a></li>
@@ -648,10 +633,10 @@
 
     <!-- STATS -->
     <section class="stats">
-        <div class="stat-card fade-up"><h3>15+</h3><p>Years Experience</p></div>
-        <div class="stat-card fade-up"><h3>BSIT</h3><p>Graduate</p></div>
-        <div class="stat-card fade-up"><h3>2023</h3><p>Founded LMF Payment Services</p></div>
-        <div class="stat-card fade-up"><h3>Enterprise</h3><p>IT Infrastructure</p></div>
+        <div class="stat-card"><h3>15+</h3><p>Years Experience</p></div>
+        <div class="stat-card"><h3>BSIT</h3><p>Graduate</p></div>
+        <div class="stat-card"><h3>2023</h3><p>Founded LMF Payment Services</p></div>
+        <div class="stat-card"><h3>Enterprise</h3><p>IT Infrastructure</p></div>
     </section>
 
     <!-- ABOUT -->
@@ -677,7 +662,7 @@
         </div>
     </section>
 
-    <!-- SKILLS with Skill Bars -->
+    <!-- SKILLS -->
     <section id="skills">
         <div class="container fade-up">
             <h2>Core Skills</h2>
@@ -687,7 +672,7 @@
                     <p>Windows Server • Networking • Troubleshooting • Backup &amp; Recovery</p>
                     <div class="skill">
                         <div class="skill-title"><span>Proficiency</span><span>95%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
                     </div>
                 </div>
                 <div class="card">
@@ -695,7 +680,7 @@
                     <p>Microsoft Technologies • VMware • Exchange • Technical Support</p>
                     <div class="skill">
                         <div class="skill-title"><span>Proficiency</span><span>90%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
                     </div>
                 </div>
                 <div class="card">
@@ -703,7 +688,7 @@
                     <p>Operations • Leadership • Customer Service • Problem Solving</p>
                     <div class="skill">
                         <div class="skill-title"><span>Proficiency</span><span>88%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
                     </div>
                 </div>
                 <div class="card">
@@ -711,7 +696,7 @@
                     <p>Founder • LMF Payment Services • Business Operations</p>
                     <div class="skill">
                         <div class="skill-title"><span>Proficiency</span><span>85%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
                     </div>
                 </div>
             </div>
@@ -742,9 +727,8 @@
                 <div class="timeline-item">
                     <h3>IT Infrastructure Staff</h3><span>Enterprise IT</span>
                     <p>Provided technical support, systems administration,
-                        Windows Server administration, VMware,
-                        network troubleshooting, Microsoft Exchange,
-                        backup and disaster recovery.</p>
+                        Windows Server, VMware, network troubleshooting,
+                        Microsoft Exchange, backup and disaster recovery.</p>
                 </div>
                 <div class="timeline-item">
                     <h3>Founder &amp; Owner</h3><span>LMF Payment Services (2023 &ndash; Present)</span>
@@ -824,7 +808,6 @@
                 <p><strong>Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">https://louielabitajr.github.io</a></p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">https://github.com/louielabitajr</a></p>
                 <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
-
                 <div class="social-links">
                     <a href="https://louielabitajr.github.io" target="_blank" rel="noopener" title="Website">🌐</a>
                     <a href="https://github.com/louielabitajr" target="_blank" rel="noopener" title="GitHub">GH</a>
@@ -845,7 +828,7 @@
     <script>
         /* ==========================================
            LJL DIGITAL HUB
-           script.js - Part 1
+           script.js - PART 1 & PART 2 (COMPLETE)
         ========================================== */
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -858,7 +841,6 @@
             const themeToggle = document.getElementById("themeToggle");
 
             const savedTheme = localStorage.getItem("theme");
-
             if (savedTheme === "dark") {
                 body.classList.add("dark");
                 if (themeToggle) themeToggle.textContent = "☀️";
@@ -878,7 +860,6 @@
             ========================== */
 
             const typing = document.getElementById("typing");
-
             if (typing) {
                 const words = [
                     "IT Infrastructure Specialist",
@@ -887,17 +868,14 @@
                     "Founder of LMF Payment Services",
                     "Technology Leader"
                 ];
-
                 let wordIndex = 0;
                 let charIndex = 0;
                 let deleting = false;
 
                 function type() {
                     const current = words[wordIndex];
-
                     if (!deleting) {
                         typing.textContent = current.substring(0, charIndex++);
-
                         if (charIndex > current.length) {
                             deleting = true;
                             setTimeout(type, 1500);
@@ -905,16 +883,13 @@
                         }
                     } else {
                         typing.textContent = current.substring(0, charIndex--);
-
                         if (charIndex < 0) {
                             deleting = false;
                             wordIndex = (wordIndex + 1) % words.length;
                         }
                     }
-
                     setTimeout(type, deleting ? 40 : 80);
                 }
-
                 type();
             }
 
@@ -934,56 +909,125 @@
 
             /* ==========================
                BACK TO TOP BUTTON
+               (Created dynamically as in Part 2)
             ========================== */
 
-            const backToTop = document.getElementById("backToTop");
+            const backButton = document.createElement("button");
+            backButton.id = "backToTop";
+            backButton.innerHTML = "⬆";
+            document.body.appendChild(backButton);
 
             window.addEventListener("scroll", () => {
                 if (window.scrollY > 500) {
-                    backToTop.style.display = "block";
+                    backButton.style.display = "block";
                 } else {
-                    backToTop.style.display = "none";
+                    backButton.style.display = "none";
                 }
             });
 
-            backToTop.addEventListener("click", () => {
+            backButton.addEventListener("click", () => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
             });
 
             /* ==========================
-               SCROLL ANIMATIONS (Fade Up)
+               SCROLL REVEAL (Part 2)
             ========================== */
 
-            const fadeElements = document.querySelectorAll(".fade-up");
+            const revealElements = document.querySelectorAll(
+                ".card, .timeline-item, .stat-card, section h2"
+            );
 
-            const fadeObserver = new IntersectionObserver((entries) => {
+            const revealObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        entry.target.classList.add("fade-up");
                         entry.target.classList.add("show");
                     }
                 });
             }, { threshold: 0.15 });
 
-            fadeElements.forEach(el => fadeObserver.observe(el));
+            revealElements.forEach(el => {
+                el.classList.add("fade-up");
+                revealObserver.observe(el);
+            });
 
             /* ==========================
-               SKILL BARS ANIMATION
+               SKILL BARS (Part 2)
             ========================== */
 
-            const skillFills = document.querySelectorAll(".skill-fill");
-
+            const skillBars = document.querySelectorAll(".skill-fill");
             const skillObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        const width = entry.target.getAttribute("data-width");
-                        entry.target.style.width = width + "%";
+                        const value = entry.target.dataset.width;
+                        entry.target.style.width = value;
                     }
                 });
-            }, { threshold: 0.5 });
+            });
 
-            skillFills.forEach(fill => skillObserver.observe(fill));
+            skillBars.forEach(bar => {
+                skillObserver.observe(bar);
+            });
 
-            console.log("✅ LJL Digital Hub Portfolio — script.js Part 1 active with all features.");
+            /* ==========================
+               COUNTERS (Part 2)
+            ========================== */
+
+            const counters = document.querySelectorAll(".stat-card h3");
+            const counterObserver = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const counter = entry.target;
+                        const targetText = counter.innerText.replace("+", "");
+                        const target = parseInt(targetText);
+                        if (isNaN(target)) return;
+
+                        let current = 0;
+                        const speed = target / 60;
+
+                        const update = () => {
+                            current += speed;
+                            if (current < target) {
+                                counter.innerText = Math.floor(current) + "+";
+                                requestAnimationFrame(update);
+                            } else {
+                                counter.innerText = target + "+";
+                            }
+                        };
+                        update();
+                    }
+                });
+            });
+
+            counters.forEach(counter => {
+                counterObserver.observe(counter);
+            });
+
+            /* ==========================
+               ACTIVE NAVIGATION (Part 2)
+            ========================== */
+
+            const sections = document.querySelectorAll("section");
+            const navLinks = document.querySelectorAll(".nav-links a");
+
+            window.addEventListener("scroll", () => {
+                let current = "";
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 120;
+                    if (pageYOffset >= sectionTop) {
+                        current = section.getAttribute("id");
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove("active");
+                    if (link.getAttribute("href") === "#" + current) {
+                        link.classList.add("active");
+                    }
+                });
+            });
+
+            console.log("✅ LJL Digital Hub Portfolio — script.js Part 1 & 2 fully loaded.");
         });
     </script>
 
