@@ -287,121 +287,203 @@
         }
 
         /* ==========================================
-           STYLE.CSS - PART 2 (ADDITIONAL STYLES)
+           STYLE.CSS - PART 2
+           Skills • Timeline • Business • Projects
         ========================================== */
 
-        /* Grid Layout */
+        /* ===========================
+           GRID
+        =========================== */
+
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 28px;
-            margin-top: 20px;
+            gap: 30px;
+            margin-top: 40px;
         }
 
-        /* Cards */
+        /* ===========================
+           CARDS
+        =========================== */
+
         .card {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 32px 28px;
+            padding: 35px;
+            transition: .35s;
             box-shadow: var(--shadow);
-            transition: var(--transition);
-            text-align: center;
+            position: relative;
             overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-            border-color: var(--primary);
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
         }
 
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: var(--radius) var(--radius) 0 0;
-            margin: -32px -28px 20px -28px;
-            width: calc(100% + 56px);
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, .15);
         }
 
         .card h3 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 12px;
             color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.25rem;
         }
 
         .card p {
             color: var(--text-light);
-            font-size: 0.92rem;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
-        /* Timeline */
+        /* ===========================
+           TIMELINE
+        =========================== */
+
         .timeline {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-            max-width: 750px;
-            margin: 0 auto;
+            position: relative;
+            max-width: 850px;
+            margin: auto;
+            padding-left: 40px;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--primary);
         }
 
         .timeline-item {
+            position: relative;
             background: var(--surface);
-            border: 1px solid var(--border);
-            border-left: 5px solid var(--primary);
-            border-radius: 0 var(--radius) var(--radius) 0;
-            padding: 24px 28px;
+            margin-bottom: 35px;
+            padding: 30px;
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: .35s;
         }
 
         .timeline-item:hover {
-            transform: translateX(6px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+            transform: translateX(8px);
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--primary);
+            left: -39px;
+            top: 35px;
         }
 
         .timeline-item h3 {
-            font-weight: 600;
-            font-size: 1.15rem;
             color: var(--primary);
+            margin-bottom: 6px;
         }
 
         .timeline-item span {
             display: block;
-            font-size: 0.88rem;
             color: var(--text-light);
-            margin-bottom: 8px;
-            font-weight: 500;
+            font-size: .9rem;
+            margin-bottom: 15px;
         }
 
-        .timeline-item p {
-            color: var(--text-light);
-            font-size: 0.92rem;
+        /* ===========================
+           BUSINESS
+        =========================== */
+
+        #business {
+            background: linear-gradient(135deg, rgba(37, 99, 235, .06), transparent);
         }
 
-        /* Contact Info */
-        .contact-info {
-            max-width: 550px;
-            margin: 0 auto;
+        #business .card {
             text-align: center;
+        }
+
+        #business .card h3 {
+            font-size: 1.3rem;
+        }
+
+        /* ===========================
+           PROJECTS
+        =========================== */
+
+        #projects .card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .project-button {
+            margin-top: 20px;
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 999px;
+            background: var(--primary);
+            color: white;
+            transition: .35s;
+        }
+
+        .project-button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ===========================
+           RESUME
+        =========================== */
+
+        #resume {
+            text-align: center;
+        }
+
+        #resume .btn {
+            margin-top: 20px;
+        }
+
+        /* ===========================
+           CONTACT
+        =========================== */
+
+        .contact-info {
+            max-width: 650px;
+            margin: auto;
             background: var(--surface);
             border-radius: var(--radius);
-            padding: 40px 32px;
+            padding: 40px;
             box-shadow: var(--shadow);
         }
 
         .contact-info p {
-            margin-bottom: 14px;
-            font-size: 1rem;
+            margin-bottom: 18px;
+            text-align: left;
         }
 
         .contact-info a {
             color: var(--primary);
             text-decoration: none;
-            font-weight: 500;
-            transition: color var(--transition);
+            transition: .3s;
         }
 
         .contact-info a:hover {
@@ -409,25 +491,52 @@
             text-decoration: underline;
         }
 
-        /* Resume Section */
-        #resume .btn {
-            display: table;
-            margin: 20px auto 0;
-        }
+        /* ===========================
+           FOOTER
+        =========================== */
 
-        /* Footer */
         footer {
+            margin-top: 80px;
+            padding: 40px;
+            text-align: center;
             background: var(--surface);
             border-top: 1px solid var(--border);
-            padding: 36px 24px;
-            text-align: center;
-            color: var(--text-light);
-            font-size: 0.9rem;
-            transition: background var(--transition);
         }
 
         footer p {
+            color: var(--text-light);
             margin: 6px 0;
+        }
+
+        /* ===========================
+           GLASS EFFECT (optional)
+        =========================== */
+
+        .glass {
+            background: rgba(255, 255, 255, .12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, .2);
+        }
+
+        body.dark .glass {
+            background: rgba(15, 23, 42, .55);
+        }
+
+        /* ===========================
+           HOVER EFFECTS
+        =========================== */
+
+        .card,
+        .timeline-item,
+        .stat-card,
+        .btn {
+            transition: transform .35s, box-shadow .35s, background .35s;
+        }
+
+        .card:hover,
+        .timeline-item:hover,
+        .stat-card:hover {
+            box-shadow: 0 20px 45px rgba(37, 99, 235, .18);
         }
 
         /* ===========================
@@ -699,9 +808,12 @@
             <h2>Featured Projects</h2>
             <div class="grid">
                 <div class="card">
-                    <img src="project1.jpg" alt="Enterprise IT Project">
+                    <!-- Updated to use project-image class -->
+                    <img src="project1.jpg" alt="Enterprise IT Project" class="project-image">
                     <h3>Enterprise IT Support</h3>
                     <p>Windows Server, VMware, Exchange, Networking.</p>
+                    <!-- Optional button if you want to use .project-button -->
+                    <!-- <a href="#" class="project-button">View Details</a> -->
                 </div>
                 <div class="card">
                     <h3>LMF Payment Services</h3>
@@ -799,7 +911,6 @@
             const themeToggle = document.getElementById('themeToggle');
             const body = document.body;
 
-            // Check saved preference
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 body.classList.add('dark');
@@ -815,7 +926,7 @@
                 localStorage.setItem('theme', isDark ? 'dark' : 'light');
             });
 
-            // === SMOOTH SCROLL FOR OLDER BROWSERS ===
+            // === SMOOTH SCROLL ===
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function(e) {
                     const targetId = this.getAttribute('href');
@@ -828,7 +939,7 @@
                 });
             });
 
-            console.log('✅ Portfolio ready — LJL Digital Hub | All features active.');
+            console.log('✅ LJL Digital Hub Portfolio – fully upgraded with Part 1 & Part 2 styles.');
         })();
     </script>
 
