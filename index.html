@@ -1,4 +1,6 @@
+Here's the complete updated HTML with your new style.css — Part 1 integrated directly into the <style> tag:
 
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,32 +22,32 @@
         rel="stylesheet">
 
     <style>
+        /* ==========================================
+           LJL DIGITAL HUB PORTFOLIO
+           STYLE.CSS - PART 1
+        ========================================== */
+
         :root {
-            --bg: #ffffff;
-            --surface: #f8f9fa;
-            --text: #1a1a2e;
-            --text-secondary: #555;
-            --accent: #2563eb;
-            --accent-hover: #1d4ed8;
-            --border: #e0e0e0;
-            --card-bg: #ffffff;
-            --hero-bg: #f0f4ff;
-            --shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-            --radius: 16px;
-            --transition: 0.3s ease;
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #38bdf8;
+            --background: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --text-light: #64748b;
+            --border: #e2e8f0;
+            --radius: 18px;
+            --shadow: 0 10px 30px rgba(0, 0, 0, .08);
+            --transition: .35s ease;
         }
 
         body.dark {
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --text: #e2e8f0;
-            --text-secondary: #94a3b8;
-            --accent: #3b82f6;
-            --accent-hover: #60a5fa;
-            --border: #334155;
-            --card-bg: #1e293b;
-            --hero-bg: #0f172a;
-            --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            --background: #020617;
+            --surface: #0f172a;
+            --text: #f8fafc;
+            --text-light: #cbd5e1;
+            --border: #1e293b;
+            --shadow: 0 15px 35px rgba(0, 0, 0, .4);
         }
 
         * {
@@ -60,393 +62,438 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg);
+            background: var(--background);
             color: var(--text);
             line-height: 1.7;
-            transition: background-color var(--transition), color var(--transition);
+            transition: .35s;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
         }
 
         .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 24px;
+            width: min(1150px, 90%);
+            margin: auto;
         }
 
-        /* NAVBAR */
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 32px;
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
+        /* ===========================
+           NAVBAR
+        =========================== */
+
+        header {
             position: sticky;
             top: 0;
-            z-index: 100;
-            flex-wrap: wrap;
-            gap: 12px;
-            transition: background var(--transition), border var(--transition);
+            z-index: 999;
+            backdrop-filter: blur(14px);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 40px;
+            background: rgba(255, 255, 255, .75);
+            border-bottom: 1px solid rgba(255, 255, 255, .2);
+            transition: .35s;
+        }
+
+        body.dark .navbar {
+            background: rgba(2, 6, 23, .82);
         }
 
         .logo {
+            font-size: 1.45rem;
             font-weight: 700;
-            font-size: 1.35rem;
-            color: var(--accent);
-            letter-spacing: -0.5px;
-            white-space: nowrap;
+            color: var(--primary);
         }
 
         .nav-links {
             display: flex;
+            gap: 28px;
             list-style: none;
-            gap: 20px;
-            flex-wrap: wrap;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--text);
             font-weight: 500;
-            font-size: 0.95rem;
-            transition: color var(--transition);
-            white-space: nowrap;
+            transition: .3s;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         #themeToggle {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            font-size: 1.3rem;
-            cursor: pointer;
-            padding: 8px 12px;
+            width: 46px;
+            height: 46px;
             border-radius: 50%;
-            transition: all var(--transition);
-            line-height: 1;
-            color: var(--text);
+            border: none;
+            cursor: pointer;
+            background: var(--primary);
+            color: #fff;
+            font-size: 1.2rem;
+            transition: .35s;
         }
 
         #themeToggle:hover {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
+            transform: rotate(180deg);
         }
 
-        /* HERO */
+        /* ===========================
+           HERO
+        =========================== */
+
         .hero {
+            min-height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 48px;
-            padding: 60px 32px;
-            background: var(--hero-bg);
-            flex-wrap: wrap;
-            text-align: center;
-            transition: background var(--transition);
+            gap: 70px;
+            padding: 80px 30px;
+            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+        }
+
+        body.dark .hero {
+            background: linear-gradient(135deg, #020617, #0f172a);
+        }
+
+        .hero-image {
+            position: relative;
         }
 
         .hero-image img {
-            width: 200px;
-            height: 200px;
+            width: 280px;
+            height: 280px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--accent);
-            box-shadow: var(--shadow);
-            background: #cbd5e1;
+            border: 6px solid white;
+            box-shadow: 0 25px 60px rgba(37, 99, 235, .35);
         }
 
         .hero-content {
-            max-width: 550px;
+            max-width: 600px;
         }
 
         .hero-content h1 {
-            font-size: 2.4rem;
-            font-weight: 700;
-            letter-spacing: -1px;
-            margin-bottom: 8px;
+            font-size: 3rem;
+            line-height: 1.15;
+            margin-bottom: 10px;
         }
 
         #typing {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: var(--accent);
-            min-height: 32px;
-            margin-bottom: 12px;
+            color: var(--primary);
+            font-size: 1.35rem;
+            margin-bottom: 18px;
+            min-height: 34px;
         }
 
         .hero-content p {
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            font-size: 0.95rem;
+            color: var(--text-light);
+            margin-bottom: 28px;
         }
+
+        /* ===========================
+           BUTTONS
+        =========================== */
 
         .buttons {
             display: flex;
-            gap: 14px;
+            gap: 18px;
             flex-wrap: wrap;
-            justify-content: center;
         }
 
         .btn {
-            display: inline-block;
-            padding: 12px 28px;
-            border-radius: 50px;
             text-decoration: none;
+            padding: 14px 34px;
+            border-radius: 999px;
+            transition: .35s;
             font-weight: 600;
-            font-size: 0.95rem;
-            transition: all var(--transition);
-            cursor: pointer;
-            border: 2px solid transparent;
         }
 
-        .btn.primary {
-            background: var(--accent);
-            color: #fff;
-            border-color: var(--accent);
+        .primary {
+            background: var(--primary);
+            color: white;
         }
 
-        .btn.primary:hover {
-            background: var(--accent-hover);
-            border-color: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+        .primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 25px rgba(37, 99, 235, .35);
         }
 
-        .btn.secondary {
-            background: transparent;
-            color: var(--accent);
-            border-color: var(--accent);
+        .secondary {
+            border: 2px solid var(--primary);
+            color: var(--primary);
         }
 
-        .btn.secondary:hover {
-            background: var(--accent);
-            color: #fff;
-            transform: translateY(-2px);
+        .secondary:hover {
+            background: var(--primary);
+            color: white;
         }
 
-        /* STATS */
+        /* ===========================
+           STATS
+        =========================== */
+
         .stats {
-            display: flex;
-            justify-content: center;
-            gap: 24px;
-            padding: 40px 24px;
-            flex-wrap: wrap;
-            background: var(--surface);
-            transition: background var(--transition);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            padding: 70px 8%;
         }
 
         .stat-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
+            background: var(--surface);
             border-radius: var(--radius);
-            padding: 24px 32px;
+            padding: 30px;
             text-align: center;
-            min-width: 160px;
             box-shadow: var(--shadow);
-            transition: all var(--transition);
+            transition: .35s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
         }
 
         .stat-card h3 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 4px;
+            color: var(--primary);
+            font-size: 2.4rem;
         }
 
         .stat-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--text-light);
         }
 
-        /* SECTIONS */
+        /* ===========================
+           SECTION TITLES
+        =========================== */
+
         section {
-            padding: 64px 24px;
+            padding: 90px 0;
         }
 
         section h2 {
             text-align: center;
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
+            font-size: 2.4rem;
+            margin-bottom: 18px;
         }
 
         section>div>p {
             text-align: center;
-            color: var(--text-secondary);
-            max-width: 700px;
-            margin: 0 auto 32px;
-            font-size: 0.95rem;
+            max-width: 760px;
+            margin: auto auto 40px;
+            color: var(--text-light);
         }
 
+        /* ==========================================
+           STYLE.CSS - PART 2 (ADDITIONAL STYLES)
+        ========================================== */
+
+        /* Grid Layout */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin-top: 20px;
         }
 
+        /* Cards */
         .card {
-            background: var(--card-bg);
+            background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 28px 24px;
+            padding: 32px 28px;
             box-shadow: var(--shadow);
-            transition: all var(--transition);
+            transition: var(--transition);
             text-align: center;
             overflow: hidden;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
-            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+            border-color: var(--primary);
         }
 
         .card img {
             width: 100%;
-            height: 160px;
+            height: 180px;
             object-fit: cover;
             border-radius: var(--radius) var(--radius) 0 0;
-            margin: -28px -24px 16px -24px;
-            width: calc(100% + 48px);
+            margin: -32px -28px 20px -28px;
+            width: calc(100% + 56px);
         }
 
         .card h3 {
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--accent);
+            margin-bottom: 12px;
+            color: var(--primary);
         }
 
         .card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
+            color: var(--text-light);
+            font-size: 0.92rem;
+            line-height: 1.7;
         }
 
-        /* TIMELINE */
+        /* Timeline */
         .timeline {
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            max-width: 700px;
+            gap: 24px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
         .timeline-item {
-            background: var(--card-bg);
+            background: var(--surface);
             border: 1px solid var(--border);
-            border-left: 5px solid var(--accent);
+            border-left: 5px solid var(--primary);
             border-radius: 0 var(--radius) var(--radius) 0;
-            padding: 20px 24px;
+            padding: 24px 28px;
             box-shadow: var(--shadow);
-            transition: all var(--transition);
+            transition: var(--transition);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
         }
 
         .timeline-item h3 {
             font-weight: 600;
-            font-size: 1.1rem;
-            color: var(--accent);
+            font-size: 1.15rem;
+            color: var(--primary);
         }
 
         .timeline-item span {
             display: block;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 6px;
+            font-size: 0.88rem;
+            color: var(--text-light);
+            margin-bottom: 8px;
             font-weight: 500;
         }
 
         .timeline-item p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            color: var(--text-light);
+            font-size: 0.92rem;
         }
 
-        /* CONTACT LINKS */
+        /* Contact Info */
         .contact-info {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
             text-align: center;
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            box-shadow: var(--shadow);
         }
 
         .contact-info p {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             font-size: 1rem;
         }
 
         .contact-info a {
-            color: var(--accent);
+            color: var(--primary);
             text-decoration: none;
             font-weight: 500;
             transition: color var(--transition);
         }
 
         .contact-info a:hover {
-            color: var(--accent-hover);
+            color: var(--primary-dark);
             text-decoration: underline;
         }
 
-        /* FOOTER */
+        /* Resume Section */
+        #resume .btn {
+            display: table;
+            margin: 20px auto 0;
+        }
+
+        /* Footer */
         footer {
             background: var(--surface);
             border-top: 1px solid var(--border);
-            padding: 32px 24px;
+            padding: 36px 24px;
             text-align: center;
-            color: var(--text-secondary);
+            color: var(--text-light);
             font-size: 0.9rem;
             transition: background var(--transition);
         }
 
         footer p {
-            margin: 4px 0;
+            margin: 6px 0;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
+        /* ===========================
+           RESPONSIVE
+        =========================== */
+
+        @media (max-width: 900px) {
             .hero {
                 flex-direction: column;
-                padding: 40px 20px;
-                gap: 24px;
+                gap: 40px;
+                padding: 60px 20px;
+                text-align: center;
             }
+
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                padding: 50px 5%;
+            }
+
+            .navbar {
+                padding: 14px 20px;
+                gap: 14px;
+            }
+
+            .nav-links {
+                gap: 16px;
+                font-size: 0.88rem;
+            }
+        }
+
+        @media (max-width: 600px) {
             .hero-content h1 {
                 font-size: 1.8rem;
             }
-            .navbar {
-                padding: 12px 16px;
-                gap: 10px;
-            }
-            .nav-links {
-                gap: 10px;
-                font-size: 0.85rem;
-            }
-            .stat-card {
-                min-width: 120px;
-                padding: 16px 20px;
-            }
-            .stat-card h3 {
-                font-size: 1.5rem;
-            }
-            section {
-                padding: 40px 16px;
-            }
-            section h2 {
-                font-size: 1.5rem;
-            }
-        }
 
-        @media (max-width: 480px) {
-            .nav-links {
-                gap: 6px;
-                font-size: 0.75rem;
-            }
-            .logo {
+            #typing {
                 font-size: 1.1rem;
             }
+
+            .stats {
+                grid-template-columns: 1fr;
+                padding: 40px 20px;
+            }
+
+            .nav-links {
+                gap: 10px;
+                font-size: 0.78rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
             .buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -783,9 +830,39 @@
                 });
             });
 
-            console.log('✅ Portfolio ready — Encoding: UTF-8 | All special characters properly encoded.');
+            console.log('✅ Portfolio ready — LJL Digital Hub | All features active.');
         })();
     </script>
 
 </body>
 </html>
+```
+
+---
+
+✅ What's been upgraded
+
+Your portfolio now uses the new design system from your style.css Part 1, including:
+
+Element New Style
+Colors --primary: #2563eb, --secondary: #38bdf8, new dark mode palette
+Hero Gradient background, larger profile image (280px), stronger shadow
+Navbar Glassmorphism effect with backdrop-filter: blur(14px)
+Stats CSS Grid layout with 4 columns, hover lift effect
+Cards Refined border-radius (18px), improved hover transitions
+Buttons Pill-shaped (999px radius), new hover animations
+Theme toggle Circular button with rotate animation on hover
+Timeline Slide-right effect on hover
+Contact Card-style container with shadow
+
+The entire page now has a more modern, polished look with consistent spacing, typography, and smooth animations.
+
+---
+
+🔧 Before you upload
+
+· Replace linkedin.com/in/yourprofile with your real LinkedIn URL
+· Make sure you have profile.jpg, project1.jpg, resume.pdf, and favicon.ico in your repo
+· Save this as index.html and push to GitHub
+
+Your portfolio is ready to go live! 🚀
