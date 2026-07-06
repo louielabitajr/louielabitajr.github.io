@@ -66,9 +66,97 @@
 
         #itBackground{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1}
 
-        .news-ticker{background:rgba(15,15,26,0.85);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);color:#fff;padding:7px 0;font-size:.78rem;font-weight:500;overflow:hidden;position:relative;z-index:1000;white-space:nowrap;letter-spacing:.3px;border-bottom:1px solid rgba(255,255,255,0.1)}
-        .news-ticker span{display:inline-block;animation:tickerScroll 28s linear infinite;padding-left:100%}
+        /* ============================================
+           EYE-CATCHING ANIMATED BANNER
+        ============================================ */
+        .news-ticker{
+            background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 30%, #2d6a4f 60%, #1a1a2e 100%);
+            background-size: 300% 300%;
+            animation: bannerGradientShift 8s ease infinite;
+            color: #fff;
+            padding: 10px 0;
+            font-size: .82rem;
+            font-weight: 500;
+            overflow: hidden;
+            position: relative;
+            z-index: 1000;
+            white-space: nowrap;
+            letter-spacing: .5px;
+            border-bottom: 3px solid var(--accent);
+            box-shadow: 0 4px 25px rgba(0,0,0,0.3), 0 0 60px rgba(212,168,83,0.15);
+        }
+        @keyframes bannerGradientShift{
+            0%{background-position: 0% 50%}
+            50%{background-position: 100% 50%}
+            100%{background-position: 0% 50%}
+        }
+        
+        /* Glow line at top of banner */
+        .news-ticker::before{
+            content:"";
+            position:absolute;
+            top:0;left:0;
+            width:100%;height:2px;
+            background:linear-gradient(90deg,transparent,var(--accent),var(--secondary),var(--accent),transparent);
+            animation:bannerGlowLine 3s ease-in-out infinite;
+            z-index:2;
+        }
+        @keyframes bannerGlowLine{
+            0%,100%{opacity:0.4;transform:scaleX(0.8)}
+            50%{opacity:1;transform:scaleX(1)}
+        }
+        
+        /* Glow line at bottom */
+        .news-ticker::after{
+            content:"";
+            position:absolute;
+            bottom:0;left:0;
+            width:100%;height:2px;
+            background:linear-gradient(90deg,transparent,var(--secondary),var(--accent),var(--secondary),transparent);
+            animation:bannerGlowLine 3s ease-in-out infinite;
+            animation-delay:1.5s;
+            z-index:2;
+        }
+        
+        .news-ticker .ticker-content{
+            display:inline-flex;
+            align-items:center;
+            gap:20px;
+            animation:tickerScroll 30s linear infinite;
+            padding-left:100%;
+        }
         @keyframes tickerScroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+        
+        /* Banner icons */
+        .ticker-icon{
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            width:32px;height:32px;
+            border-radius:50%;
+            background:rgba(255,255,255,0.12);
+            backdrop-filter:blur(8px);
+            border:1.5px solid rgba(255,255,255,0.2);
+            font-size:1rem;
+            animation:tickerIconPulse 2s ease-in-out infinite;
+            flex-shrink:0;
+        }
+        @keyframes tickerIconPulse{
+            0%,100%{transform:scale(1);box-shadow:0 0 0 0 rgba(212,168,83,0.4)}
+            50%{transform:scale(1.15);box-shadow:0 0 0 8px rgba(212,168,83,0)}
+        }
+        
+        /* Highlight text */
+        .ticker-highlight{
+            color:var(--accent);
+            font-weight:700;
+            letter-spacing:1px;
+            animation:tickerHighlight 1.5s ease-in-out infinite;
+        }
+        @keyframes tickerHighlight{
+            0%,100%{text-shadow:0 0 8px rgba(212,168,83,0.3)}
+            50%{text-shadow:0 0 20px rgba(212,168,83,0.7),0 0 40px rgba(212,168,83,0.3)}
+        }
 
         #page-content{opacity:0;transform:translateY(8px);transition:opacity 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1)}
         #page-content.loaded{opacity:1;transform:translateY(0)}
@@ -87,12 +175,9 @@
         .loader-bar{height:100%;width:0;background:var(--accent);border-radius:999px;animation:loadBar 1s forwards}
         @keyframes loadBar{0%{width:0}50%{width:70%}100%{width:100%}}
 
-        #scrollProgress{position:fixed;top:0;left:0;width:0%;height:2px;background:var(--accent);z-index:10000;transition:width 0.15s linear}
+        #scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:10001;transition:width 0.15s linear;box-shadow:0 0 10px var(--accent)}
         .section-divider{width:50px;height:2px;background:var(--accent);margin:0 auto 25px;border-radius:999px}
 
-        /* ============================================
-           NAVBAR - CRYSTAL CLEAR BORDERS
-        ============================================ */
         header{position:sticky;top:0;z-index:999}
         .navbar{display:flex;justify-content:flex-start;align-items:center;padding:14px 36px;background:rgba(255,255,255,0.5);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:2px solid var(--border-strong);transition:all var(--transition);flex-wrap:wrap;gap:14px;position:relative;z-index:10}
         body.dark .navbar{background:rgba(10,10,22,0.6);border-bottom:2px solid var(--border-strong)}
@@ -114,8 +199,6 @@
         @media(max-width:768px){.navbar{flex-wrap:wrap}.nav-links{order:2;display:none;flex-direction:column;width:100%;gap:4px;padding:14px;background:var(--surface);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:2px solid var(--border-strong);margin-right:0}.nav-links.show{display:flex}.nav-links a{padding:8px 12px;text-align:center;font-size:.88rem;border-radius:10px}.nav-links a:hover{background:rgba(37,99,235,0.06)}.logo{order:1;margin-right:auto}.hamburger{display:flex;order:3}#themeToggle{order:3}}
 
         .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;gap:50px;padding:60px 20px;background:transparent;flex-wrap:wrap;text-align:center;position:relative;z-index:2}
-
-        /* Profile Animations */
         .hero-image{position:relative}
         .hero-image::before{content:"";position:absolute;inset:-15px;border-radius:50%;background:0 0;border:3px solid var(--accent);z-index:0;animation:profileGlowPulse 2.5s ease-in-out infinite;opacity:.7}
         @keyframes profileGlowPulse{0%,100%{transform:scale(1);opacity:.4;border-color:var(--accent)}50%{transform:scale(1.08);opacity:.8;border-color:var(--secondary)}}
@@ -172,7 +255,6 @@
         .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:rippleEffect .6s;pointer-events:none}
         @keyframes rippleEffect{to{transform:scale(4);opacity:0}}
 
-        /* Stats - Clear borders */
         .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:50px 5%;position:relative;z-index:2;background:rgba(255,255,255,0.3);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-top:2px solid var(--border-strong);border-bottom:2px solid var(--border-strong)}
         body.dark .stats{background:rgba(10,10,22,0.4);border-color:var(--border-strong)}
         .stat-card{padding:28px 18px;text-align:center;transition:all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);cursor:default;background:rgba(255,255,255,0.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--radius);border:2px solid var(--border-strong)}
@@ -189,8 +271,6 @@
         section>div>p{text-align:center;max-width:650px;margin:0 auto 30px;color:var(--text-light);font-size:.9rem;line-height:1.8}
 
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:25px}
-
-        /* Cards - CRYSTAL CLEAR BORDERS */
         .card{background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:2px solid var(--border-strong);border-radius:var(--radius);padding:30px 26px;transition:all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);position:relative;overflow:hidden;cursor:default}
         .card:hover{background:var(--surface-hover);transform:translateY(-10px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
         .card .card-icon{font-size:2.4rem;margin-bottom:10px;display:block;transition:transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)}
@@ -200,7 +280,6 @@
         .card .card-tag{display:inline-block;margin-top:10px;padding:5px 14px;background:rgba(212,168,83,0.15);color:var(--accent);border-radius:999px;font-size:.72rem;font-weight:500;letter-spacing:.3px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1.5px solid rgba(212,168,83,0.3)}
         body.dark .card .card-tag{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.2)}
 
-        /* Timeline - Clear borders */
         .timeline{position:relative;max-width:700px;margin:auto;padding-left:35px}
         .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border-strong)}
         .timeline-item{position:relative;background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));margin-bottom:25px;padding:26px;border-radius:var(--radius);border:2px solid var(--border-strong);transition:all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1)}
@@ -270,7 +349,7 @@
 
         @media print{header,footer,#backToTop,#scrollProgress,.news-ticker,.hero,.social-links,.contact-form,#itBackground{display:none!important}body{font-size:12pt;color:#000;background:#fff}.container{width:100%}section{padding:20px 0}}
         @media(max-width:900px){.hero{gap:30px;padding:45px 18px}.hero-content h1{font-size:2.1rem}.stats{grid-template-columns:repeat(2,1fr);padding:35px 3%;gap:15px}}
-        @media(max-width:650px){.navbar{padding:10px 14px;gap:8px}.hero-content h1{font-size:1.7rem}#typing{font-size:.95rem;min-height:24px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat-card{padding:16px 10px}.stat-card h3{font-size:1.5rem}.timeline{padding-left:22px}.timeline::before{left:4px}.timeline-item::before{left:-27px;width:10px;height:10px}.grid{grid-template-columns:1fr}section{padding:45px 0}section h2{font-size:1.6rem}.btn{padding:12px 24px;font-size:.85rem}}
+        @media(max-width:650px){.news-ticker{font-size:.7rem;padding:8px 0}.navbar{padding:10px 14px;gap:8px}.hero-content h1{font-size:1.7rem}#typing{font-size:.95rem;min-height:24px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat-card{padding:16px 10px}.stat-card h3{font-size:1.5rem}.timeline{padding-left:22px}.timeline::before{left:4px}.timeline-item::before{left:-27px;width:10px;height:10px}.grid{grid-template-columns:1fr}section{padding:45px 0}section h2{font-size:1.6rem}.btn{padding:12px 24px;font-size:.85rem}}
     </style>
 </head>
 <body>
@@ -285,7 +364,23 @@
 
 <div id="page-content">
 
-<div class="news-ticker"><span>● Now Open: LMF Payment Services — Los Baños, Laguna ● IT Infrastructure & Systems Administration ● E-Wallet & Remittance Solutions ● 15+ Years Professional Experience ●</span></div>
+<!-- ============================================
+     EYE-CATCHING ANIMATED BANNER
+============================================ -->
+<div class="news-ticker">
+    <div class="ticker-content">
+        <span class="ticker-icon">🚀</span>
+        <span>Now Open: <span class="ticker-highlight">LMF Payment Services</span> — Los Baños, Laguna</span>
+        <span class="ticker-icon">💻</span>
+        <span>IT Infrastructure & <span class="ticker-highlight">Systems Administration</span></span>
+        <span class="ticker-icon">📱</span>
+        <span>E-Wallet & <span class="ticker-highlight">Remittance Solutions</span></span>
+        <span class="ticker-icon">🎓</span>
+        <span><span class="ticker-highlight">15+ Years</span> Professional Experience</span>
+        <span class="ticker-icon">⚡</span>
+        <span>Available for <span class="ticker-highlight">New Opportunities</span></span>
+    </div>
+</div>
 
 <header>
     <nav class="navbar">
@@ -412,7 +507,7 @@
     var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>30?"0 8px 30px rgba(0,0,0,0.08)":"none";});
     var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
     var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com");});
-    console.log("🔷 LJL Digital Hub — Crystal Clear Borders + Ultra-Smooth Transitions!");
+    console.log("🔷 LJL Digital Hub — Eye-Catching Banner + All Premium Features!");
 })();
 </script>
 </body>
