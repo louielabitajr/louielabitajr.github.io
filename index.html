@@ -75,9 +75,22 @@
         }
 
         /* ===========================
+           PAGE TRANSITION WRAPPER
+        =========================== */
+        #page-content {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        #page-content.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===========================
            PRELOADER
         =========================== */
-
         #loader {
             position: fixed;
             top: 0;
@@ -86,30 +99,116 @@
             height: 100%;
             background: var(--background);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity .6s ease;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
         }
 
-        #loader .spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--border);
-            border-top: 4px solid var(--primary);
+        body.dark #loader {
+            background: #020617;
+        }
+
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Spinner */
+        .spinner-container {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .spinner-ring {
+            position: absolute;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            animation: spin 1s linear infinite;
+            border: 3px solid transparent;
         }
 
-        @keyframes spin {
+        .spinner-ring:nth-child(1) {
+            border-top-color: var(--primary);
+            animation: spinClockwise 1.2s linear infinite;
+        }
+
+        .spinner-ring:nth-child(2) {
+            width: 70%;
+            height: 70%;
+            top: 15%;
+            left: 15%;
+            border-bottom-color: var(--secondary);
+            animation: spinCounterClockwise 0.9s linear infinite;
+        }
+
+        .spinner-ring:nth-child(3) {
+            width: 40%;
+            height: 40%;
+            top: 30%;
+            left: 30%;
+            border-left-color: var(--primary);
+            animation: spinClockwise 0.6s linear infinite;
+        }
+
+        @keyframes spinClockwise {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinCounterClockwise {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Loading text */
+        .loader-text {
+            margin-top: 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--primary);
+            letter-spacing: 2px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Loading bar */
+        .loader-bar-container {
+            width: 200px;
+            height: 4px;
+            background: var(--border);
+            border-radius: 999px;
+            margin-top: 16px;
+            overflow: hidden;
+        }
+
+        body.dark .loader-bar-container {
+            background: #1e293b;
+        }
+
+        .loader-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 999px;
+            animation: loadBar 1.8s ease-in-out forwards;
+        }
+
+        @keyframes loadBar {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
         }
 
         /* ===========================
            PARTICLES CANVAS
         =========================== */
-
         #particles {
             position: fixed;
             top: 0;
@@ -123,7 +222,6 @@
         /* ===========================
            NAVBAR
         =========================== */
-
         header {
             position: sticky;
             top: 0;
@@ -202,7 +300,6 @@
         /* ===========================
            HERO
         =========================== */
-
         .hero {
             min-height: 90vh;
             display: flex;
@@ -261,7 +358,6 @@
         /* ===========================
            BUTTONS & RIPPLE
         =========================== */
-
         .buttons {
             display: flex;
             gap: 14px;
@@ -303,7 +399,6 @@
             color: white;
         }
 
-        /* Ripple effect */
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -323,7 +418,6 @@
         /* ===========================
            STATS
         =========================== */
-
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -360,7 +454,6 @@
         /* ===========================
            SECTIONS
         =========================== */
-
         section {
             padding: 70px 0;
             position: relative;
@@ -555,7 +648,6 @@
         /* ===========================
            ANIMATIONS
         =========================== */
-
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -670,7 +762,6 @@
         /* ===========================
            RESPONSIVE
         =========================== */
-
         @media(max-width:900px) {
             .hero { gap: 30px; padding: 50px 20px; }
             .hero-content h1 { font-size: 2rem; }
@@ -695,240 +786,282 @@
             section { padding: 50px 0; }
             section h2 { font-size: 1.6rem; }
             .btn { padding: 10px 22px; font-size: 0.9rem; }
+            .loader-bar-container { width: 150px; }
+            .loader-text { font-size: 0.85rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- PRELOADER -->
+    <!-- ===========================
+         PRELOADER WITH ANIMATION
+    =========================== -->
     <div id="loader">
-        <div class="spinner"></div>
+        <div class="spinner-container">
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+            <div class="spinner-ring"></div>
+        </div>
+        <div class="loader-text">LOADING</div>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
     </div>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo">LJL Digital Hub</div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#business">Business</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#resume">Resume</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-        </nav>
-    </header>
+    <!-- ===========================
+         PAGE CONTENT WRAPPER
+    =========================== -->
+    <div id="page-content">
 
-    <!-- HERO -->
-    <section id="home" class="hero">
-        <div class="hero-image fade-up">
-            <img src="profile.jpg" alt="Luisito Jr. Bataller Labita">
-        </div>
-        <div class="hero-content fade-up">
-            <h1>Luisito Jr. Bataller Labita</h1>
-            <h2 id="typing"></h2>
-            <p>
-                Building reliable technology solutions,
-                strengthening business operations,
-                and serving communities through innovation,
-                leadership and trusted financial services.
-            </p>
-            <div class="buttons">
-                <a href="#resume" class="btn primary">Download Resume</a>
-                <a href="#contact" class="btn secondary">Contact Me</a>
+        <header>
+            <nav class="navbar">
+                <div class="logo">LJL Digital Hub</div>
+                <ul class="nav-links">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#business">Business</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#resume">Resume</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+            </nav>
+        </header>
+
+        <!-- HERO -->
+        <section id="home" class="hero">
+            <div class="hero-image fade-up">
+                <img src="profile.jpg" alt="Luisito Jr. Bataller Labita">
             </div>
-        </div>
-    </section>
+            <div class="hero-content fade-up">
+                <h1>Luisito Jr. Bataller Labita</h1>
+                <h2 id="typing"></h2>
+                <p>
+                    Building reliable technology solutions,
+                    strengthening business operations,
+                    and serving communities through innovation,
+                    leadership and trusted financial services.
+                </p>
+                <div class="buttons">
+                    <a href="#resume" class="btn primary">Download Resume</a>
+                    <a href="#contact" class="btn secondary">Contact Me</a>
+                </div>
+            </div>
+        </section>
 
-    <!-- STATS -->
-    <section class="stats">
-        <div class="stat-card"><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div>
-        <div class="stat-card"><h3>BSIT</h3><p>Graduate</p></div>
-        <div class="stat-card"><h3>2023</h3><p>Founded LMF Payment Services</p></div>
-        <div class="stat-card"><h3>Enterprise</h3><p>IT Infrastructure</p></div>
-    </section>
+        <!-- STATS -->
+        <section class="stats">
+            <div class="stat-card"><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div>
+            <div class="stat-card"><h3>BSIT</h3><p>Graduate</p></div>
+            <div class="stat-card"><h3>2023</h3><p>Founded LMF Payment Services</p></div>
+            <div class="stat-card"><h3>Enterprise</h3><p>IT Infrastructure</p></div>
+        </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="container fade-up">
-            <h2>About Me</h2>
-            <p>
-                I am Luisito Jr. Bataller Labita,
-                a Bachelor of Science in Information Technology graduate
-                with over fifteen years of professional experience in
-                Information Technology, Systems Administration,
-                Technical Support, Network Infrastructure,
-                Leadership, Business Operations, and Customer Service.
-            </p>
-            <p>
-                My professional journey spans financial services,
-                enterprise IT, technical support, and entrepreneurship.
-                In 2023, I established
-                <strong>LMF Payment Services</strong>,
-                a community-based payment and remittance center located in
-                Los Ba&ntilde;os, Laguna.
-            </p>
-        </div>
-    </section>
+        <!-- ABOUT -->
+        <section id="about">
+            <div class="container fade-up">
+                <h2>About Me</h2>
+                <p>
+                    I am Luisito Jr. Bataller Labita,
+                    a Bachelor of Science in Information Technology graduate
+                    with over fifteen years of professional experience in
+                    Information Technology, Systems Administration,
+                    Technical Support, Network Infrastructure,
+                    Leadership, Business Operations, and Customer Service.
+                </p>
+                <p>
+                    My professional journey spans financial services,
+                    enterprise IT, technical support, and entrepreneurship.
+                    In 2023, I established
+                    <strong>LMF Payment Services</strong>,
+                    a community-based payment and remittance center located in
+                    Los Ba&ntilde;os, Laguna.
+                </p>
+            </div>
+        </section>
 
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="container fade-up">
-            <h2>Core Skills</h2>
-            <div class="grid">
-                <div class="card">
-                    <h3>IT Infrastructure</h3>
-                    <p>Windows Server &bull; Networking &bull; Troubleshooting &bull; Backup &amp; Recovery</p>
-                    <div class="skill">
-                        <div class="skill-title"><span>Proficiency</span><span>95%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="container fade-up">
+                <h2>Core Skills</h2>
+                <div class="grid">
+                    <div class="card">
+                        <h3>IT Infrastructure</h3>
+                        <p>Windows Server &bull; Networking &bull; Troubleshooting &bull; Backup &amp; Recovery</p>
+                        <div class="skill">
+                            <div class="skill-title"><span>Proficiency</span><span>95%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Systems Administration</h3>
+                        <p>Microsoft Technologies &bull; VMware &bull; Exchange &bull; Technical Support</p>
+                        <div class="skill">
+                            <div class="skill-title"><span>Proficiency</span><span>90%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Business Management</h3>
+                        <p>Operations &bull; Leadership &bull; Customer Service &bull; Problem Solving</p>
+                        <div class="skill">
+                            <div class="skill-title"><span>Proficiency</span><span>88%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Entrepreneurship</h3>
+                        <p>Founder &bull; LMF Payment Services &bull; Business Operations</p>
+                        <div class="skill">
+                            <div class="skill-title"><span>Proficiency</span><span>85%</span></div>
+                            <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+                        </div>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>Systems Administration</h3>
-                    <p>Microsoft Technologies &bull; VMware &bull; Exchange &bull; Technical Support</p>
-                    <div class="skill">
-                        <div class="skill-title"><span>Proficiency</span><span>90%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="container fade-up">
+                <h2>Career Journey</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Cash Teller</h3><span>RD Pawnshop</span>
+                        <p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Vault Custodian</h3><span>RD Pawnshop</span>
+                        <p>Managed vault operations, reconciliation, inventory control, and security procedures.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Branch Manager</h3><span>RD Pawnshop</span>
+                        <p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>IT Infrastructure Staff</h3><span>Enterprise IT</span>
+                        <p>Technical support, systems administration, Windows Server, VMware, network troubleshooting, Microsoft Exchange, backup and disaster recovery.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Founder &amp; Owner</h3><span>LMF Payment Services (2023 &ndash; Present)</span>
+                        <p>Founded and manage a payment and remittance center in Los Ba&ntilde;os, Laguna. Business operations, customer service, financial transactions, and business development.</p>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>Business Management</h3>
-                    <p>Operations &bull; Leadership &bull; Customer Service &bull; Problem Solving</p>
-                    <div class="skill">
-                        <div class="skill-title"><span>Proficiency</span><span>88%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
+            </div>
+        </section>
+
+        <!-- BUSINESS -->
+        <section id="business">
+            <div class="container fade-up">
+                <h2>LMF Payment Services</h2>
+                <p>
+                    LMF Payment Services is a trusted community payment and remittance center established in 2023.
+                    Reliable financial services with excellent customer support and operational integrity.
+                </p>
+                <div class="grid">
+                    <div class="card"><h3>💳 Bills Payment</h3><p>Fast and secure payment processing.</p></div>
+                    <div class="card"><h3>💸 Domestic Remittance</h3><p>Reliable money transfer services.</p></div>
+                    <div class="card"><h3>📱 E-Wallet Assistance</h3><p>Cash In and Cash Out services.</p></div>
+                    <div class="card"><h3>🤝 Customer Service</h3><p>Professional assistance for every customer.</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="container fade-up">
+                <h2>Featured Projects</h2>
+                <div class="grid">
+                    <div class="card">
+                        <img src="project1.jpg" alt="Enterprise IT Project" class="project-image">
+                        <h3>Enterprise IT Support</h3>
+                        <p>Windows Server, VMware, Exchange, Networking.</p>
+                    </div>
+                    <div class="card">
+                        <h3>LMF Payment Services</h3>
+                        <p>Business operations, financial services, customer support, daily transaction management.</p>
+                    </div>
+                    <div class="card">
+                        <h3>This Portfolio Website</h3>
+                        <p>Modern, responsive online portfolio showcasing professional experience and business.</p>
                     </div>
                 </div>
-                <div class="card">
-                    <h3>Entrepreneurship</h3>
-                    <p>Founder &bull; LMF Payment Services &bull; Business Operations</p>
-                    <div class="skill">
-                        <div class="skill-title"><span>Proficiency</span><span>85%</span></div>
-                        <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
+            </div>
+        </section>
+
+        <!-- RESUME -->
+        <section id="resume">
+            <div class="container fade-up">
+                <h2>Resume</h2>
+                <p>Download my professional resume to learn more about my qualifications, technical skills, and work experience.</p>
+                <a href="resume.pdf" class="btn primary" download>Download Resume</a>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container fade-up">
+                <h2>Contact Me</h2>
+                <div class="contact-info">
+                    <p><strong>Name:</strong> Luisito Jr. Bataller Labita</p>
+                    <p><strong>Email:</strong> <a href="mailto:louielabitajr@gmail.com">louielabitajr@gmail.com</a></p>
+                    <p><strong>Phone:</strong> +63 961 469 4358</p>
+                    <p><strong>Location:</strong> Los Ba&ntilde;os, Laguna, Philippines</p>
+                    <p><strong>Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">louielabitajr.github.io</a></p>
+                    <p><strong>GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">github.com/louielabitajr</a></p>
+                    <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
+                    <div class="social-links">
+                        <a href="https://louielabitajr.github.io" target="_blank" rel="noopener" title="Website">🌐</a>
+                        <a href="https://github.com/louielabitajr" target="_blank" rel="noopener" title="GitHub">GH</a>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">in</a>
+                        <a href="mailto:louielabitajr@gmail.com" title="Email">✉</a>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <div class="container fade-up">
-            <h2>Career Journey</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>Cash Teller</h3><span>RD Pawnshop</span>
-                    <p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Vault Custodian</h3><span>RD Pawnshop</span>
-                    <p>Managed vault operations, reconciliation, inventory control, and security procedures.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Branch Manager</h3><span>RD Pawnshop</span>
-                    <p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>IT Infrastructure Staff</h3><span>Enterprise IT</span>
-                    <p>Technical support, systems administration, Windows Server, VMware, network troubleshooting, Microsoft Exchange, backup and disaster recovery.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>Founder &amp; Owner</h3><span>LMF Payment Services (2023 &ndash; Present)</span>
-                    <p>Founded and manage a payment and remittance center in Los Ba&ntilde;os, Laguna. Business operations, customer service, financial transactions, and business development.</p>
-                </div>
+        <footer>
+            <div class="container">
+                <p>&copy; <span id="year">2026</span> Luisito Jr. Bataller Labita</p>
+                <p>IT Infrastructure Specialist &bull; Systems Administrator &bull; Founder of LMF Payment Services</p>
             </div>
-        </div>
-    </section>
+        </footer>
 
-    <!-- BUSINESS -->
-    <section id="business">
-        <div class="container fade-up">
-            <h2>LMF Payment Services</h2>
-            <p>
-                LMF Payment Services is a trusted community payment and remittance center established in 2023.
-                Reliable financial services with excellent customer support and operational integrity.
-            </p>
-            <div class="grid">
-                <div class="card"><h3>💳 Bills Payment</h3><p>Fast and secure payment processing.</p></div>
-                <div class="card"><h3>💸 Domestic Remittance</h3><p>Reliable money transfer services.</p></div>
-                <div class="card"><h3>📱 E-Wallet Assistance</h3><p>Cash In and Cash Out services.</p></div>
-                <div class="card"><h3>🤝 Customer Service</h3><p>Professional assistance for every customer.</p></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="container fade-up">
-            <h2>Featured Projects</h2>
-            <div class="grid">
-                <div class="card">
-                    <img src="project1.jpg" alt="Enterprise IT Project" class="project-image">
-                    <h3>Enterprise IT Support</h3>
-                    <p>Windows Server, VMware, Exchange, Networking.</p>
-                </div>
-                <div class="card">
-                    <h3>LMF Payment Services</h3>
-                    <p>Business operations, financial services, customer support, daily transaction management.</p>
-                </div>
-                <div class="card">
-                    <h3>This Portfolio Website</h3>
-                    <p>Modern, responsive online portfolio showcasing professional experience and business.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- RESUME -->
-    <section id="resume">
-        <div class="container fade-up">
-            <h2>Resume</h2>
-            <p>Download my professional resume to learn more about my qualifications, technical skills, and work experience.</p>
-            <a href="resume.pdf" class="btn primary" download>Download Resume</a>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container fade-up">
-            <h2>Contact Me</h2>
-            <div class="contact-info">
-                <p><strong>Name:</strong> Luisito Jr. Bataller Labita</p>
-                <p><strong>Email:</strong> <a href="mailto:louielabitajr@gmail.com">louielabitajr@gmail.com</a></p>
-                <p><strong>Phone:</strong> +63 961 469 4358</p>
-                <p><strong>Location:</strong> Los Ba&ntilde;os, Laguna, Philippines</p>
-                <p><strong>Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">louielabitajr.github.io</a></p>
-                <p><strong>GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">github.com/louielabitajr</a></p>
-                <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
-                <div class="social-links">
-                    <a href="https://louielabitajr.github.io" target="_blank" rel="noopener" title="Website">🌐</a>
-                    <a href="https://github.com/louielabitajr" target="_blank" rel="noopener" title="GitHub">GH</a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">in</a>
-                    <a href="mailto:louielabitajr@gmail.com" title="Email">✉</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; <span id="year">2026</span> Luisito Jr. Bataller Labita</p>
-            <p>IT Infrastructure Specialist &bull; Systems Administrator &bull; Founder of LMF Payment Services</p>
-        </div>
-    </footer>
+    </div>
+    <!-- END PAGE CONTENT WRAPPER -->
 
     <script>
         /* ==========================================
            LJL DIGITAL HUB
            script.js - PARTS 1, 2 & 3 (COMPLETE)
+           + PAGE TRANSITION ANIMATION
         ========================================== */
 
         document.addEventListener("DOMContentLoaded", () => {
+
+            // ========== PAGE TRANSITION ==========
+            const pageContent = document.getElementById("page-content");
+            const loader = document.getElementById("loader");
+
+            // Show page content after loader finishes
+            window.addEventListener("load", () => {
+                // Small delay to let loader animation complete
+                setTimeout(() => {
+                    // Hide loader
+                    loader.classList.add("hidden");
+                    // Show page content with animation
+                    pageContent.classList.add("loaded");
+                    // Remove loader from DOM after transition
+                    setTimeout(() => {
+                        if (loader.parentNode) {
+                            loader.remove();
+                        }
+                    }, 800);
+                }, 2000); // 2 seconds for the loader animation
+            });
 
             // ========== DARK MODE ==========
             const body = document.body;
@@ -950,266 +1083,3 @@
             }
 
             // ========== TYPING EFFECT ==========
-            const typing = document.getElementById("typing");
-            if (typing) {
-                const words = [
-                    "IT Infrastructure Specialist",
-                    "Systems Administrator",
-                    "Network Engineer",
-                    "Founder of LMF Payment Services",
-                    "Technology Leader"
-                ];
-                let wordIndex = 0;
-                let charIndex = 0;
-                let deleting = false;
-
-                function type() {
-                    const current = words[wordIndex];
-                    if (!deleting) {
-                        typing.textContent = current.substring(0, charIndex + 1);
-                        charIndex++;
-                        if (charIndex === current.length) {
-                            deleting = true;
-                            setTimeout(type, 1500);
-                            return;
-                        }
-                    } else {
-                        typing.textContent = current.substring(0, charIndex - 1);
-                        charIndex--;
-                        if (charIndex === 0) {
-                            deleting = false;
-                            wordIndex = (wordIndex + 1) % words.length;
-                        }
-                    }
-                    setTimeout(type, deleting ? 40 : 80);
-                }
-                type();
-            }
-
-            // ========== SMOOTH SCROLL ==========
-            document.querySelectorAll('a[href^="#"]').forEach(link => {
-                link.addEventListener("click", function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute("href"));
-                    if (target) {
-                        target.scrollIntoView({ behavior: "smooth" });
-                    }
-                });
-            });
-
-            // ========== BACK TO TOP ==========
-            const backButton = document.createElement("button");
-            backButton.id = "backToTop";
-            backButton.innerHTML = "⬆";
-            document.body.appendChild(backButton);
-
-            window.addEventListener("scroll", () => {
-                backButton.style.display = window.scrollY > 500 ? "block" : "none";
-            });
-
-            backButton.addEventListener("click", () => {
-                window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-
-            // ========== SCROLL REVEAL ==========
-            const revealElements = document.querySelectorAll(".card, .timeline-item, .stat-card, section h2");
-            const revealObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("fade-up", "show");
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            revealElements.forEach(el => {
-                el.classList.add("fade-up");
-                revealObserver.observe(el);
-            });
-
-            document.querySelectorAll(".container.fade-up, .hero-image.fade-up, .hero-content.fade-up").forEach(el => {
-                revealObserver.observe(el);
-            });
-
-            // ========== SKILL BARS ==========
-            const skillFills = document.querySelectorAll(".skill-fill");
-            const skillObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.width = entry.target.dataset.width;
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            skillFills.forEach(fill => skillObserver.observe(fill));
-
-            // ========== COUNTER ANIMATION ==========
-            const counterElement = document.querySelector(".counter");
-            if (counterElement) {
-                const targetValue = parseInt(counterElement.dataset.target);
-                const counterObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting && !counterElement.dataset.animated) {
-                            counterElement.dataset.animated = "true";
-                            let current = 0;
-                            const duration = 1500;
-                            const step = targetValue / (duration / 16);
-
-                            function updateCounter() {
-                                current += step;
-                                if (current < targetValue) {
-                                    counterElement.textContent = Math.floor(current) + "+";
-                                    requestAnimationFrame(updateCounter);
-                                } else {
-                                    counterElement.textContent = targetValue + "+";
-                                }
-                            }
-                            updateCounter();
-                        }
-                    });
-                }, { threshold: 0.5 });
-                counterObserver.observe(counterElement);
-            }
-
-            // ========== ACTIVE NAVIGATION ==========
-            const sections = document.querySelectorAll("section");
-            const navLinks = document.querySelectorAll(".nav-links a");
-
-            window.addEventListener("scroll", () => {
-                let current = "";
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 150;
-                    if (pageYOffset >= sectionTop) {
-                        current = section.getAttribute("id");
-                    }
-                });
-
-                navLinks.forEach(link => {
-                    link.classList.remove("active");
-                    if (link.getAttribute("href") === "#" + current) {
-                        link.classList.add("active");
-                    }
-                });
-            });
-
-            // ========== RIPPLE BUTTON EFFECT (Part 3) ==========
-            document.querySelectorAll(".btn").forEach(button => {
-                button.addEventListener("click", function(e) {
-                    const ripple = document.createElement("span");
-                    ripple.classList.add("ripple");
-                    this.appendChild(ripple);
-
-                    const rect = this.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-
-                    ripple.style.left = x + "px";
-                    ripple.style.top = y + "px";
-
-                    setTimeout(() => {
-                        ripple.remove();
-                    }, 600);
-                });
-            });
-
-            // ========== IMAGE HOVER ZOOM (Part 3) ==========
-            document.querySelectorAll("img").forEach(img => {
-                img.addEventListener("mouseenter", () => {
-                    img.style.transform = "scale(1.04)";
-                });
-                img.addEventListener("mouseleave", () => {
-                    img.style.transform = "scale(1)";
-                });
-            });
-
-            // ========== CURRENT YEAR (Part 3) ==========
-            const yearSpan = document.getElementById("year");
-            if (yearSpan) {
-                yearSpan.textContent = new Date().getFullYear();
-            }
-
-            console.log("🚀 LJL Portfolio Version 3 — All premium features loaded successfully.");
-        });
-
-        // ========== PRELOADER (Part 3) ==========
-        window.addEventListener("load", () => {
-            const loader = document.getElementById("loader");
-            if (loader) {
-                loader.style.opacity = "0";
-                setTimeout(() => {
-                    loader.remove();
-                }, 600);
-            }
-        });
-
-        // ========== NAVBAR SHADOW ON SCROLL (Part 3) ==========
-        const navbar = document.querySelector(".navbar");
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = "0 15px 30px rgba(0,0,0,.12)";
-            } else {
-                navbar.style.boxShadow = "none";
-            }
-        });
-
-        // ========== PARALLAX HERO (Part 3) ==========
-        const hero = document.querySelector(".hero");
-        window.addEventListener("scroll", () => {
-            if (hero) {
-                hero.style.backgroundPositionY = window.scrollY * 0.4 + "px";
-            }
-        });
-
-        // ========== COPY EMAIL (Part 3) ==========
-        const emailLink = document.querySelector('a[href^="mailto:"]');
-        if (emailLink) {
-            emailLink.addEventListener("click", (e) => {
-                navigator.clipboard.writeText("louielabitajr@gmail.com").then(() => {
-                    console.log("📋 Email copied to clipboard!");
-                });
-            });
-        }
-
-        // ========== SIMPLE PARTICLES (Part 3) ==========
-        const canvas = document.createElement("canvas");
-        canvas.id = "particles";
-        document.body.prepend(canvas);
-
-        const ctx = canvas.getContext("2d");
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener("resize", resizeCanvas);
-
-        const particles = [];
-        for (let i = 0; i < 50; i++) {
-            particles.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                r: Math.random() * 2 + 1,
-                dx: (Math.random() - .5) * 0.5,
-                dy: (Math.random() - .5) * 0.5
-            });
-        }
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(37,99,235,.18)";
-                ctx.fill();
-                p.x += p.dx;
-                p.y += p.dy;
-                if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
-                if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
-            });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
-    </script>
-
-</body>
-</html>
