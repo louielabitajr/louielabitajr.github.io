@@ -79,8 +79,8 @@
         =========================== */
         #page-content {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
 
         #page-content.loaded {
@@ -89,7 +89,7 @@
         }
 
         /* ===========================
-           PRELOADER
+           PRELOADER (FAST VERSION)
         =========================== */
         #loader {
             position: fixed;
@@ -103,7 +103,7 @@
             align-items: center;
             justify-content: center;
             z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         body.dark #loader {
@@ -115,11 +115,11 @@
             visibility: hidden;
         }
 
-        /* Spinner */
+        /* Spinner - faster */
         .spinner-container {
             position: relative;
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
         }
 
         .spinner-ring {
@@ -132,25 +132,25 @@
 
         .spinner-ring:nth-child(1) {
             border-top-color: var(--primary);
-            animation: spinClockwise 1.2s linear infinite;
+            animation: spinClockwise 0.7s linear infinite;
         }
 
         .spinner-ring:nth-child(2) {
-            width: 70%;
-            height: 70%;
-            top: 15%;
-            left: 15%;
+            width: 65%;
+            height: 65%;
+            top: 17.5%;
+            left: 17.5%;
             border-bottom-color: var(--secondary);
-            animation: spinCounterClockwise 0.9s linear infinite;
+            animation: spinCounterClockwise 0.5s linear infinite;
         }
 
         .spinner-ring:nth-child(3) {
-            width: 40%;
-            height: 40%;
-            top: 30%;
-            left: 30%;
+            width: 35%;
+            height: 35%;
+            top: 32.5%;
+            left: 32.5%;
             border-left-color: var(--primary);
-            animation: spinClockwise 0.6s linear infinite;
+            animation: spinClockwise 0.35s linear infinite;
         }
 
         @keyframes spinClockwise {
@@ -165,26 +165,26 @@
 
         /* Loading text */
         .loader-text {
-            margin-top: 24px;
-            font-size: 1rem;
+            margin-top: 20px;
+            font-size: 0.9rem;
             font-weight: 600;
             color: var(--primary);
-            letter-spacing: 2px;
-            animation: pulse 1.5s ease-in-out infinite;
+            letter-spacing: 3px;
+            animation: pulse 0.8s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
+            0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
 
-        /* Loading bar */
+        /* Loading bar - faster */
         .loader-bar-container {
-            width: 200px;
-            height: 4px;
+            width: 180px;
+            height: 3px;
             background: var(--border);
             border-radius: 999px;
-            margin-top: 16px;
+            margin-top: 14px;
             overflow: hidden;
         }
 
@@ -197,12 +197,12 @@
             width: 0%;
             background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 999px;
-            animation: loadBar 1.8s ease-in-out forwards;
+            animation: loadBar 0.9s ease-in-out forwards;
         }
 
         @keyframes loadBar {
             0% { width: 0%; }
-            50% { width: 70%; }
+            60% { width: 80%; }
             100% { width: 100%; }
         }
 
@@ -355,9 +355,6 @@
             font-size: 0.95rem;
         }
 
-        /* ===========================
-           BUTTONS & RIPPLE
-        =========================== */
         .buttons {
             display: flex;
             gap: 14px;
@@ -415,9 +412,6 @@
             }
         }
 
-        /* ===========================
-           STATS
-        =========================== */
         .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -451,9 +445,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===========================
-           SECTIONS
-        =========================== */
         section {
             padding: 70px 0;
             position: relative;
@@ -574,10 +565,6 @@
             margin-bottom: 10px;
         }
 
-        .timeline-item p {
-            font-size: 0.9rem;
-        }
-
         #business {
             background: linear-gradient(135deg, rgba(37, 99, 235, .04), transparent);
         }
@@ -645,9 +632,6 @@
             font-size: 0.9rem;
         }
 
-        /* ===========================
-           ANIMATIONS
-        =========================== */
         .fade-up {
             opacity: 0;
             transform: translateY(30px);
@@ -756,17 +740,12 @@
         ::-webkit-scrollbar-track { background: var(--background); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 20px; }
         ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
-
         ::selection { background: var(--primary); color: #fff; }
 
-        /* ===========================
-           RESPONSIVE
-        =========================== */
         @media(max-width:900px) {
             .hero { gap: 30px; padding: 50px 20px; }
             .hero-content h1 { font-size: 2rem; }
             .stats { grid-template-columns: repeat(2, 1fr); padding: 40px 4%; }
-            .stat-card h3 { font-size: 1.6rem; }
         }
 
         @media(max-width:650px) {
@@ -778,7 +757,6 @@
             .stats { grid-template-columns: 1fr 1fr; gap: 12px; }
             .stat-card { padding: 18px 14px; }
             .stat-card h3 { font-size: 1.4rem; }
-            .stat-card p { font-size: 0.8rem; }
             .timeline { padding-left: 25px; }
             .timeline::before { left: 5px; }
             .timeline-item::before { left: -26px; width: 12px; height: 12px; }
@@ -786,17 +764,13 @@
             section { padding: 50px 0; }
             section h2 { font-size: 1.6rem; }
             .btn { padding: 10px 22px; font-size: 0.9rem; }
-            .loader-bar-container { width: 150px; }
-            .loader-text { font-size: 0.85rem; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- ===========================
-         PRELOADER WITH ANIMATION
-    =========================== -->
+    <!-- PRELOADER (FAST) -->
     <div id="loader">
         <div class="spinner-container">
             <div class="spinner-ring"></div>
@@ -809,9 +783,7 @@
         </div>
     </div>
 
-    <!-- ===========================
-         PAGE CONTENT WRAPPER
-    =========================== -->
+    <!-- PAGE CONTENT -->
     <div id="page-content">
 
         <header>
@@ -831,7 +803,6 @@
             </nav>
         </header>
 
-        <!-- HERO -->
         <section id="home" class="hero">
             <div class="hero-image fade-up">
                 <img src="profile.jpg" alt="Luisito Jr. Bataller Labita">
@@ -839,12 +810,7 @@
             <div class="hero-content fade-up">
                 <h1>Luisito Jr. Bataller Labita</h1>
                 <h2 id="typing"></h2>
-                <p>
-                    Building reliable technology solutions,
-                    strengthening business operations,
-                    and serving communities through innovation,
-                    leadership and trusted financial services.
-                </p>
+                <p>Building reliable technology solutions, strengthening business operations, and serving communities through innovation, leadership and trusted financial services.</p>
                 <div class="buttons">
                     <a href="#resume" class="btn primary">Download Resume</a>
                     <a href="#contact" class="btn secondary">Contact Me</a>
@@ -852,7 +818,6 @@
             </div>
         </section>
 
-        <!-- STATS -->
         <section class="stats">
             <div class="stat-card"><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div>
             <div class="stat-card"><h3>BSIT</h3><p>Graduate</p></div>
@@ -860,107 +825,43 @@
             <div class="stat-card"><h3>Enterprise</h3><p>IT Infrastructure</p></div>
         </section>
 
-        <!-- ABOUT -->
         <section id="about">
             <div class="container fade-up">
                 <h2>About Me</h2>
-                <p>
-                    I am Luisito Jr. Bataller Labita,
-                    a Bachelor of Science in Information Technology graduate
-                    with over fifteen years of professional experience in
-                    Information Technology, Systems Administration,
-                    Technical Support, Network Infrastructure,
-                    Leadership, Business Operations, and Customer Service.
-                </p>
-                <p>
-                    My professional journey spans financial services,
-                    enterprise IT, technical support, and entrepreneurship.
-                    In 2023, I established
-                    <strong>LMF Payment Services</strong>,
-                    a community-based payment and remittance center located in
-                    Los Ba&ntilde;os, Laguna.
-                </p>
+                <p>I am Luisito Jr. Bataller Labita, a Bachelor of Science in Information Technology graduate with over fifteen years of professional experience in Information Technology, Systems Administration, Technical Support, Network Infrastructure, Leadership, Business Operations, and Customer Service.</p>
+                <p>My professional journey spans financial services, enterprise IT, technical support, and entrepreneurship. In 2023, I established <strong>LMF Payment Services</strong>, a community-based payment and remittance center located in Los Ba&ntilde;os, Laguna.</p>
             </div>
         </section>
 
-        <!-- SKILLS -->
         <section id="skills">
             <div class="container fade-up">
                 <h2>Core Skills</h2>
                 <div class="grid">
-                    <div class="card">
-                        <h3>IT Infrastructure</h3>
-                        <p>Windows Server &bull; Networking &bull; Troubleshooting &bull; Backup &amp; Recovery</p>
-                        <div class="skill">
-                            <div class="skill-title"><span>Proficiency</span><span>95%</span></div>
-                            <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>Systems Administration</h3>
-                        <p>Microsoft Technologies &bull; VMware &bull; Exchange &bull; Technical Support</p>
-                        <div class="skill">
-                            <div class="skill-title"><span>Proficiency</span><span>90%</span></div>
-                            <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>Business Management</h3>
-                        <p>Operations &bull; Leadership &bull; Customer Service &bull; Problem Solving</p>
-                        <div class="skill">
-                            <div class="skill-title"><span>Proficiency</span><span>88%</span></div>
-                            <div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <h3>Entrepreneurship</h3>
-                        <p>Founder &bull; LMF Payment Services &bull; Business Operations</p>
-                        <div class="skill">
-                            <div class="skill-title"><span>Proficiency</span><span>85%</span></div>
-                            <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
-                        </div>
-                    </div>
+                    <div class="card"><h3>IT Infrastructure</h3><p>Windows Server &bull; Networking &bull; Troubleshooting &bull; Backup &amp; Recovery</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div></div></div>
+                    <div class="card"><h3>Systems Administration</h3><p>Microsoft Technologies &bull; VMware &bull; Exchange &bull; Technical Support</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div></div>
+                    <div class="card"><h3>Business Management</h3><p>Operations &bull; Leadership &bull; Customer Service &bull; Problem Solving</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div></div>
+                    <div class="card"><h3>Entrepreneurship</h3><p>Founder &bull; LMF Payment Services &bull; Business Operations</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div></div>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCE -->
         <section id="experience">
             <div class="container fade-up">
                 <h2>Career Journey</h2>
                 <div class="timeline">
-                    <div class="timeline-item">
-                        <h3>Cash Teller</h3><span>RD Pawnshop</span>
-                        <p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Vault Custodian</h3><span>RD Pawnshop</span>
-                        <p>Managed vault operations, reconciliation, inventory control, and security procedures.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Branch Manager</h3><span>RD Pawnshop</span>
-                        <p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>IT Infrastructure Staff</h3><span>Enterprise IT</span>
-                        <p>Technical support, systems administration, Windows Server, VMware, network troubleshooting, Microsoft Exchange, backup and disaster recovery.</p>
-                    </div>
-                    <div class="timeline-item">
-                        <h3>Founder &amp; Owner</h3><span>LMF Payment Services (2023 &ndash; Present)</span>
-                        <p>Founded and manage a payment and remittance center in Los Ba&ntilde;os, Laguna. Business operations, customer service, financial transactions, and business development.</p>
-                    </div>
+                    <div class="timeline-item"><h3>Cash Teller</h3><span>RD Pawnshop</span><p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p></div>
+                    <div class="timeline-item"><h3>Vault Custodian</h3><span>RD Pawnshop</span><p>Managed vault operations, reconciliation, inventory control, and security procedures.</p></div>
+                    <div class="timeline-item"><h3>Branch Manager</h3><span>RD Pawnshop</span><p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p></div>
+                    <div class="timeline-item"><h3>IT Infrastructure Staff</h3><span>Enterprise IT</span><p>Technical support, systems administration, Windows Server, VMware, network troubleshooting, Microsoft Exchange, backup and disaster recovery.</p></div>
+                    <div class="timeline-item"><h3>Founder &amp; Owner</h3><span>LMF Payment Services (2023 &ndash; Present)</span><p>Founded and manage a payment and remittance center in Los Ba&ntilde;os, Laguna.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- BUSINESS -->
         <section id="business">
             <div class="container fade-up">
                 <h2>LMF Payment Services</h2>
-                <p>
-                    LMF Payment Services is a trusted community payment and remittance center established in 2023.
-                    Reliable financial services with excellent customer support and operational integrity.
-                </p>
+                <p>LMF Payment Services is a trusted community payment and remittance center established in 2023. Reliable financial services with excellent customer support and operational integrity.</p>
                 <div class="grid">
                     <div class="card"><h3>💳 Bills Payment</h3><p>Fast and secure payment processing.</p></div>
                     <div class="card"><h3>💸 Domestic Remittance</h3><p>Reliable money transfer services.</p></div>
@@ -970,29 +871,17 @@
             </div>
         </section>
 
-        <!-- PROJECTS -->
         <section id="projects">
             <div class="container fade-up">
                 <h2>Featured Projects</h2>
                 <div class="grid">
-                    <div class="card">
-                        <img src="project1.jpg" alt="Enterprise IT Project" class="project-image">
-                        <h3>Enterprise IT Support</h3>
-                        <p>Windows Server, VMware, Exchange, Networking.</p>
-                    </div>
-                    <div class="card">
-                        <h3>LMF Payment Services</h3>
-                        <p>Business operations, financial services, customer support, daily transaction management.</p>
-                    </div>
-                    <div class="card">
-                        <h3>This Portfolio Website</h3>
-                        <p>Modern, responsive online portfolio showcasing professional experience and business.</p>
-                    </div>
+                    <div class="card"><img src="project1.jpg" alt="Enterprise IT Project" class="project-image"><h3>Enterprise IT Support</h3><p>Windows Server, VMware, Exchange, Networking.</p></div>
+                    <div class="card"><h3>LMF Payment Services</h3><p>Business operations, financial services, customer support, daily transaction management.</p></div>
+                    <div class="card"><h3>This Portfolio Website</h3><p>Modern, responsive online portfolio showcasing professional experience and business.</p></div>
                 </div>
             </div>
         </section>
 
-        <!-- RESUME -->
         <section id="resume">
             <div class="container fade-up">
                 <h2>Resume</h2>
@@ -1001,7 +890,6 @@
             </div>
         </section>
 
-        <!-- CONTACT -->
         <section id="contact">
             <div class="container fade-up">
                 <h2>Contact Me</h2>
@@ -1031,48 +919,31 @@
         </footer>
 
     </div>
-    <!-- END PAGE CONTENT WRAPPER -->
 
     <script>
-        /* ==========================================
-           LJL DIGITAL HUB
-           script.js - PARTS 1, 2 & 3 (COMPLETE)
-           + PAGE TRANSITION ANIMATION
-        ========================================== */
-
         document.addEventListener("DOMContentLoaded", () => {
 
-            // ========== PAGE TRANSITION ==========
             const pageContent = document.getElementById("page-content");
             const loader = document.getElementById("loader");
 
-            // Show page content after loader finishes
+            // ========== FAST PAGE TRANSITION (1 second) ==========
             window.addEventListener("load", () => {
-                // Small delay to let loader animation complete
                 setTimeout(() => {
-                    // Hide loader
                     loader.classList.add("hidden");
-                    // Show page content with animation
                     pageContent.classList.add("loaded");
-                    // Remove loader from DOM after transition
                     setTimeout(() => {
-                        if (loader.parentNode) {
-                            loader.remove();
-                        }
-                    }, 800);
-                }, 2000); // 2 seconds for the loader animation
+                        if (loader.parentNode) loader.remove();
+                    }, 400);
+                }, 1000);
             });
 
             // ========== DARK MODE ==========
             const body = document.body;
             const themeToggle = document.getElementById("themeToggle");
-            const savedTheme = localStorage.getItem("theme");
-
-            if (savedTheme === "dark") {
+            if (localStorage.getItem("theme") === "dark") {
                 body.classList.add("dark");
                 if (themeToggle) themeToggle.textContent = "☀️";
             }
-
             if (themeToggle) {
                 themeToggle.addEventListener("click", () => {
                     body.classList.toggle("dark");
@@ -1083,3 +954,35 @@
             }
 
             // ========== TYPING EFFECT ==========
+            const typing = document.getElementById("typing");
+            if (typing) {
+                const words = ["IT Infrastructure Specialist", "Systems Administrator", "Network Engineer", "Founder of LMF Payment Services", "Technology Leader"];
+                let wi = 0, ci = 0, del = false;
+                (function type() {
+                    const cur = words[wi];
+                    typing.textContent = cur.substring(0, del ? ci-- : ci++);
+                    if (!del && ci > cur.length) { del = true; setTimeout(type, 1500); return; }
+                    if (del && ci < 0) { del = false; wi = (wi + 1) % words.length; }
+                    setTimeout(type, del ? 40 : 80);
+                })();
+            }
+
+            // ========== SMOOTH SCROLL ==========
+            document.querySelectorAll('a[href^="#"]').forEach(l => l.addEventListener("click", function(e) {
+                e.preventDefault();
+                const t = document.querySelector(this.getAttribute("href"));
+                if (t) t.scrollIntoView({ behavior: "smooth" });
+            }));
+
+            // ========== BACK TO TOP ==========
+            const bb = document.createElement("button");
+            bb.id = "backToTop"; bb.innerHTML = "⬆"; document.body.appendChild(bb);
+            window.addEventListener("scroll", () => bb.style.display = window.scrollY > 500 ? "block" : "none");
+            bb.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+            // ========== SCROLL REVEAL ==========
+            const ro = new IntersectionObserver((e) => e.forEach(en => { if (en.isIntersecting) { en.target.classList.add("fade-up", "show"); } }), { threshold: 0.1 });
+            document.querySelectorAll(".card, .timeline-item, .stat-card, section h2, .container.fade-up, .hero-image.fade-up, .hero-content.fade-up").forEach(el => { el.classList.add("fade-up"); ro.observe(el); });
+
+            // ========== SKILL BARS ==========
+            const so = new IntersectionObserver((e) => e
