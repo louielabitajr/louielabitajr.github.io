@@ -20,7 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script type="application/ld+json">
-    {"@context":"https://schema.org","@type":"Person","name":"Luisito Jr. Bataller Labita","jobTitle":"IT Infrastructure Specialist","url":"https://louielabitajr.github.io","email":"louielabitajr@gmail.com","telephone":"+639614694358"}
+    {"@context":"https://schema.org","@type":"Person","name":"Luisito Jr. Bataller Labita","jobTitle":"IT Infrastructure Specialist","url":"https://louielabitajr.github.io","email":"louielabitajr@gmail.com","telephone":"+639614694358","address":{"@type":"PostalAddress","addressLocality":"Los Baños","addressRegion":"Laguna","addressCountry":"PH"},"sameAs":["https://github.com/louielabitajr","https://linkedin.com/in/yourprofile"]}
     </script>
     <style>
         :root{--primary:#2563eb;--primary-dark:#1d4ed8;--secondary:#38bdf8;--accent:#f59e0b;--success:#10b981;--danger:#ef4444;--background:#f8fafc;--surface:#fff;--text:#0f172a;--text-light:#64748b;--border:#e2e8f0;--radius:20px;--shadow:0 10px 30px rgba(0,0,0,.08);--shadow-lg:0 25px 50px rgba(0,0,0,.12);--transition:.35s}
@@ -65,9 +65,12 @@
 
         /* Navbar */
         header{position:sticky;top:0;z-index:999;backdrop-filter:blur(14px)}
-        .navbar{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;background:rgba(255,255,255,.78);border-bottom:1px solid rgba(255,255,255,.2);transition:all .35s;flex-wrap:wrap;gap:15px;position:relative;z-index:10}
+        .navbar{display:flex;justify-content:space-between;align-items:center;padding:14px 40px;background:rgba(255,255,255,.78);border-bottom:1px solid rgba(255,255,255,.2);transition:all .35s;flex-wrap:wrap;gap:15px;position:relative;z-index:10}
         body.dark .navbar{background:rgba(2,6,23,.85)}
-        .logo{font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;letter-spacing:-.5px}
+        /* Logo SVG styling */
+        .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+        .logo svg{height:42px;width:auto}
+        @media(max-width:480px){.logo svg{height:36px}}
         .nav-links{display:flex;gap:18px;list-style:none;flex-wrap:wrap;justify-content:center}
         .nav-links a{text-decoration:none;color:var(--text);font-weight:500;transition:.3s;font-size:.88rem;white-space:nowrap;position:relative;padding:6px 0}
         .nav-links a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--primary);transition:width .3s;border-radius:999px}
@@ -195,7 +198,6 @@
         .social-links a{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;background:var(--surface);color:var(--primary);box-shadow:var(--shadow);transition:.35s;font-size:1.15rem;font-weight:600;border:1px solid var(--border)}
         .social-links a:hover{background:var(--primary);color:#fff;transform:translateY(-6px);box-shadow:0 14px 35px rgba(37,99,235,.35);border-color:var(--primary)}
 
-        /* Floating Status Dot */
         .status-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--success);animation:statusPulse 2s infinite;margin-right:6px;vertical-align:middle}
         @keyframes statusPulse{0%,100%{box-shadow:0 0 0 0 rgba(16,185,129,.4)}50%{box-shadow:0 0 0 10px rgba(16,185,129,0)}}
 
@@ -224,7 +226,30 @@
 
 <header>
     <nav class="navbar">
-        <div class="logo">LJL Digital Hub</div>
+        <!-- ============ NEW SVG LOGO ============ -->
+        <a href="#home" class="logo" title="LJL Digital Hub">
+            <svg width="200" height="42" viewBox="0 0 200 42" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:1" />
+                    </linearGradient>
+                    <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#38bdf8;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <!-- Monogram Box -->
+                <rect x="1" y="1" width="40" height="40" rx="10" fill="url(#logoGradient)" opacity="0.95"/>
+                <rect x="1" y="1" width="40" height="40" rx="10" fill="none" stroke="url(#logoGradient)" stroke-width="1.5" opacity="0.6"/>
+                <!-- LJL Text -->
+                <text x="21" y="28" font-family="'Poppins',sans-serif" font-size="17" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="1">LJL</text>
+                <!-- Digital Hub Text -->
+                <text x="52" y="20" font-family="'Poppins',sans-serif" font-size="15" font-weight="700" fill="currentColor" fill-opacity="0.9">LJL Digital</text>
+                <text x="52" y="36" font-family="'Poppins',sans-serif" font-size="10" font-weight="600" fill="url(#textGradient)" letter-spacing="3.5">HUB</text>
+            </svg>
+        </a>
+        <!-- ==================================== -->
         <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
         <ul class="nav-links" id="navLinks">
             <li><a href="#home" class="active">Home</a></li>
@@ -347,78 +372,42 @@
 
 <script>
 (function(){
-    // Scroll Progress
     var sp=document.getElementById("scrollProgress");
-    window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-ch.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%";});
-
-    // Page transition
+    window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%";});
     var pc=document.getElementById("page-content"),ld=document.getElementById("loader");
     window.addEventListener("load",function(){setTimeout(function(){ld.classList.add("hidden");pc.classList.add("loaded");setTimeout(function(){if(ld.parentNode)ld.remove();},400);},1000);});
-
-    // Dark mode
     var bd=document.body,tt=document.getElementById("themeToggle");
     if(localStorage.getItem("theme")==="dark"){bd.classList.add("dark");if(tt)tt.textContent="☀️";}
     if(tt){tt.addEventListener("click",function(){bd.classList.toggle("dark");var d=bd.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light");});}
-
-    // Hamburger
     var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");
     if(ham){ham.addEventListener("click",function(e){e.stopPropagation();nl.classList.toggle("show");});}
     nl.querySelectorAll("a").forEach(function(l){l.addEventListener("click",function(){nl.classList.remove("show");});});
     document.addEventListener("click",function(e){if(!nl.contains(e.target)&&e.target!==ham){nl.classList.remove("show");}});
-
-    // Typing
     var tp=document.getElementById("typing");
     if(tp){var w=["IT Infrastructure Specialist","Systems Administrator","Network Engineer","Founder of LMF Payment Services","Technology Leader"],wi=0,ci=0,dl=false;
     function t(){var c=w[wi];tp.textContent=c.substring(0,dl?ci--:ci++);if(!dl&&ci>c.length){dl=true;setTimeout(t,1500);return;}if(dl&&ci<0){dl=false;wi=(wi+1)%w.length;}setTimeout(t,dl?40:80);}t();}
-
-    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth"});});});
-
-    // Back to top
     var bb=document.createElement("button");bb.id="backToTop";bb.innerHTML="⬆";document.body.appendChild(bb);
     window.addEventListener("scroll",function(){bb.style.display=window.scrollY>500?"block":"none";});
     bb.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
-
-    // Scroll reveal
     var ro=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add("fade-up","show");}});},{threshold:0.1});
     document.querySelectorAll(".card,.timeline-item,.stat-card,section h2,.container.fade-up,.hero-image.fade-up,.hero-content.fade-up,.section-divider").forEach(function(el){el.classList.add("fade-up");ro.observe(el);});
-
-    // Skill bars
     var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.style.width=en.target.dataset.width;});},{threshold:0.5});
     document.querySelectorAll(".skill-fill").forEach(function(f){so.observe(f);});
-
-    // Counter animation (multiple counters)
     document.querySelectorAll(".counter").forEach(function(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=Math.max(tv/90,1);function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+(ce.textContent.includes("+")?"+":"");requestAnimationFrame(u);}else{ce.textContent=tv+(ce.textContent.includes("+")?"+":"");}}u();}});},{threshold:0.5});co.observe(ce);});
-
-    // Active nav
     var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a");
     window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-150)cur=s.getAttribute("id");});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active");});});
-
-    // Ripple
     document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("click",function(e){var r=document.createElement("span");r.classList.add("ripple");this.appendChild(r);var rect=this.getBoundingClientRect();r.style.left=(e.clientX-rect.left)+"px";r.style.top=(e.clientY-rect.top)+"px";setTimeout(function(){r.remove();},600);});});
-
-    // Navbar shadow
     var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>50?"0 15px 30px rgba(0,0,0,.12)":"none";});
-
-    // Parallax
     var hero=document.querySelector(".hero");window.addEventListener("scroll",function(){if(hero)hero.style.backgroundPositionY=window.scrollY*0.3+"px";});
-
-    // Year
     var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
-
-    // Image zoom
     document.querySelectorAll("img").forEach(function(i){i.addEventListener("mouseenter",function(){i.style.transform="scale(1.04)";});i.addEventListener("mouseleave",function(){i.style.transform="scale(1)";});});
-
-    // Copy email
     var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com");});
-
-    // Particles
     var cv=document.createElement("canvas");cv.id="particles";document.body.prepend(cv);
     var ctx=cv.getContext("2d");function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight;}rs();window.addEventListener("resize",rs);
     var ps=[];for(var i=0;i<65;i++){ps.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2.5+1,dx:(Math.random()-.5)*.35,dy:(Math.random()-.5)*.35});}
     function animate(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(37,99,235,.12)";ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>cv.width)p.dx*=-1;if(p.y<0||p.y>cv.height)p.dy*=-1;});requestAnimationFrame(animate);}animate();
-
-    console.log("🚀 LJL Digital Hub v4 — Ultimate Portfolio Ready!");
+    console.log("🚀 LJL Digital Hub v5 — SVG Logo + Premium Features Ready!");
 })();
 </script>
 </body>
