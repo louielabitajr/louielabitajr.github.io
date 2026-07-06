@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -346,6 +347,30 @@
             font-size: 0.9rem;
         }
 
+        /* CONTACT LINKS */
+        .contact-info {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 12px;
+            font-size: 1rem;
+        }
+
+        .contact-info a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .contact-info a:hover {
+            color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
         /* FOOTER */
         footer {
             background: var(--surface);
@@ -646,10 +671,14 @@
     <section id="contact">
         <div class="container">
             <h2>Contact Me</h2>
-            <p><strong>Name:</strong> Luisito Jr. Bataller Labita</p>
-            <p><strong>Email:</strong> louielabitajr@gmail.com</p>
-            <p><strong>Phone:</strong> +63 961 469 4358</p>
-            <p><strong>Location:</strong> Los Ba&ntilde;os, Laguna, Philippines</p>
+            <div class="contact-info">
+                <p><strong>Name:</strong> Luisito Jr. Bataller Labita</p>
+                <p><strong>Email:</strong> <a href="mailto:louielabitajr@gmail.com">louielabitajr@gmail.com</a></p>
+                <p><strong>Phone:</strong> +63 961 469 4358</p>
+                <p><strong>Location:</strong> Los Ba&ntilde;os, Laguna, Philippines</p>
+                <p><strong>Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">https://louielabitajr.github.io</a></p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">https://github.com/louielabitajr</a></p>
+            </div>
         </div>
     </section>
 
@@ -743,3 +772,17 @@
 
 </body>
 </html>
+```
+
+---
+
+✅ What's new
+
+I added these two lines in the Contact section (with clickable links):
+
+· Website: https://louielabitajr.github.io
+· GitHub: https://github.com/louielabitajr
+
+Both links open in a new tab and match the styling of the rest of the contact info. The email is also now clickable.
+
+Just save this as your index.html and upload to GitHub – everything is ready to go live!
