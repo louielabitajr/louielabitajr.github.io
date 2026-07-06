@@ -89,27 +89,44 @@
         .section-divider{width:50px;height:2px;background:var(--accent);margin:0 auto 25px;border-radius:999px}
 
         /* ============================================
-           FULL GLASS NAVBAR
+           NAVBAR: Links LEFT | Logo RIGHT | Toggle FAR RIGHT
         ============================================ */
         header{position:sticky;top:0;z-index:999}
-        .navbar{display:flex;justify-content:space-between;align-items:center;padding:14px 36px;background:rgba(255,255,255,0.45);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-bottom:1px solid rgba(255,255,255,0.2);transition:all .4s;flex-wrap:wrap;gap:14px;position:relative;z-index:10}
+        .navbar{display:flex;justify-content:flex-start;align-items:center;padding:14px 36px;background:rgba(255,255,255,0.45);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-bottom:1px solid rgba(255,255,255,0.2);transition:all .4s;flex-wrap:wrap;gap:14px;position:relative;z-index:10}
         body.dark .navbar{background:rgba(10,10,22,0.55);border-bottom:1px solid rgba(255,255,255,0.05)}
-        .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;justify-content:center;order:1}
+        
+        /* Nav links - FIRST (left) */
+        .nav-links{display:flex;gap:18px;list-style:none;flex-wrap:wrap;justify-content:flex-start;order:1;margin-right:auto}
         .nav-links a{text-decoration:none;color:var(--text);font-weight:500;transition:.3s;font-size:.85rem;white-space:nowrap;position:relative;padding:4px 0;letter-spacing:.2px}
         .nav-links a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:1.5px;background:var(--accent);transition:width .3s;border-radius:999px}
         .nav-links a:hover,.nav-links a.active{color:var(--primary)}
         .nav-links a:hover::after,.nav-links a.active::after{width:100%}
         .nav-links a.active{font-weight:600}
+        
+        /* Logo - SECOND (right of nav links) */
         .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0;order:2}
         .logo svg{height:38px;width:auto}
         @media(max-width:480px){.logo svg{height:32px}}
-        #themeToggle,.hamburger{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;font-size:1.1rem;transition:all .3s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
-        #themeToggle{background:rgba(255,255,255,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text);border:1px solid rgba(255,255,255,0.3);order:3}
+        
+        /* Hamburger & Theme Toggle - THIRD (far right) */
+        #themeToggle,.hamburger{width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;font-size:1.1rem;transition:all .3s;flex-shrink:0;display:flex;align-items:center;justify-content:center;order:3}
+        #themeToggle{background:rgba(255,255,255,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text);border:1px solid rgba(255,255,255,0.3);margin-left:8px}
         body.dark #themeToggle{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)}
         #themeToggle:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:rotate(30deg)}
-        .hamburger{background:rgba(255,255,255,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text);display:none;border:1px solid rgba(255,255,255,0.3);order:3}
+        .hamburger{background:rgba(255,255,255,0.3);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--text);display:none;border:1px solid rgba(255,255,255,0.3)}
         body.dark .hamburger{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.08)}
-        @media(max-width:768px){.hamburger{display:flex}.nav-links{order:2;display:none;flex-direction:column;width:100%;gap:4px;padding:12px;background:var(--surface);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--border)}.nav-links.show{display:flex}.nav-links a{padding:8px 12px;text-align:center;font-size:.88rem;border-radius:8px}.nav-links a:hover{background:rgba(37,99,235,0.06)}.logo{order:1}.hamburger{display:flex;order:3}#themeToggle{order:3}}
+        
+        /* Mobile */
+        @media(max-width:768px){
+            .navbar{flex-wrap:wrap}
+            .nav-links{order:2;display:none;flex-direction:column;width:100%;gap:4px;padding:12px;background:var(--surface);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:1px solid var(--border);margin-right:0}
+            .nav-links.show{display:flex}
+            .nav-links a{padding:8px 12px;text-align:center;font-size:.88rem;border-radius:8px}
+            .nav-links a:hover{background:rgba(37,99,235,0.06)}
+            .logo{order:1;margin-right:auto}
+            .hamburger{display:flex;order:3}
+            #themeToggle{order:3}
+        }
 
         .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;gap:50px;padding:60px 20px;background:transparent;flex-wrap:wrap;text-align:center;position:relative;z-index:2}
 
@@ -170,9 +187,6 @@
         .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:rippleEffect .6s;pointer-events:none}
         @keyframes rippleEffect{to{transform:scale(4);opacity:0}}
 
-        /* ============================================
-           FULL GLASS STATS
-        ============================================ */
         .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:50px 5%;position:relative;z-index:2;background:rgba(255,255,255,0.25);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.3);border-bottom:1px solid rgba(255,255,255,0.3)}
         body.dark .stats{background:rgba(10,10,22,0.35);border-color:rgba(255,255,255,0.05)}
         .stat-card{padding:28px 18px;text-align:center;transition:.35s;cursor:default;background:rgba(255,255,255,0.3);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:var(--radius);border:1px solid rgba(255,255,255,0.35)}
@@ -189,35 +203,14 @@
         section>div>p{text-align:center;max-width:650px;margin:0 auto 30px;color:var(--text-light);font-size:.9rem;line-height:1.8}
 
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:25px}
-
-        /* ============================================
-           ULTIMATE GLASS CARDS
-        ============================================ */
-        .card{
-            background:var(--surface);
-            backdrop-filter:blur(var(--glass-blur));
-            -webkit-backdrop-filter:blur(var(--glass-blur));
-            border:1px solid var(--border);
-            border-radius:var(--radius);
-            padding:30px 26px;
-            transition:all .4s;
-            position:relative;
-            overflow:hidden;
-            cursor:default;
-        }
-        .card:hover{
-            background:var(--surface-hover);
-            transform:translateY(-8px);
-            box-shadow:var(--shadow-lg);
-            border-color:var(--accent);
-        }
+        .card{background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px;transition:all .4s;position:relative;overflow:hidden;cursor:default}
+        .card:hover{background:var(--surface-hover);transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
         .card .card-icon{font-size:2.4rem;margin-bottom:10px;display:block}
         .card h3{color:var(--primary);margin-bottom:10px;font-size:1.15rem;font-weight:600}
         .card p{color:var(--text-light);line-height:1.7;font-size:.88rem}
         .card .card-tag{display:inline-block;margin-top:10px;padding:5px 14px;background:rgba(212,168,83,0.15);color:var(--accent);border-radius:999px;font-size:.72rem;font-weight:500;letter-spacing:.3px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(212,168,83,0.2)}
         body.dark .card .card-tag{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.15)}
 
-        /* Glass Timeline */
         .timeline{position:relative;max-width:700px;margin:auto;padding-left:35px}
         .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:1.5px;background:rgba(255,255,255,0.3)}
         body.dark .timeline::before{background:rgba(255,255,255,0.08)}
@@ -232,13 +225,9 @@
         #business{background:transparent}#business .card{text-align:center}
         .project-image{width:100%;height:185px;object-fit:cover;border-radius:14px;margin-bottom:16px;transition:transform .5s;filter:brightness(.95)}
         .card:hover .project-image{transform:scale(1.04);filter:brightness(1)}
-
-        /* Glass Resume Section */
         #resume{text-align:center;background:rgba(255,255,255,0.2);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,0.3);border-bottom:1px solid rgba(255,255,255,0.3)}
-        body.dark #resume{background:rgba(10,10,22,0.3);border-color:rgba(255,255,255,0.05)}
-        #resume .btn{margin-top:16px}
+        body.dark #resume{background:rgba(10,10,22,0.3);border-color:rgba(255,255,255,0.05)}#resume .btn{margin-top:16px}
 
-        /* Glass Contact */
         .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;max-width:880px;margin:auto;align-items:start}
         @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
         .contact-info{background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border-radius:var(--radius);padding:32px 28px;border:1px solid var(--border)}
@@ -253,7 +242,6 @@
         .contact-form input:focus,.contact-form textarea:focus{outline:0;border-color:var(--primary);background:rgba(255,255,255,0.35)}
         .contact-form textarea{min-height:120px}.contact-form button{width:100%}
 
-        /* Glass Testimonials */
         .testimonial-card{background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border-radius:var(--radius);padding:28px 26px;text-align:center;position:relative;border:1px solid var(--border);transition:.35s}
         .testimonial-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);background:var(--surface-hover)}
         .testimonial-card .testimonial-stars{color:var(--accent);font-size:.9rem;margin-bottom:8px;letter-spacing:2px}
@@ -312,12 +300,21 @@
 
 <header>
     <nav class="navbar">
+        <!-- ============ NAV LINKS FIRST (LEFT) ============ -->
         <ul class="nav-links" id="navLinks">
-            <li><a href="#home" class="active">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li><li><a href="#certifications">Certifications</a></li>
-            <li><a href="#business">Business</a></li><li><a href="#projects">Projects</a></li>
-            <li><a href="#testimonials">Testimonials</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#business">Business</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
+        
+        <!-- ============ LOGO SECOND (RIGHT OF LINKS) ============ -->
         <a href="#home" class="logo" title="LJL Digital Hub">
             <svg width="180" height="38" viewBox="0 0 180 38" xmlns="http://www.w3.org/2000/svg">
                 <rect x="0" y="2" width="34" height="34" rx="8" fill="var(--primary)"/>
@@ -326,6 +323,8 @@
                 <text x="42" y="33" font-family="'Poppins',sans-serif" font-size="9" font-weight="500" fill="var(--secondary)" letter-spacing="4">HUB</text>
             </svg>
         </a>
+        
+        <!-- ============ HAMBURGER + THEME TOGGLE (FAR RIGHT) ============ -->
         <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
         <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
     </nav>
@@ -435,7 +434,7 @@
     var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>30?"0 4px 20px rgba(0,0,0,.06)":"none";});
     var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
     var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com");});
-    console.log("🔷 LJL Digital Hub — Full Glassmorphism + IT Background Active!");
+    console.log("🔷 LJL Digital Hub — Nav: Links LEFT | Logo RIGHT | Toggle FAR RIGHT!");
 })();
 </script>
 </body>
