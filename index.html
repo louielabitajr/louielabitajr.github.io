@@ -1,4 +1,6 @@
+Here's the complete updated code with all your requested additions — favicon, meta tags, LinkedIn link, and project card with image:
 
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,13 @@
     <title>Luisito Jr. Bataller Labita | Portfolio</title>
     <meta name="description"
         content="Portfolio of Luisito Jr. Bataller Labita - IT Infrastructure Specialist, Systems Administrator and Founder of LMF Payment Services.">
+    <meta name="author" content="Luisito Jr. Bataller Labita">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="Luisito Jr. Bataller Labita Portfolio">
+    <meta property="og:description" content="IT Infrastructure Specialist | Systems Administrator | Founder of LMF Payment Services">
+    <meta property="og:image" content="profile.jpg">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
@@ -288,12 +297,22 @@
             box-shadow: var(--shadow);
             transition: all var(--transition);
             text-align: center;
+            overflow: hidden;
         }
 
         .card:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
             border-color: var(--accent);
+        }
+
+        .card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: var(--radius) var(--radius) 0 0;
+            margin: -28px -24px 16px -24px;
+            width: calc(100% + 48px);
         }
 
         .card h3 {
@@ -637,10 +656,9 @@
             <h2>Featured Projects</h2>
             <div class="grid">
                 <div class="card">
+                    <img src="project1.jpg" alt="Enterprise IT Project">
                     <h3>Enterprise IT Support</h3>
-                    <p>Windows Administration, Technical Support,
-                        Network Infrastructure, Server Maintenance,
-                        VMware, Microsoft Exchange.</p>
+                    <p>Windows Server, VMware, Exchange, Networking.</p>
                 </div>
                 <div class="card">
                     <h3>LMF Payment Services</h3>
@@ -678,6 +696,7 @@
                 <p><strong>Location:</strong> Los Ba&ntilde;os, Laguna, Philippines</p>
                 <p><strong>Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">https://louielabitajr.github.io</a></p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">https://github.com/louielabitajr</a></p>
+                <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
             </div>
         </div>
     </section>
@@ -766,7 +785,7 @@
                 });
             });
 
-            console.log('✅ Portfolio ready — Encoding: UTF-8 | All special characters (ñ, ©, —, •) properly encoded.');
+            console.log('✅ Portfolio ready — Encoding: UTF-8 | All special characters properly encoded.');
         })();
     </script>
 
