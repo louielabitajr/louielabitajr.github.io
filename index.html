@@ -19,58 +19,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Structured Data for SEO -->
     <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Luisito Jr. Bataller Labita",
-        "jobTitle": "IT Infrastructure Specialist",
-        "description": "IT Infrastructure Specialist, Systems Administrator, and Founder of LMF Payment Services",
-        "url": "https://louielabitajr.github.io",
-        "email": "louielabitajr@gmail.com",
-        "telephone": "+639614694358",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Los Baños",
-            "addressRegion": "Laguna",
-            "addressCountry": "PH"
-        },
-        "sameAs": [
-            "https://github.com/louielabitajr",
-            "https://linkedin.com/in/yourprofile"
-        ],
-        "alumniOf": {
-            "@type": "EducationalOrganization",
-            "name": "Bachelor of Science in Information Technology"
-        }
-    }
+    {"@context":"https://schema.org","@type":"Person","name":"Luisito Jr. Bataller Labita","jobTitle":"IT Infrastructure Specialist","description":"IT Infrastructure Specialist, Systems Administrator, and Founder of LMF Payment Services","url":"https://louielabitajr.github.io","email":"louielabitajr@gmail.com","telephone":"+639614694358","address":{"@type":"PostalAddress","addressLocality":"Los Baños","addressRegion":"Laguna","addressCountry":"PH"},"sameAs":["https://github.com/louielabitajr","https://linkedin.com/in/yourprofile"],"alumniOf":{"@type":"EducationalOrganization","name":"Bachelor of Science in Information Technology"}}
     </script>
-
     <style>
-        :root {
-            --primary:#2563eb;--primary-dark:#1d4ed8;--secondary:#38bdf8;
-            --background:#f8fafc;--surface:#ffffff;--text:#0f172a;
-            --text-light:#64748b;--border:#e2e8f0;--radius:18px;
-            --shadow:0 10px 30px rgba(0,0,0,.08);--transition:.35s ease;
-        }
-        body.dark {
-            --background:#020617;--surface:#0f172a;--text:#f8fafc;
-            --text-light:#cbd5e1;--border:#1e293b;--shadow:0 15px 35px rgba(0,0,0,.4);
-        }
+        :root{--primary:#2563eb;--primary-dark:#1d4ed8;--secondary:#38bdf8;--background:#f8fafc;--surface:#fff;--text:#0f172a;--text-light:#64748b;--border:#e2e8f0;--radius:18px;--shadow:0 10px 30px rgba(0,0,0,.08);--transition:.35s}
+        body.dark{--background:#020617;--surface:#0f172a;--text:#f8fafc;--text-light:#cbd5e1;--border:#1e293b;--shadow:0 15px 35px rgba(0,0,0,.4)}
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth}
         body{font-family:'Poppins',sans-serif;background:var(--background);color:var(--text);line-height:1.7;transition:.35s;overflow-x:hidden}
-        img{max-width:100%;display:block;transition:transform .4s ease}
+        img{max-width:100%;display:block;transition:transform .4s}
         .container{width:min(1150px,90%);margin:auto;position:relative;z-index:2}
-
-        /* Page Transition */
-        #page-content{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+        #page-content{opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s}
         #page-content.loaded{opacity:1;transform:translateY(0)}
-
-        /* Loader */
-        #loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--background);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s ease,visibility .4s ease}
+        #loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--background);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .4s,visibility .4s}
         body.dark #loader{background:#020617}
         #loader.hidden{opacity:0;visibility:hidden}
         .spinner-container{position:relative;width:60px;height:60px}
@@ -78,75 +40,52 @@
         .spinner-ring:nth-child(1){border-top-color:var(--primary);animation:spinCw .7s linear infinite}
         .spinner-ring:nth-child(2){width:65%;height:65%;top:17.5%;left:17.5%;border-bottom-color:var(--secondary);animation:spinCcw .5s linear infinite}
         .spinner-ring:nth-child(3){width:35%;height:35%;top:32.5%;left:32.5%;border-left-color:var(--primary);animation:spinCw .35s linear infinite}
-        @keyframes spinCw{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-        @keyframes spinCcw{0%{transform:rotate(360deg)}100%{transform:rotate(0deg)}}
-        .loader-text{margin-top:20px;font-size:.9rem;font-weight:600;color:var(--primary);letter-spacing:3px;animation:pulse .8s ease-in-out infinite}
+        @keyframes spinCw{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+        @keyframes spinCcw{0%{transform:rotate(360deg)}100%{transform:rotate(0)}}
+        .loader-text{margin-top:20px;font-size:.9rem;font-weight:600;color:var(--primary);letter-spacing:3px;animation:pulse .8s infinite}
         @keyframes pulse{0%,100%{opacity:.5}50%{opacity:1}}
         .loader-bar-container{width:180px;height:3px;background:var(--border);border-radius:999px;margin-top:14px;overflow:hidden}
         body.dark .loader-bar-container{background:#1e293b}
-        .loader-bar{height:100%;width:0%;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:999px;animation:loadBar .9s ease-in-out forwards}
-        @keyframes loadBar{0%{width:0%}60%{width:80%}100%{width:100%}}
-
+        .loader-bar{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:999px;animation:loadBar .9s forwards}
+        @keyframes loadBar{0%{width:0}60%{width:80%}100%{width:100%}}
         #particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
-
-        /* Navbar */
         header{position:sticky;top:0;z-index:999;backdrop-filter:blur(14px)}
         .navbar{display:flex;justify-content:space-between;align-items:center;padding:18px 40px;background:rgba(255,255,255,.75);border-bottom:1px solid rgba(255,255,255,.2);transition:box-shadow .35s,background .35s;flex-wrap:wrap;gap:15px;position:relative;z-index:10}
         body.dark .navbar{background:rgba(2,6,23,.82)}
         .logo{font-size:1.45rem;font-weight:700;color:var(--primary);white-space:nowrap}
         .nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap;justify-content:center}
         .nav-links a{text-decoration:none;color:var(--text);font-weight:500;transition:.3s;font-size:.9rem;white-space:nowrap}
-        .nav-links a:hover,.nav-links a.active{color:var(--primary)}
-        .nav-links a.active{font-weight:700}
+        .nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-links a.active{font-weight:700}
         #themeToggle,.hamburger{width:46px;height:46px;border-radius:50%;border:none;cursor:pointer;font-size:1.2rem;transition:.35s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
         #themeToggle{background:var(--primary);color:#fff}
         #themeToggle:hover{transform:rotate(180deg)}
         .hamburger{background:var(--surface);color:var(--primary);display:none;border:2px solid var(--border)}
-        body.dark .hamburger{background:var(--surface);border-color:var(--border)}
-        @media(max-width:768px){
-            .hamburger{display:flex}
-            .nav-links{display:none;flex-direction:column;width:100%;gap:8px;padding:10px 0}
-            .nav-links.show{display:flex}
-            .nav-links a{padding:8px 0;text-align:center;font-size:.95rem}
-        }
-
-        /* Hero */
-        .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;gap:50px;padding:60px 20px;background:linear-gradient(135deg,#eff6ff,#dbeafe,#bfdbfe);background-size:300% 300%;animation:gradient 12s ease infinite;flex-wrap:wrap;text-align:center;position:relative;z-index:2}
+        @media(max-width:768px){.hamburger{display:flex}.nav-links{display:none;flex-direction:column;width:100%;gap:8px;padding:10px 0}.nav-links.show{display:flex}.nav-links a{padding:8px 0;text-align:center;font-size:.95rem}}
+        .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;gap:50px;padding:60px 20px;background:linear-gradient(135deg,#eff6ff,#dbeafe,#bfdbfe);background-size:300% 300%;animation:gradient 12s infinite;flex-wrap:wrap;text-align:center;position:relative;z-index:2}
         body.dark .hero{background:linear-gradient(135deg,#020617,#0f172a,#1e293b);background-size:300% 300%}
-        .hero-image img{width:220px;height:220px;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 25px 60px rgba(37,99,235,.35);animation:float 5s ease-in-out infinite}
-        .hero-content{max-width:550px}
-        .hero-content h1{font-size:2.5rem;line-height:1.2;margin-bottom:10px}
+        .hero-image img{width:220px;height:220px;border-radius:50%;object-fit:cover;border:6px solid #fff;box-shadow:0 25px 60px rgba(37,99,235,.35);animation:float 5s infinite}
+        .hero-content{max-width:550px}.hero-content h1{font-size:2.5rem;line-height:1.2;margin-bottom:10px}
         #typing{color:var(--primary);font-size:1.2rem;margin-bottom:16px;min-height:30px}
         .hero-content p{color:var(--text-light);margin-bottom:24px;font-size:.95rem}
         .buttons{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
         .btn{text-decoration:none;padding:12px 28px;border-radius:999px;transition:.35s;font-weight:600;font-size:.95rem;position:relative;overflow:hidden;cursor:pointer;display:inline-block;border:none}
-        .primary{background:var(--primary);color:#fff}
-        .primary:hover{background:var(--primary-dark);transform:translateY(-4px);box-shadow:0 12px 25px rgba(37,99,235,.35)}
-        .secondary{border:2px solid var(--primary);color:var(--primary);background:transparent}
-        .secondary:hover{background:var(--primary);color:#fff}
-        .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:rippleEffect .6s ease-out;pointer-events:none}
+        .primary{background:var(--primary);color:#fff}.primary:hover{background:var(--primary-dark);transform:translateY(-4px);box-shadow:0 12px 25px rgba(37,99,235,.35)}
+        .secondary{border:2px solid var(--primary);color:var(--primary);background:0 0}.secondary:hover{background:var(--primary);color:#fff}
+        .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.5);transform:scale(0);animation:rippleEffect .6s;pointer-events:none}
         @keyframes rippleEffect{to{transform:scale(4);opacity:0}}
-
-        /* Stats */
         .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:50px 5%;position:relative;z-index:2}
         .stat-card{background:var(--surface);border-radius:var(--radius);padding:25px 20px;text-align:center;box-shadow:var(--shadow);transition:.35s}
-        .stat-card:hover{transform:translateY(-8px)}
-        .stat-card h3{color:var(--primary);font-size:2rem;font-weight:700}
+        .stat-card:hover{transform:translateY(-8px)}.stat-card h3{color:var(--primary);font-size:2rem;font-weight:700}
         .stat-card p{color:var(--text-light);font-size:.9rem}
-
-        /* Sections */
         section{padding:70px 0;position:relative;z-index:2}
         section h2{text-align:center;font-size:2rem;margin-bottom:16px}
         section>div>p{text-align:center;max-width:700px;margin:auto auto 35px;color:var(--text-light);font-size:.95rem}
-
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:25px;margin-top:30px}
         .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px 24px;transition:.35s;box-shadow:var(--shadow);position:relative;overflow:hidden}
         .card::before{content:"";position:absolute;top:0;left:0;width:100%;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary))}
         .card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.12)}
         .card h3{color:var(--primary);margin-bottom:12px;font-size:1.15rem}
         .card p{color:var(--text-light);line-height:1.7;font-size:.9rem}
-
-        /* Timeline */
         .timeline{position:relative;max-width:750px;margin:auto;padding-left:35px}
         .timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:3px;background:var(--primary)}
         .timeline-item{position:relative;background:var(--surface);margin-bottom:28px;padding:24px;border-radius:var(--radius);box-shadow:var(--shadow);transition:.35s}
@@ -155,209 +94,243 @@
         .timeline-item h3{color:var(--primary);margin-bottom:4px;font-size:1.05rem}
         .timeline-item span{display:block;color:var(--text-light);font-size:.85rem;margin-bottom:10px}
         .timeline-item p{font-size:.9rem;color:var(--text-light)}
-
-        #business{background:linear-gradient(135deg,rgba(37,99,235,.04),transparent)}
-        #business .card{text-align:center}
+        #business{background:linear-gradient(135deg,rgba(37,99,235,.04),0 0)}#business .card{text-align:center}
         .project-image{width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:16px}
-        #resume{text-align:center}
-        #resume .btn{margin-top:16px}
-
-        /* Contact Form */
+        #resume{text-align:center}#resume .btn{margin-top:16px}
         .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:30px;max-width:900px;margin:auto;align-items:start}
         @media(max-width:700px){.contact-grid{grid-template-columns:1fr}}
         .contact-info{background:var(--surface);border-radius:var(--radius);padding:35px 30px;box-shadow:var(--shadow)}
         .contact-info p{margin-bottom:14px;text-align:left;font-size:.95rem;word-break:break-word}
-        .contact-info a{color:var(--primary);text-decoration:none;transition:.3s}
-        .contact-info a:hover{color:var(--primary-dark);text-decoration:underline}
+        .contact-info a{color:var(--primary);text-decoration:none;transition:.3s}.contact-info a:hover{color:var(--primary-dark);text-decoration:underline}
         .contact-form{background:var(--surface);border-radius:var(--radius);padding:35px 30px;box-shadow:var(--shadow)}
         .contact-form input,.contact-form textarea{width:100%;padding:14px 16px;margin-bottom:16px;border:2px solid var(--border);border-radius:12px;font-family:'Poppins',sans-serif;font-size:.9rem;background:var(--background);color:var(--text);transition:.3s;resize:vertical}
-        .contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--primary)}
-        .contact-form textarea{min-height:120px}
-        .contact-form button{width:100%}
-
-        /* Testimonials */
+        .contact-form input:focus,.contact-form textarea:focus{outline:0;border-color:var(--primary)}
+        .contact-form textarea{min-height:120px}.contact-form button{width:100%}
         .testimonial-card{background:var(--surface);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow);text-align:center;position:relative}
         .testimonial-card::before{content:"\201C";font-size:4rem;color:var(--primary);position:absolute;top:10px;left:20px;opacity:.2;font-family:serif}
         .testimonial-card p{font-style:italic;margin-bottom:12px;color:var(--text-light);font-size:.95rem}
         .testimonial-card strong{color:var(--primary)}
-
         footer{margin-top:60px;padding:35px 20px;text-align:center;background:var(--surface);border-top:1px solid var(--border);position:relative;z-index:2}
         footer p{color:var(--text-light);margin:5px 0;font-size:.9rem}
-
-        /* Animations */
-        .fade-up{opacity:0;transform:translateY(30px);transition:all .6s ease}
+        .fade-up{opacity:0;transform:translateY(30px);transition:all .6s}
         .fade-up.show{opacity:1;transform:translateY(0)}
         @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-12px)}100%{transform:translateY(0)}}
-        @keyframes gradient{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
-
+        @keyframes gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
         #backToTop{position:fixed;bottom:20px;right:20px;width:50px;height:50px;border:none;border-radius:50%;background:var(--primary);color:#fff;font-size:20px;cursor:pointer;display:none;box-shadow:0 10px 25px rgba(37,99,235,.3);transition:.35s;z-index:999}
         #backToTop:hover{transform:translateY(-5px)}
-
-        .skill{margin-bottom:16px}
-        .skill-title{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.85rem}
+        .skill{margin-bottom:16px}.skill-title{display:flex;justify-content:space-between;margin-bottom:6px;font-size:.85rem}
         .skill-bar{height:8px;background:#dbeafe;border-radius:999px;overflow:hidden}
         body.dark .skill-bar{background:#1e293b}
-        .skill-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:999px;transition:width 1.8s ease}
-
+        .skill-fill{height:100%;width:0;background:linear-gradient(90deg,var(--primary),var(--secondary));border-radius:999px;transition:width 1.8s}
         .social-links{display:flex;justify-content:center;gap:14px;margin-top:20px}
         .social-links a{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;background:var(--surface);color:var(--primary);box-shadow:var(--shadow);transition:.35s;font-size:1rem;font-weight:600}
         .social-links a:hover{background:var(--primary);color:#fff;transform:translateY(-5px)}
-
-        ::-webkit-scrollbar{width:8px}
-        ::-webkit-scrollbar-track{background:var(--background)}
-        ::-webkit-scrollbar-thumb{background:var(--primary);border-radius:20px}
-        ::-webkit-scrollbar-thumb:hover{background:var(--primary-dark)}
+        ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--background)}
+        ::-webkit-scrollbar-thumb{background:var(--primary);border-radius:20px}::-webkit-scrollbar-thumb:hover{background:var(--primary-dark)}
         ::selection{background:var(--primary);color:#fff}
-
-        /* Print Styles */
-        @media print{
-            header,footer,#backToTop,#particles,.hero,.social-links,.contact-form{display:none!important}
-            body{font-size:12pt;color:#000;background:#fff}
-            .container{width:100%}
-            section{padding:20px 0;page-break-inside:avoid}
-            .card,.timeline-item{box-shadow:none;border:1px solid #ddd}
-        }
-
+        @media print{header,footer,#backToTop,#particles,.hero,.social-links,.contact-form{display:none!important}body{font-size:12pt;color:#000;background:#fff}.container{width:100%}section{padding:20px 0;page-break-inside:avoid}.card,.timeline-item{box-shadow:none;border:1px solid #ddd}}
         @media(max-width:900px){.hero{gap:30px;padding:50px 20px}.hero-content h1{font-size:2rem}.stats{grid-template-columns:repeat(2,1fr);padding:40px 4%}}
         @media(max-width:650px){.navbar{padding:14px 16px;gap:10px}.hero-image img{width:180px;height:180px}.hero-content h1{font-size:1.7rem}#typing{font-size:1rem;min-height:26px}.stats{grid-template-columns:1fr 1fr;gap:12px}.stat-card{padding:18px 14px}.stat-card h3{font-size:1.4rem}.timeline{padding-left:25px}.timeline::before{left:5px}.timeline-item::before{left:-26px;width:12px;height:12px}.grid{grid-template-columns:1fr}section{padding:50px 0}section h2{font-size:1.6rem}.btn{padding:10px 22px;font-size:.9rem}}
     </style>
 </head>
 <body>
 
-    <div id="loader">
-        <div class="spinner-container"><div class="spinner-ring"></div><div class="spinner-ring"></div><div class="spinner-ring"></div></div>
-        <div class="loader-text">LOADING</div>
-        <div class="loader-bar-container"><div class="loader-bar"></div></div>
+<div id="loader">
+    <div class="spinner-container"><div class="spinner-ring"></div><div class="spinner-ring"></div><div class="spinner-ring"></div></div>
+    <div class="loader-text">LOADING</div>
+    <div class="loader-bar-container"><div class="loader-bar"></div></div>
+</div>
+
+<div id="page-content">
+
+<header>
+    <nav class="navbar">
+        <div class="logo">LJL Digital Hub</div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#business">Business</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
+    </nav>
+</header>
+
+<section id="home" class="hero">
+    <div class="hero-image fade-up"><img src="profile.jpg" alt="Luisito Jr. Bataller Labita"></div>
+    <div class="hero-content fade-up">
+        <h1>Luisito Jr. Bataller Labita</h1>
+        <h2 id="typing"></h2>
+        <p>Building reliable technology solutions, strengthening business operations, and serving communities through innovation, leadership and trusted financial services.</p>
+        <div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div>
     </div>
+</section>
 
-    <div id="page-content">
+<section class="stats">
+    <div class="stat-card"><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div>
+    <div class="stat-card"><h3>BSIT</h3><p>Graduate</p></div>
+    <div class="stat-card"><h3>2023</h3><p>Founded LMF Payment Services</p></div>
+    <div class="stat-card"><h3>Enterprise</h3><p>IT Infrastructure</p></div>
+</section>
 
-        <header>
-            <nav class="navbar">
-                <div class="logo">LJL Digital Hub</div>
-                <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#business">Business</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#testimonials">Testimonials</a></li>
-                    <li><a href="#resume">Resume</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-                <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-            </nav>
-        </header>
+<section id="about"><div class="container fade-up"><h2>About Me</h2><p>I am Luisito Jr. Bataller Labita, a Bachelor of Science in Information Technology graduate with over fifteen years of professional experience in Information Technology, Systems Administration, Technical Support, Network Infrastructure, Leadership, Business Operations, and Customer Service.</p><p>My professional journey spans financial services, enterprise IT, technical support, and entrepreneurship. In 2023, I established <strong>LMF Payment Services</strong>, a community-based payment and remittance center located in Los Ba&ntilde;os, Laguna.</p></div></section>
 
-        <section id="home" class="hero">
-            <div class="hero-image fade-up"><img src="profile.jpg" alt="Luisito Jr. Bataller Labita"></div>
-            <div class="hero-content fade-up">
-                <h1>Luisito Jr. Bataller Labita</h1>
-                <h2 id="typing"></h2>
-                <p>Building reliable technology solutions, strengthening business operations, and serving communities through innovation, leadership and trusted financial services.</p>
-                <div class="buttons">
-                    <a href="#resume" class="btn primary">Download Resume</a>
-                    <a href="#contact" class="btn secondary">Contact Me</a>
-                </div>
-            </div>
-        </section>
+<section id="skills"><div class="container fade-up"><h2>Core Skills</h2><div class="grid">
+    <div class="card"><h3>🖥 IT Infrastructure</h3><p>Windows Server • Networking • Troubleshooting • Backup & Recovery</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div></div></div>
+    <div class="card"><h3>⚙ Systems Administration</h3><p>Microsoft Technologies • VMware • Exchange • Technical Support</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div></div>
+    <div class="card"><h3>📊 Business Management</h3><p>Operations • Leadership • Customer Service • Problem Solving</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div></div>
+    <div class="card"><h3>🚀 Entrepreneurship</h3><p>Founder • LMF Payment Services • Business Operations</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div></div>
+</div></div></section>
 
-        <section class="stats">
-            <div class="stat-card"><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div>
-            <div class="stat-card"><h3>BSIT</h3><p>Graduate</p></div>
-            <div class="stat-card"><h3>2023</h3><p>Founded LMF Payment Services</p></div>
-            <div class="stat-card"><h3>Enterprise</h3><p>IT Infrastructure</p></div>
-        </section>
+<section id="experience"><div class="container fade-up"><h2>Career Journey</h2><div class="timeline">
+    <div class="timeline-item"><h3>Cash Teller</h3><span>RD Pawnshop</span><p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p></div>
+    <div class="timeline-item"><h3>Vault Custodian</h3><span>RD Pawnshop</span><p>Managed vault operations, reconciliation, inventory control, and security procedures.</p></div>
+    <div class="timeline-item"><h3>Branch Manager</h3><span>RD Pawnshop</span><p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p></div>
+    <div class="timeline-item"><h3>IT Infrastructure Staff</h3><span>Enterprise IT</span><p>Technical support, systems administration, Windows Server, VMware, network troubleshooting, Microsoft Exchange, backup and disaster recovery.</p></div>
+    <div class="timeline-item"><h3>Founder & Owner</h3><span>LMF Payment Services (2023 – Present)</span><p>Founded and manage a payment and remittance center in Los Ba&ntilde;os, Laguna.</p></div>
+</div></div></section>
 
-        <section id="about"><div class="container fade-up"><h2>About Me</h2><p>I am Luisito Jr. Bataller Labita, a Bachelor of Science in Information Technology graduate with over fifteen years of professional experience in Information Technology, Systems Administration, Technical Support, Network Infrastructure, Leadership, Business Operations, and Customer Service.</p><p>My professional journey spans financial services, enterprise IT, technical support, and entrepreneurship. In 2023, I established <strong>LMF Payment Services</strong>, a community-based payment and remittance center located in Los Ba&ntilde;os, Laguna.</p></div></section>
+<section id="certifications"><div class="container fade-up"><h2>Certifications & Education</h2><div class="grid">
+    <div class="card"><h3>🎓 BS Information Technology</h3><p>Bachelor's Degree in Information Technology</p></div>
+    <div class="card"><h3>🏅 Microsoft Certified</h3><p>Windows Server Administration</p></div>
+    <div class="card"><h3>🏅 VMware Certified</h3><p>Data Center Virtualization</p></div>
+    <div class="card"><h3>🏅 ITIL Foundation</h3><p>IT Service Management</p></div>
+</div></div></section>
 
-        <section id="skills"><div class="container fade-up"><h2>Core Skills</h2><div class="grid">
-            <div class="card"><h3>🖥 IT Infrastructure</h3><p>Windows Server • Networking • Troubleshooting • Backup & Recovery</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div></div></div>
-            <div class="card"><h3>⚙ Systems Administration</h3><p>Microsoft Technologies • VMware • Exchange • Technical Support</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div></div>
-            <div class="card"><h3>📊 Business Management</h3><p>Operations • Leadership • Customer Service • Problem Solving</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div></div>
-            <div class="card"><h3>🚀 Entrepreneurship</h3><p>Founder • LMF Payment Services • Business Operations • Community Service</p><div class="skill"><div class="skill-title"><span>Proficiency</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div></div>
-        </div></div></section>
+<section id="business"><div class="container fade-up"><h2>LMF Payment Services</h2><p>LMF Payment Services is a trusted community payment and remittance center established in 2023. Reliable financial services with excellent customer support and operational integrity.</p><div class="grid">
+    <div class="card"><h3>💳 Bills Payment</h3><p>Fast and secure payment processing.</p></div>
+    <div class="card"><h3>💸 Domestic Remittance</h3><p>Reliable money transfer services.</p></div>
+    <div class="card"><h3>📱 E-Wallet Assistance</h3><p>Cash In and Cash Out services.</p></div>
+    <div class="card"><h3>🤝 Customer Service</h3><p>Professional assistance for every customer.</p></div>
+</div></div></section>
 
-        <section id="experience"><div class="container fade-up"><h2>Career Journey</h2><div class="timeline">
-            <div class="timeline-item"><h3>Cash Teller</h3><span>RD Pawnshop</span><p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p></div>
-            <div class="timeline-item"><h3>Vault Custodian</h3><span>RD Pawnshop</span><p>Managed vault operations, reconciliation, inventory control, and security procedures.</p></div>
-            <div class="timeline-item"><h3>Branch Manager</h3><span>RD Pawnshop</span><p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p></div>
-            <div class="timeline-item"><h3>IT Infrastructure Staff</h3><span>Enterprise IT</span><p>Technical support, systems administration, Windows Server, VMware, network troubleshooting, Microsoft Exchange, backup and disaster recovery.</p></div>
-            <div class="timeline-item"><h3>Founder & Owner</h3><span>LMF Payment Services (2023 – Present)</span><p>Founded and manage a payment and remittance center in Los Ba&ntilde;os, Laguna. Business operations, customer service, and financial transactions.</p></div>
-        </div></div></section>
+<section id="projects"><div class="container fade-up"><h2>Featured Projects</h2><div class="grid">
+    <div class="card"><img src="project1.jpg" alt="Enterprise IT Project" class="project-image"><h3>Enterprise IT Support</h3><p>Windows Server, VMware, Exchange, Networking.</p></div>
+    <div class="card"><h3>LMF Payment Services</h3><p>Business operations, financial services, customer support.</p></div>
+    <div class="card"><h3>This Portfolio Website</h3><p>Modern, responsive portfolio showcasing professional experience.</p></div>
+</div></div></section>
 
-        <!-- CERTIFICATIONS SECTION (NEW) -->
-        <section id="certifications"><div class="container fade-up"><h2>Certifications & Education</h2><div class="grid">
-            <div class="card"><h3>🎓 BS Information Technology</h3><p>Bachelor's Degree in Information Technology</p></div>
-            <div class="card"><h3>🏅 Microsoft Certified</h3><p>Windows Server Administration</p></div>
-            <div class="card"><h3>🏅 VMware Certified</h3><p>Data Center Virtualization</p></div>
-            <div class="card"><h3>🏅 ITIL Foundation</h3><p>IT Service Management</p></div>
-        </div></div></section>
+<section id="testimonials"><div class="container fade-up"><h2>What People Say</h2><div class="grid">
+    <div class="testimonial-card"><p>"Luisito is an exceptional IT professional. His technical expertise and dedication make him a valuable asset to any team."</p><strong>— Former IT Colleague</strong></div>
+    <div class="testimonial-card"><p>"LMF Payment Services has been a reliable partner for our community. Fast, trustworthy, and always helpful."</p><strong>— Loyal Customer</strong></div>
+    <div class="testimonial-card"><p>"His leadership skills and problem-solving abilities are outstanding. Highly recommended!"</p><strong>— Business Partner</strong></div>
+</div></div></section>
 
-        <section id="business"><div class="container fade-up"><h2>LMF Payment Services</h2><p>LMF Payment Services is a trusted community payment and remittance center established in 2023. We provide reliable financial services with excellent customer support and operational integrity.</p><div class="grid">
-            <div class="card"><h3>💳 Bills Payment</h3><p>Fast and secure payment processing for utilities, internet, and more.</p></div>
-            <div class="card"><h3>💸 Domestic Remittance</h3><p>Reliable money transfer services nationwide.</p></div>
-            <div class="card"><h3>📱 E-Wallet Assistance</h3><p>Cash In and Cash Out services for GCash, Maya, and more.</p></div>
-            <div class="card"><h3>🤝 Customer Service</h3><p>Professional and friendly assistance for every customer.</p></div>
-        </div></div></section>
+<section id="resume"><div class="container fade-up"><h2>Resume</h2><p>Download my professional resume to learn more about my qualifications, technical skills, and work experience.</p><a href="resume.pdf" class="btn primary" download>📄 Download Resume (PDF)</a></div></section>
 
-        <section id="projects"><div class="container fade-up"><h2>Featured Projects</h2><div class="grid">
-            <div class="card"><img src="project1.jpg" alt="Enterprise IT Project" class="project-image"><h3>Enterprise IT Support</h3><p>Windows Server, VMware, Exchange, Networking — full infrastructure management and support.</p></div>
-            <div class="card"><h3>LMF Payment Services</h3><p>Founded and operating a community payment center serving Los Ba&ntilde;os, Laguna.</p></div>
-            <div class="card"><h3>This Portfolio Website</h3><p>Modern, responsive online portfolio showcasing professional experience and business — built with HTML, CSS, and JavaScript.</p></div>
-        </div></div></section>
-
-        <!-- TESTIMONIALS SECTION (NEW) -->
-        <section id="testimonials"><div class="container fade-up"><h2>What People Say</h2><div class="grid">
-            <div class="testimonial-card"><p>"Luisito is an exceptional IT professional. His technical expertise and dedication make him a valuable asset to any team."</p><strong>— Former IT Colleague</strong></div>
-            <div class="testimonial-card"><p>"LMF Payment Services has been a reliable partner for our community. Fast, trustworthy, and always helpful."</p><strong>— Loyal Customer</strong></div>
-            <div class="testimonial-card"><p>"His leadership skills and problem-solving abilities are outstanding. Highly recommended for IT and business roles."</p><strong>— Business Partner</strong></div>
-        </div></div></section>
-
-        <section id="resume"><div class="container fade-up"><h2>Resume</h2><p>Download my professional resume to learn more about my qualifications, technical skills, and work experience.</p><a href="resume.pdf" class="btn primary" download>📄 Download Resume (PDF)</a></div></section>
-
-        <!-- CONTACT WITH FORM (NEW) -->
-        <section id="contact"><div class="container fade-up"><h2>Contact Me</h2><div class="contact-grid">
-            <div class="contact-info">
-                <p><strong>📍 Location:</strong> Los Ba&ntilde;os, Laguna, Philippines</p>
-                <p><strong>📧 Email:</strong> <a href="mailto:louielabitajr@gmail.com">louielabitajr@gmail.com</a></p>
-                <p><strong>📱 Phone:</strong> +63 961 469 4358</p>
-                <p><strong>🌐 Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">louielabitajr.github.io</a></p>
-                <p><strong>💻 GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">github.com/louielabitajr</a></p>
-                <p><strong>🔗 LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
-                <div class="social-links">
-                    <a href="https://louielabitajr.github.io" target="_blank" rel="noopener" title="Website">🌐</a>
-                    <a href="https://github.com/louielabitajr" target="_blank" rel="noopener" title="GitHub">GH</a>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">in</a>
-                    <a href="mailto:louielabitajr@gmail.com" title="Email">✉</a>
-                </div>
-            </div>
-            <form class="contact-form" action="https://formspree.io/f/yourFormID" method="POST">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Your Email" required>
-                <input type="text" name="subject" placeholder="Subject">
-                <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-                <button type="submit" class="btn primary">📩 Send Message</button>
-            </form>
-        </div></div></section>
-
-        <footer><div class="container"><p>&copy; <span id="year">2026</span> Luisito Jr. Bataller Labita</p><p>IT Infrastructure Specialist • Systems Administrator • Founder of LMF Payment Services</p></div></footer>
+<section id="contact"><div class="container fade-up"><h2>Contact Me</h2><div class="contact-grid">
+    <div class="contact-info">
+        <p><strong>📍 Location:</strong> Los Ba&ntilde;os, Laguna, Philippines</p>
+        <p><strong>📧 Email:</strong> <a href="mailto:louielabitajr@gmail.com">louielabitajr@gmail.com</a></p>
+        <p><strong>📱 Phone:</strong> +63 961 469 4358</p>
+        <p><strong>🌐 Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">louielabitajr.github.io</a></p>
+        <p><strong>💻 GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">github.com/louielabitajr</a></p>
+        <p><strong>🔗 LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
+        <div class="social-links">
+            <a href="https://louielabitajr.github.io" target="_blank" rel="noopener" title="Website">🌐</a>
+            <a href="https://github.com/louielabitajr" target="_blank" rel="noopener" title="GitHub">GH</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">in</a>
+            <a href="mailto:louielabitajr@gmail.com" title="Email">✉</a>
+        </div>
     </div>
+    <form class="contact-form" action="https://formspree.io/f/yourFormID" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="subject" placeholder="Subject">
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn primary">📩 Send Message</button>
+    </form>
+</div></div></section>
 
-    <script>
-    (function(){
-        var pc=document.getElementById("page-content"),ld=document.getElementById("loader");
-        window.addEventListener("load",function(){setTimeout(function(){ld.classList.add("hidden");pc.classList.add("loaded");setTimeout(function(){if(ld.parentNode)ld.remove()},400)},1000)});
+<footer><div class="container"><p>&copy; <span id="year">2026</span> Luisito Jr. Bataller Labita</p><p>IT Infrastructure Specialist • Systems Administrator • Founder of LMF Payment Services</p></div></footer>
 
-        var bd=document.body,tt=document.getElementById("themeToggle");
-        if(localStorage.getItem("theme")==="dark"){bd.classList.add("dark");if(tt)tt.textContent="☀️"}
-        if(tt){tt.addEventListener("click",function(){bd.classList.toggle("dark");var d=bd.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light")})}
+</div>
 
-        var tp=document.getElementById("typing");
-        if(tp){var w=["IT Infrastructure Specialist","Systems Administrator","Network Engineer","Founder of LMF Payment Services","Technology Leader"],wi=0,ci=0,dl=false;
-        function t(){var c=w[wi];tp.textContent=c.substring(0,dl?ci--:ci++);if(!dl&&ci>c.length){dl=true;setTimeout(t,1500);return}if(dl&&ci<0){dl=false;wi=(wi+1)%w.length}setTimeout(t,dl?40:80)}t()}
+<script>
+(function(){
+    // Page transition
+    var pc=document.getElementById("page-content"),ld=document.getElementById("loader");
+    window.addEventListener("load",function(){
+        setTimeout(function(){
+            ld.classList.add("hidden");
+            pc.classList.add("loaded");
+            setTimeout(function(){if(ld.parentNode)ld.remove();},400);
+        },1000);
+    });
 
-        document.querySelectorAll('a[href^="#"]').forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();
+    // Dark mode
+    var bd=document.body,tt=document.getElementById("themeToggle");
+    if(localStorage.getItem("theme")==="dark"){bd.classList.add("dark");if(tt)tt.textContent="☀️";}
+    if(tt){tt.addEventListener("click",function(){bd.classList.toggle("dark");var d=bd.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light");});}
+
+    // Hamburger menu
+    var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");
+    if(ham){ham.addEventListener("click",function(){nl.classList.toggle("show");});}
+
+    // Typing effect
+    var tp=document.getElementById("typing");
+    if(tp){var w=["IT Infrastructure Specialist","Systems Administrator","Network Engineer","Founder of LMF Payment Services","Technology Leader"],wi=0,ci=0,dl=false;
+    function t(){var c=w[wi];tp.textContent=c.substring(0,dl?ci--:ci++);if(!dl&&ci>c.length){dl=true;setTimeout(t,1500);return;}if(dl&&ci<0){dl=false;wi=(wi+1)%w.length;}setTimeout(t,dl?40:80);}t();}
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth"});});});
+
+    // Back to top
+    var bb=document.createElement("button");bb.id="backToTop";bb.innerHTML="⬆";document.body.appendChild(bb);
+    window.addEventListener("scroll",function(){bb.style.display=window.scrollY>500?"block":"none";});
+    bb.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+
+    // Scroll reveal
+    var ro=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add("fade-up","show");}});},{threshold:0.1});
+    document.querySelectorAll(".card,.timeline-item,.stat-card,section h2,.container.fade-up,.hero-image.fade-up,.hero-content.fade-up").forEach(function(el){el.classList.add("fade-up");ro.observe(el);});
+
+    // Skill bars
+    var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.style.width=en.target.dataset.width;});},{threshold:0.5});
+    document.querySelectorAll(".skill-fill").forEach(function(f){so.observe(f);});
+
+    // Counter animation
+    var ce=document.querySelector(".counter");
+    if(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=tv/90;function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+"+";requestAnimationFrame(u);}else{ce.textContent=tv+"+";}}u();}});},{threshold:0.5});co.observe(ce);}
+
+    // Active navigation
+    var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a");
+    window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-150)cur=s.getAttribute("id");});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active");});});
+
+    // Ripple effect
+    document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("click",function(e){var r=document.createElement("span");r.classList.add("ripple");this.appendChild(r);var rect=this.getBoundingClientRect();r.style.left=(e.clientX-rect.left)+"px";r.style.top=(e.clientY-rect.top)+"px";setTimeout(function(){r.remove();},600);});});
+
+    // Navbar shadow
+    var nb=document.querySelector(".navbar");
+    window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>50?"0 15px 30px rgba(0,0,0,.12)":"none";});
+
+    // Parallax
+    var hero=document.querySelector(".hero");
+    window.addEventListener("scroll",function(){if(hero)hero.style.backgroundPositionY=window.scrollY*0.4+"px";});
+
+    // Current year
+    var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
+
+    // Image zoom
+    document.querySelectorAll("img").forEach(function(i){i.addEventListener("mouseenter",function(){i.style.transform="scale(1.04)";});i.addEventListener("mouseleave",function(){i.style.transform="scale(1)";});});
+
+    // Copy email
+    var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com");});
+
+    // Particles
+    var cv=document.createElement("canvas");cv.id="particles";document.body.prepend(cv);
+    var ctx=cv.getContext("2d");function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight;}rs();window.addEventListener("resize",rs);
+    var ps=[];for(var i=0;i<50;i++){ps.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2+1,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5});}
+    function animate(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(37,99,235,.18)";ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>cv.width)p.dx*=-1;if(p.y<0||p.y>cv.height)p.dy*=-1;});requestAnimationFrame(animate);}animate();
+
+    console.log("✅ LJL Digital Hub — Fully Loaded!");
+})();
+</script>
+</body>
+</html>
