@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,11 +150,15 @@
             justify-content: center;
             gap: 70px;
             padding: 80px 30px;
-            background: linear-gradient(135deg, #eff6ff, #dbeafe);
+            background: linear-gradient(135deg, #eff6ff, #dbeafe, #bfdbfe);
+            background-size: 300% 300%;
+            animation: gradient 12s ease infinite;
         }
 
         body.dark .hero {
-            background: linear-gradient(135deg, #020617, #0f172a);
+            background: linear-gradient(135deg, #020617, #0f172a, #1e293b);
+            background-size: 300% 300%;
+            animation: gradient 12s ease infinite;
         }
 
         .hero-image {
@@ -169,6 +172,7 @@
             object-fit: cover;
             border: 6px solid white;
             box-shadow: 0 25px 60px rgba(37, 99, 235, .35);
+            animation: float 5s ease-in-out infinite;
         }
 
         .hero-content {
@@ -291,20 +295,12 @@
            Skills • Timeline • Business • Projects
         ========================================== */
 
-        /* ===========================
-           GRID
-        =========================== */
-
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 30px;
             margin-top: 40px;
         }
-
-        /* ===========================
-           CARDS
-        =========================== */
 
         .card {
             background: var(--surface);
@@ -342,10 +338,6 @@
             color: var(--text-light);
             line-height: 1.8;
         }
-
-        /* ===========================
-           TIMELINE
-        =========================== */
 
         .timeline {
             position: relative;
@@ -401,10 +393,6 @@
             margin-bottom: 15px;
         }
 
-        /* ===========================
-           BUSINESS
-        =========================== */
-
         #business {
             background: linear-gradient(135deg, rgba(37, 99, 235, .06), transparent);
         }
@@ -416,10 +404,6 @@
         #business .card h3 {
             font-size: 1.3rem;
         }
-
-        /* ===========================
-           PROJECTS
-        =========================== */
 
         #projects .card {
             display: flex;
@@ -450,10 +434,6 @@
             background: var(--primary-dark);
         }
 
-        /* ===========================
-           RESUME
-        =========================== */
-
         #resume {
             text-align: center;
         }
@@ -461,10 +441,6 @@
         #resume .btn {
             margin-top: 20px;
         }
-
-        /* ===========================
-           CONTACT
-        =========================== */
 
         .contact-info {
             max-width: 650px;
@@ -491,10 +467,6 @@
             text-decoration: underline;
         }
 
-        /* ===========================
-           FOOTER
-        =========================== */
-
         footer {
             margin-top: 80px;
             padding: 40px;
@@ -508,8 +480,144 @@
             margin: 6px 0;
         }
 
+        /* ==========================================
+           STYLE.CSS - PART 3
+           Animations • Responsive • Utilities
+        ========================================== */
+
         /* ===========================
-           GLASS EFFECT (optional)
+           SCROLL ANIMATIONS
+        =========================== */
+
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all .8s ease;
+        }
+
+        .fade-up.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ===========================
+           KEYFRAMES
+        =========================== */
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-15px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* ===========================
+           BACK TO TOP
+        =========================== */
+
+        #backToTop {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 55px;
+            height: 55px;
+            border: none;
+            border-radius: 50%;
+            background: var(--primary);
+            color: #fff;
+            font-size: 22px;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 12px 30px rgba(37, 99, 235, .35);
+            transition: .35s;
+            z-index: 999;
+        }
+
+        #backToTop:hover {
+            transform: translateY(-5px);
+        }
+
+        /* ===========================
+           SKILL BARS
+        =========================== */
+
+        .skill {
+            margin-bottom: 20px;
+        }
+
+        .skill-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background: #dbeafe;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 999px;
+            transition: width 2s ease;
+        }
+
+        /* ===========================
+           SOCIAL ICONS
+        =========================== */
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-top: 25px;
+        }
+
+        .social-links a {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: var(--surface);
+            color: var(--primary);
+            box-shadow: var(--shadow);
+            transition: .35s;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-6px);
+        }
+
+        /* ===========================
+           GLASS EFFECT
         =========================== */
 
         .glass {
@@ -540,73 +648,121 @@
         }
 
         /* ===========================
+           CUSTOM SCROLLBAR
+        =========================== */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--background);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ===========================
+           TEXT SELECTION
+        =========================== */
+
+        ::selection {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ===========================
            RESPONSIVE
         =========================== */
 
-        @media (max-width: 900px) {
+        @media(max-width:992px) {
             .hero {
                 flex-direction: column;
-                gap: 40px;
-                padding: 60px 20px;
                 text-align: center;
+                gap: 40px;
             }
 
-            .hero-content h1 {
-                font-size: 2.2rem;
+            .hero-content {
+                max-width: 100%;
             }
 
             .stats {
                 grid-template-columns: repeat(2, 1fr);
-                padding: 50px 5%;
-            }
-
-            .navbar {
-                padding: 14px 20px;
-                gap: 14px;
-            }
-
-            .nav-links {
-                gap: 16px;
-                font-size: 0.88rem;
             }
         }
 
-        @media (max-width: 600px) {
-            .hero-content h1 {
-                font-size: 1.8rem;
+        @media(max-width:768px) {
+            .navbar {
+                flex-direction: column;
+                padding: 20px;
             }
 
-            #typing {
-                font-size: 1.1rem;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .timeline {
+                padding-left: 25px;
+            }
+
+            .timeline::before {
+                left: 5px;
+            }
+
+            .timeline-item::before {
+                left: -30px;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width:480px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-image img {
+                width: 200px;
+                height: 200px;
             }
 
             .stats {
                 grid-template-columns: 1fr;
-                padding: 40px 20px;
-            }
-
-            .nav-links {
-                gap: 10px;
-                font-size: 0.78rem;
-            }
-
-            .logo {
-                font-size: 1.2rem;
             }
 
             .buttons {
                 flex-direction: column;
-                align-items: center;
             }
 
-            section h2 {
-                font-size: 1.8rem;
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            section {
+                padding: 70px 20px;
             }
         }
+
+        /* ===========================
+           END OF STYLE.CSS
+        =========================== */
     </style>
 </head>
 
 <body>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" aria-label="Back to top">↑</button>
 
     <header>
         <nav class="navbar">
@@ -626,10 +782,10 @@
 
     <!-- HERO -->
     <section id="home" class="hero">
-        <div class="hero-image">
+        <div class="hero-image fade-up">
             <img src="profile.jpg" alt="Luisito Jr. Bataller Labita">
         </div>
-        <div class="hero-content">
+        <div class="hero-content fade-up">
             <h1>Luisito Jr. Bataller Labita</h1>
             <h2 id="typing">IT Infrastructure Specialist</h2>
             <p>
@@ -647,19 +803,19 @@
 
     <!-- STATS -->
     <section class="stats">
-        <div class="stat-card">
+        <div class="stat-card fade-up">
             <h3>15+</h3>
             <p>Years Experience</p>
         </div>
-        <div class="stat-card">
+        <div class="stat-card fade-up">
             <h3>BSIT</h3>
             <p>Graduate</p>
         </div>
-        <div class="stat-card">
+        <div class="stat-card fade-up">
             <h3>2023</h3>
             <p>Founded LMF Payment Services</p>
         </div>
-        <div class="stat-card">
+        <div class="stat-card fade-up">
             <h3>Enterprise</h3>
             <p>IT Infrastructure</p>
         </div>
@@ -667,7 +823,7 @@
 
     <!-- ABOUT -->
     <section id="about">
-        <div class="container">
+        <div class="container fade-up">
             <h2>About Me</h2>
             <p>
                 I am Luisito Jr. Bataller Labita,
@@ -696,26 +852,42 @@
         </div>
     </section>
 
-    <!-- SKILLS -->
+    <!-- SKILLS with Skill Bars -->
     <section id="skills">
-        <div class="container">
+        <div class="container fade-up">
             <h2>Core Skills</h2>
             <div class="grid">
                 <div class="card">
                     <h3>IT Infrastructure</h3>
-                    <p>Windows Server<br>Networking<br>Troubleshooting<br>Backup &amp; Recovery</p>
+                    <p>Windows Server • Networking • Troubleshooting • Backup &amp; Recovery</p>
+                    <div class="skill">
+                        <div class="skill-title"><span>Proficiency</span><span>95%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+                    </div>
                 </div>
                 <div class="card">
                     <h3>Systems Administration</h3>
-                    <p>Microsoft Technologies<br>VMware<br>Exchange<br>Technical Support</p>
+                    <p>Microsoft Technologies • VMware • Exchange • Technical Support</p>
+                    <div class="skill">
+                        <div class="skill-title"><span>Proficiency</span><span>90%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                    </div>
                 </div>
                 <div class="card">
                     <h3>Business Management</h3>
-                    <p>Operations<br>Leadership<br>Customer Service<br>Problem Solving</p>
+                    <p>Operations • Leadership • Customer Service • Problem Solving</p>
+                    <div class="skill">
+                        <div class="skill-title"><span>Proficiency</span><span>88%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                    </div>
                 </div>
                 <div class="card">
                     <h3>Entrepreneurship</h3>
-                    <p>Founder<br>LMF Payment Services<br>Business Operations<br>Community Service</p>
+                    <p>Founder • LMF Payment Services • Business Operations</p>
+                    <div class="skill">
+                        <div class="skill-title"><span>Proficiency</span><span>85%</span></div>
+                        <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -723,7 +895,7 @@
 
     <!-- EXPERIENCE -->
     <section id="experience">
-        <div class="container">
+        <div class="container fade-up">
             <h2>Career Journey</h2>
             <div class="timeline">
                 <div class="timeline-item">
@@ -772,7 +944,7 @@
 
     <!-- BUSINESS -->
     <section id="business">
-        <div class="container">
+        <div class="container fade-up">
             <h2>LMF Payment Services</h2>
             <p>
                 LMF Payment Services is a trusted community payment
@@ -804,16 +976,13 @@
 
     <!-- PROJECTS -->
     <section id="projects">
-        <div class="container">
+        <div class="container fade-up">
             <h2>Featured Projects</h2>
             <div class="grid">
                 <div class="card">
-                    <!-- Updated to use project-image class -->
                     <img src="project1.jpg" alt="Enterprise IT Project" class="project-image">
                     <h3>Enterprise IT Support</h3>
                     <p>Windows Server, VMware, Exchange, Networking.</p>
-                    <!-- Optional button if you want to use .project-button -->
-                    <!-- <a href="#" class="project-button">View Details</a> -->
                 </div>
                 <div class="card">
                     <h3>LMF Payment Services</h3>
@@ -832,7 +1001,7 @@
 
     <!-- RESUME -->
     <section id="resume">
-        <div class="container">
+        <div class="container fade-up">
             <h2>Resume</h2>
             <p>Download my professional resume to learn more about my
                 qualifications, technical skills, and work experience.</p>
@@ -842,7 +1011,7 @@
 
     <!-- CONTACT -->
     <section id="contact">
-        <div class="container">
+        <div class="container fade-up">
             <h2>Contact Me</h2>
             <div class="contact-info">
                 <p><strong>Name:</strong> Luisito Jr. Bataller Labita</p>
@@ -852,6 +1021,14 @@
                 <p><strong>Website:</strong> <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">https://louielabitajr.github.io</a></p>
                 <p><strong>GitHub:</strong> <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">https://github.com/louielabitajr</a></p>
                 <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p>
+
+                <!-- Social Icons -->
+                <div class="social-links">
+                    <a href="https://louielabitajr.github.io" target="_blank" rel="noopener" title="Website">🌐</a>
+                    <a href="https://github.com/louielabitajr" target="_blank" rel="noopener" title="GitHub">GH</a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">in</a>
+                    <a href="mailto:louielabitajr@gmail.com" title="Email">✉</a>
+                </div>
             </div>
         </div>
     </section>
@@ -939,7 +1116,57 @@
                 });
             });
 
-            console.log('✅ LJL Digital Hub Portfolio – fully upgraded with Part 1 & Part 2 styles.');
+            // === BACK TO TOP BUTTON ===
+            const backToTop = document.getElementById('backToTop');
+
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 500) {
+                    backToTop.style.display = 'block';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+            });
+
+            backToTop.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // === SCROLL ANIMATIONS (Fade Up) ===
+            const fadeElements = document.querySelectorAll('.fade-up');
+
+            const fadeObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, {
+                threshold: 0.15
+            });
+
+            fadeElements.forEach(function(el) {
+                fadeObserver.observe(el);
+            });
+
+            // === SKILL BARS ANIMATION ===
+            const skillFills = document.querySelectorAll('.skill-fill');
+
+            const skillObserver = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.getAttribute('data-width');
+                        entry.target.style.width = width + '%';
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            skillFills.forEach(function(fill) {
+                skillObserver.observe(fill);
+            });
+
+            console.log('✅ LJL Digital Hub Portfolio – Complete with all Part 1, 2 & 3 features.');
         })();
     </script>
 
