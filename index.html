@@ -255,39 +255,78 @@
 
 <script>
 (function(){
+    // Page transition
     var pc=document.getElementById("page-content"),ld=document.getElementById("loader");
     window.addEventListener("load",function(){setTimeout(function(){ld.classList.add("hidden");pc.classList.add("loaded");setTimeout(function(){if(ld.parentNode)ld.remove();},400);},1000);});
+
+    // Dark mode
     var bd=document.body,tt=document.getElementById("themeToggle");
     if(localStorage.getItem("theme")==="dark"){bd.classList.add("dark");if(tt)tt.textContent="☀️";}
     if(tt){tt.addEventListener("click",function(){bd.classList.toggle("dark");var d=bd.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light");});}
+
+    // Hamburger menu + auto-close on link click
     var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");
-    if(ham){ham.addEventListener("click",function(){nl.classList.toggle("show");});}
+    if(ham){ham.addEventListener("click",function(e){e.stopPropagation();nl.classList.toggle("show");});}
+    // Close menu when clicking ANY nav link
+    var navAnchors=nl.querySelectorAll("a");
+    navAnchors.forEach(function(link){link.addEventListener("click",function(){nl.classList.remove("show");});});
+    // Close menu when clicking outside
+    document.addEventListener("click",function(e){if(!nl.contains(e.target)&&e.target!==ham){nl.classList.remove("show");}});
+
+    // Typing effect
     var tp=document.getElementById("typing");
     if(tp){var w=["IT Infrastructure Specialist","Systems Administrator","Network Engineer","Founder of LMF Payment Services","Technology Leader"],wi=0,ci=0,dl=false;
     function t(){var c=w[wi];tp.textContent=c.substring(0,dl?ci--:ci++);if(!dl&&ci>c.length){dl=true;setTimeout(t,1500);return;}if(dl&&ci<0){dl=false;wi=(wi+1)%w.length;}setTimeout(t,dl?40:80);}t();}
+
+    // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth"});});});
+
+    // Back to top
     var bb=document.createElement("button");bb.id="backToTop";bb.innerHTML="⬆";document.body.appendChild(bb);
     window.addEventListener("scroll",function(){bb.style.display=window.scrollY>500?"block":"none";});
     bb.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"});});
+
+    // Scroll reveal
     var ro=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting){en.target.classList.add("fade-up","show");}});},{threshold:0.1});
     document.querySelectorAll(".card,.timeline-item,.stat-card,section h2,.container.fade-up,.hero-image.fade-up,.hero-content.fade-up").forEach(function(el){el.classList.add("fade-up");ro.observe(el);});
+
+    // Skill bars
     var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.style.width=en.target.dataset.width;});},{threshold:0.5});
     document.querySelectorAll(".skill-fill").forEach(function(f){so.observe(f);});
+
+    // Counter animation
     var ce=document.querySelector(".counter");
     if(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=tv/90;function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+"+";requestAnimationFrame(u);}else{ce.textContent=tv+"+";}}u();}});},{threshold:0.5});co.observe(ce);}
+
+    // Active navigation
     var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a");
     window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-150)cur=s.getAttribute("id");});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active");});});
+
+    // Ripple effect
     document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("click",function(e){var r=document.createElement("span");r.classList.add("ripple");this.appendChild(r);var rect=this.getBoundingClientRect();r.style.left=(e.clientX-rect.left)+"px";r.style.top=(e.clientY-rect.top)+"px";setTimeout(function(){r.remove();},600);});});
+
+    // Navbar shadow
     var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>50?"0 15px 30px rgba(0,0,0,.12)":"none";});
+
+    // Parallax
     var hero=document.querySelector(".hero");window.addEventListener("scroll",function(){if(hero)hero.style.backgroundPositionY=window.scrollY*0.4+"px";});
+
+    // Current year
     var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
+
+    // Image zoom
     document.querySelectorAll("img").forEach(function(i){i.addEventListener("mouseenter",function(){i.style.transform="scale(1.04)";});i.addEventListener("mouseleave",function(){i.style.transform="scale(1)";});});
+
+    // Copy email
     var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com");});
+
+    // Particles
     var cv=document.createElement("canvas");cv.id="particles";document.body.prepend(cv);
     var ctx=cv.getContext("2d");function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight;}rs();window.addEventListener("resize",rs);
     var ps=[];for(var i=0;i<50;i++){ps.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2+1,dx:(Math.random()-.5)*.5,dy:(Math.random()-.5)*.5});}
     function animate(){ctx.clearRect(0,0,cv.width,cv.height);ps.forEach(function(p){ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle="rgba(37,99,235,.18)";ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>cv.width)p.dx*=-1;if(p.y<0||p.y>cv.height)p.dy*=-1;});requestAnimationFrame(animate);}animate();
-    console.log("✅ LJL Digital Hub — Fully Loaded!");
+
+    console.log("✅ LJL Digital Hub — Menu auto-close active!");
 })();
 </script>
 </body>
