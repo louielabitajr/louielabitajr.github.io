@@ -53,14 +53,12 @@
         .nav-links a{text-decoration:none;color:var(--text);font-weight:500;transition:color 0.3s ease;font-size:.85rem;white-space:nowrap;position:relative;padding:6px 0;letter-spacing:.2px}
         .nav-links a::after{content:"";position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--accent);transition:width 0.4s cubic-bezier(0.22,0.61,0.36,1);border-radius:999px}
         .nav-links a:hover,.nav-links a.active{color:var(--primary)}.nav-links a:hover::after,.nav-links a.active::after{width:100%}.nav-links a.active{font-weight:600}
-        /* ============ LOGO IMAGE + TEXT ============ */
         .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;order:2}
         .logo img{height:38px;width:auto;border-radius:8px;transition:transform 0.3s ease}
         .logo img:hover{transform:scale(1.05)}
         .logo-text{font-size:1rem;font-weight:700;color:var(--text);white-space:nowrap;letter-spacing:-.3px}
         .logo-text span{color:var(--secondary);font-weight:500;font-size:.65rem;letter-spacing:3px;display:block;line-height:1}
         @media(max-width:480px){.logo img{height:30px}.logo-text{font-size:.85rem}.logo-text span{font-size:.55rem;letter-spacing:2px}}
-        /* =========================================== */
         #themeToggle,.hamburger{width:42px;height:42px;border-radius:50%;border:2px solid var(--border-strong);cursor:pointer;font-size:1.1rem;transition:all var(--transition);flex-shrink:0;display:flex;align-items:center;justify-content:center;order:3}
         #themeToggle{background:rgba(255,255,255,0.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--text);margin-left:8px}body.dark #themeToggle{background:rgba(255,255,255,0.08)}
         #themeToggle:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:rotate(30deg);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
@@ -137,7 +135,14 @@
         .testimonial-card:hover{transform:translateY(-10px);box-shadow:var(--shadow-lg);background:var(--surface-hover);border-color:var(--accent)}.testimonial-card .testimonial-stars{color:var(--accent);font-size:.9rem;margin-bottom:8px;letter-spacing:2px}
         .testimonial-card p{font-style:italic;margin-bottom:12px;color:var(--text-light);font-size:.9rem;position:relative;z-index:1;line-height:1.7}.testimonial-card .testimonial-author{display:flex;align-items:center;justify-content:center;gap:8px}
         .testimonial-card .testimonial-avatar{width:38px;height:38px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.8rem;border:2px solid var(--border-strong)}.testimonial-card strong{color:var(--text);font-size:.85rem;font-weight:500}
-        footer{margin-top:50px;padding:40px 20px;text-align:center;background:rgba(15,15,26,0.9);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);position:relative;z-index:2;color:#fff;border-top:2px solid rgba(255,255,255,0.15)}footer p{color:rgba(255,255,255,.7);margin:4px 0;font-size:.85rem}footer .footer-logo{font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:8px;letter-spacing:-.5px}
+        /* ============ FOOTER WITH LOGO ============ */
+        footer{margin-top:50px;padding:40px 20px;text-align:center;background:rgba(15,15,26,0.9);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);position:relative;z-index:2;color:#fff;border-top:2px solid rgba(255,255,255,0.15)}
+        footer p{color:rgba(255,255,255,.7);margin:4px 0;font-size:.85rem}
+        .footer-brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}
+        .footer-brand img{height:34px;width:auto;border-radius:6px;filter:brightness(1.1)}
+        .footer-brand span{font-size:1.5rem;font-weight:700;color:#fff;letter-spacing:-.5px}
+        @media(max-width:480px){.footer-brand img{height:28px}.footer-brand span{font-size:1.2rem}}
+        /* ========================================= */
         .fade-up{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.22,0.61,0.36,1)}.fade-up.show{opacity:1;transform:translateY(0)}
         #backToTop{position:fixed;bottom:20px;right:20px;width:48px;height:48px;border:none;border-radius:50%;background:rgba(26,26,46,0.75);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:#fff;font-size:20px;cursor:pointer;display:none;box-shadow:0 8px 25px rgba(0,0,0,.2);transition:all 0.5s cubic-bezier(0.22,0.61,0.36,1);z-index:999;border:2px solid rgba(255,255,255,0.3)}
         body.dark #backToTop{background:rgba(255,255,255,0.12);border-color:rgba(255,255,255,0.2)}#backToTop:hover{transform:translateY(-6px);box-shadow:0 14px 35px rgba(0,0,0,.3)}
@@ -158,12 +163,7 @@
 <div id="page-content">
 <div class="news-ticker"><div class="ticker-content"><span class="ticker-icon">🚀</span><span>Now Open: <span class="ticker-highlight">LMF Payment Services</span> — Los Baños, Laguna</span><span class="ticker-icon">💻</span><span>IT Infrastructure & <span class="ticker-highlight">Systems Administration</span></span><span class="ticker-icon">📱</span><span>E-Wallet & <span class="ticker-highlight">Remittance Solutions</span></span><span class="ticker-icon">🎓</span><span><span class="ticker-highlight">15+ Years</span> Professional Experience</span><span class="ticker-icon">⚡</span><span>Available for <span class="ticker-highlight">New Opportunities</span></span></div></div>
 <header><nav class="navbar"><ul class="nav-links" id="navLinks"><li><a href="#home" class="active">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#business">Business</a></li><li><a href="#projects">Projects</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
-<!-- ============ LOGO IMAGE (9048) + TEXT ============ -->
-<a href="#home" class="logo" title="LJL Digital Hub">
-    <img src="9048" alt="LJL Logo">
-    <span class="logo-text">LJL Digital<span>HUB</span></span>
-</a>
-<!-- =========================================== -->
+<a href="#home" class="logo" title="LJL Digital Hub"><img src="9048" alt="LJL Logo"><span class="logo-text">LJL Digital<span>HUB</span></span></a>
 <button class="hamburger" id="hamburger" aria-label="Menu">☰</button><button id="themeToggle" aria-label="Toggle dark mode">🌙</button></nav></header>
 <section id="home" class="hero"><div class="hero-image fade-up"><div class="shadow-glow"></div><div class="particle-ring"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="shimmer"></div><div class="ripple-wave"></div><img src="9007" alt="Luisito Jr. Bataller Labita"></div><div class="hero-content fade-up"><h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1><h2 id="typing"></h2><div class="hero-badges"><span class="hero-badge"><span class="status-dot"></span>Available for Work</span><span class="hero-badge">📍 Los Baños, Laguna</span><span class="hero-badge">💼 15+ Years Exp</span></div><p>Building reliable technology solutions, strengthening business operations, and serving communities through innovation & trusted financial services.</p><div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div></div></section>
 <section class="stats"><div class="stat-card"><span class="stat-icon">💼</span><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div><div class="stat-card"><span class="stat-icon">🎓</span><h3>BSIT</h3><p>Graduate</p></div><div class="stat-card"><span class="stat-icon">🚀</span><h3>2023</h3><p>Founded LMF</p></div><div class="stat-card"><span class="stat-icon">🏢</span><h3>Enterprise</h3><p>IT Infrastructure</p></div></section>
@@ -176,7 +176,18 @@
 <section id="testimonials"><div class="container fade-up"><h2>What <span class="accent-text">People Say</span></h2><div class="section-divider"></div><div class="grid"><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p>"Exceptional IT professional. Technical expertise and dedication make him a valuable asset."</p><div class="testimonial-author"><div class="testimonial-avatar">JC</div><strong>Former IT Colleague</strong></div></div><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p>"LMF Payment Services is reliable, fast, and trustworthy. Highly recommended."</p><div class="testimonial-author"><div class="testimonial-avatar">MC</div><strong>Loyal Customer</strong></div></div><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p>"Outstanding leadership and problem-solving. Highly recommended!"</p><div class="testimonial-author"><div class="testimonial-avatar">BP</div><strong>Business Partner</strong></div></div></div></div></section>
 <section id="resume"><div class="container fade-up"><h2>Download <span class="accent-text">Resume</span></h2><div class="section-divider"></div><p>Get my complete professional resume with qualifications, skills & experience.</p><a href="resume.pdf" class="btn primary" download>Download Resume (PDF)</a></div></section>
 <section id="contact"><div class="container fade-up"><h2>Get In <span class="accent-text">Touch</span></h2><div class="section-divider"></div><div class="contact-grid"><div class="contact-info"><h3>Contact Information</h3><p>📍 Los Ba&ntilde;os, Laguna, Philippines</p><p>📧 <a href="mailto:louielabitajr@gmail.com">louielabitajr@gmail.com</a></p><p>📱 +63 961 469 4358</p><p>🌐 <a href="https://louielabitajr.github.io" target="_blank" rel="noopener">louielabitajr.github.io</a></p><p>💻 <a href="https://github.com/louielabitajr" target="_blank" rel="noopener">github.com/louielabitajr</a></p><p>🔗 <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener">linkedin.com/in/yourprofile</a></p><div class="social-links"><a href="https://louielabitajr.github.io" target="_blank" rel="noopener" title="Website">🌐</a><a href="https://github.com/louielabitajr" target="_blank" rel="noopener" title="GitHub">GH</a><a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener" title="LinkedIn">in</a><a href="mailto:louielabitajr@gmail.com" title="Email">✉</a></div></div><form class="contact-form" action="https://formspree.io/f/xnjkwwwz" method="POST"><h3>Send a Message</h3><input type="text" name="name" placeholder="Your Name" required><input type="email" name="email" placeholder="Your Email" required><input type="text" name="subject" placeholder="Subject"><textarea name="message" placeholder="Your Message" rows="5" required></textarea><button type="submit" class="btn primary">Send Message</button></form></div></div></section>
-<footer><div class="container"><div class="footer-logo">LJL Digital Hub</div><p>&copy; <span id="year">2026</span> Luisito Jr. Bataller Labita</p><p>IT Infrastructure Specialist • Systems Administrator • Founder of LMF Payment Services</p></div></footer>
+<!-- ============ FOOTER WITH LOGO ============ -->
+<footer>
+    <div class="container">
+        <div class="footer-brand">
+            <img src="9048" alt="LJL Logo">
+            <span>LJL Digital Hub</span>
+        </div>
+        <p>&copy; <span id="year">2026</span> Luisito Jr. Bataller Labita</p>
+        <p>IT Infrastructure Specialist • Systems Administrator • Founder of LMF Payment Services</p>
+    </div>
+</footer>
+<!-- ========================================= -->
 </div>
 <script>
 (function(){
@@ -207,7 +218,7 @@ document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("click"
 var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>30?"0 8px 30px rgba(0,0,0,0.08)":"none"});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
 var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com")});
-console.log("✅ LJL Digital Hub — Logo updated to 9048!");
+console.log("✅ LJL Digital Hub — Footer logo added!");
 })();
 </script>
 </body>
