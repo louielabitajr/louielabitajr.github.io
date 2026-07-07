@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luisito Jr. Bataller Labita | IT Infrastructure Specialist | Portfolio</title>
-    <meta name="description" content="Portfolio of Luisito Jr. Bataller Labita - IT Infrastructure Specialist, Systems Administrator and Founder of LMF Payment Services in Los Baños, Laguna.">
+    <meta name="description" content="Enterprise IT Infrastructure Specialist & Systems Administrator. 15+ years securing mission-critical systems.">
     <meta name="author" content="Luisito Jr. Bataller Labita">
     <meta name="robots" content="index,follow">
     <meta name="keywords" content="IT specialist, systems administrator, network engineer, Laguna, Philippines, payment services, LMF Payment Services, Windows Server, VMware, technical support">
-    <meta name="geo.region" content="PH-LAG">
     <meta property="og:title" content="Luisito Jr. Bataller Labita Portfolio">
     <meta property="og:description" content="IT Infrastructure Specialist | Systems Administrator | Founder of LMF Payment Services">
     <meta property="og:image" content="9007">
@@ -37,7 +36,11 @@
         section>div>p{text-align:center;max-width:650px;margin:0 auto 30px;color:var(--text-light);font-size:.9rem;line-height:1.8}
         @media(max-width:768px){section{min-height:auto;scroll-snap-align:none;padding:60px 0}}
 
-        #itBackground{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1}
+        /* ============================================
+           NEXT-GEN NETWORK TOPOLOGY BACKGROUND
+        ============================================ */
+        #topologyCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1}
+
         .news-ticker{background:linear-gradient(135deg,#0f0f1a 0%,#1a1a2e 30%,#2d6a4f 60%,#1a1a2e 100%);background-size:300% 300%;animation:bannerGradientShift 8s ease infinite;color:#fff;padding:10px 0;font-size:.82rem;font-weight:500;overflow:hidden;position:relative;z-index:1000;white-space:nowrap;letter-spacing:.5px;border-bottom:3px solid var(--accent);box-shadow:0 4px 25px rgba(0,0,0,0.3),0 0 60px rgba(212,168,83,0.15)}
         @keyframes bannerGradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
         .news-ticker::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,transparent,var(--accent),var(--secondary),var(--accent),transparent);animation:bannerGlowLine 3s ease-in-out infinite;z-index:2}
@@ -60,46 +63,16 @@
         .loader-bar{height:100%;width:0;background:var(--accent);border-radius:999px;animation:loadBar 1s forwards}@keyframes loadBar{0%{width:0}50%{width:70%}100%{width:100%}}
         #scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:10001;transition:width 0.15s linear;box-shadow:0 0 10px var(--accent)}.section-divider{width:50px;height:2px;background:var(--accent);margin:0 auto 25px;border-radius:999px}
 
-        /* ============================================
-           IMPROVED NAVBAR WITH SLIDING ACTIVE INDICATOR
-        ============================================ */
         header{position:sticky;top:0;z-index:999}
-        .navbar{
-            display:flex;justify-content:flex-start;align-items:center;padding:10px 36px;
-            background:rgba(255,255,255,0.5);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
-            border-bottom:2px solid var(--border-strong);transition:all var(--transition);
-            flex-wrap:wrap;gap:12px;position:relative;z-index:10;
-        }
+        .navbar{display:flex;justify-content:flex-start;align-items:center;padding:10px 36px;background:rgba(255,255,255,0.5);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:2px solid var(--border-strong);transition:all var(--transition);flex-wrap:wrap;gap:12px;position:relative;z-index:10}
         body.dark .navbar{background:rgba(10,10,22,0.6);border-bottom:2px solid var(--border-strong)}
-        
-        /* Sliding active indicator bar */
-        .nav-indicator{
-            position:absolute;bottom:-2px;left:0;height:3px;
-            background:linear-gradient(90deg,var(--accent),var(--secondary));
-            border-radius:0 0 3px 3px;transition:all 0.4s cubic-bezier(0.22,0.61,0.36,1);
-            z-index:11;box-shadow:0 0 12px var(--accent);
-        }
-        
+        .nav-indicator{position:absolute;bottom:-2px;left:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--secondary));border-radius:0 0 3px 3px;transition:all 0.4s cubic-bezier(0.22,0.61,0.36,1);z-index:11;box-shadow:0 0 12px var(--accent)}
         .nav-links{display:flex;gap:4px;list-style:none;flex-wrap:wrap;justify-content:flex-start;order:1;margin-right:auto;position:relative}
-        .nav-links a{
-            text-decoration:none;color:var(--text);font-weight:500;transition:all 0.3s ease;
-            font-size:.83rem;white-space:nowrap;position:relative;padding:8px 16px;
-            letter-spacing:.2px;border-radius:8px;z-index:12;
-        }
+        .nav-links a{text-decoration:none;color:var(--text);font-weight:500;transition:all 0.3s ease;font-size:.83rem;white-space:nowrap;position:relative;padding:8px 16px;letter-spacing:.2px;border-radius:8px;z-index:12}
         .nav-links a:hover{color:var(--primary);background:rgba(37,99,235,0.05)}
-        .nav-links a.active{
-            color:var(--accent);font-weight:700;
-            text-shadow:0 0 8px rgba(212,168,83,0.3);
-        }
-        /* Glowing dot on active link */
-        .nav-links a.active::before{
-            content:"";position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
-            width:5px;height:5px;border-radius:50%;background:var(--accent);
-            box-shadow:0 0 8px var(--accent),0 0 16px var(--accent);
-            animation:navDotPulse 1.5s ease-in-out infinite;
-        }
+        .nav-links a.active{color:var(--accent);font-weight:700;text-shadow:0 0 8px rgba(212,168,83,0.3)}
+        .nav-links a.active::before{content:"";position:absolute;bottom:4px;left:50%;transform:translateX(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent),0 0 16px var(--accent);animation:navDotPulse 1.5s ease-in-out infinite}
         @keyframes navDotPulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.6)}}
-        
         .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0;order:2}
         .logo img{height:38px;width:auto;border-radius:8px;transition:transform 0.3s ease}.logo img:hover{transform:scale(1.05)}
         .logo-text{font-size:1rem;font-weight:700;color:var(--text);white-space:nowrap;letter-spacing:-.3px}
@@ -109,12 +82,7 @@
         #themeToggle{background:rgba(255,255,255,0.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--text);margin-left:6px}body.dark #themeToggle{background:rgba(255,255,255,0.08)}
         #themeToggle:hover{background:var(--primary);color:#fff;border-color:var(--primary);transform:rotate(30deg);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
         .hamburger{background:rgba(255,255,255,0.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--text);display:none}body.dark .hamburger{background:rgba(255,255,255,0.08)}
-        @media(max-width:768px){
-            .navbar{flex-wrap:wrap}.nav-links{order:2;display:none;flex-direction:column;width:100%;gap:2px;padding:12px;background:var(--surface);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:2px solid var(--border-strong);margin-right:0}
-            .nav-links.show{display:flex}.nav-links a{padding:10px 14px;text-align:center;font-size:.86rem;border-radius:8px}.nav-links a:hover{background:rgba(37,99,235,0.06)}
-            .nav-links a.active::before{display:none}.nav-indicator{display:none}
-            .logo{order:1;margin-right:auto}.hamburger{display:flex;order:3}#themeToggle{order:3}
-        }
+        @media(max-width:768px){.navbar{flex-wrap:wrap}.nav-links{order:2;display:none;flex-direction:column;width:100%;gap:2px;padding:12px;background:var(--surface);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:2px solid var(--border-strong);margin-right:0}.nav-links.show{display:flex}.nav-links a{padding:10px 14px;text-align:center;font-size:.86rem;border-radius:8px}.nav-links a:hover{background:rgba(37,99,235,0.06)}.nav-links a.active::before{display:none}.nav-indicator{display:none}.logo{order:1;margin-right:auto}.hamburger{display:flex;order:3}#themeToggle{order:3}}
 
         .hero{min-height:90vh;display:flex;align-items:center;justify-content:center;gap:50px;padding:60px 20px;background:transparent;flex-wrap:wrap;text-align:center;position:relative;z-index:2}
         .hero-image{position:relative}.hero-image::before{content:"";position:absolute;inset:-15px;border-radius:50%;background:0 0;border:3px solid var(--accent);z-index:0;animation:profileGlowPulse 2.5s ease-in-out infinite;opacity:.7}
@@ -129,22 +97,6 @@
         .hero-image .shimmer::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(45deg,transparent 40%,rgba(255,255,255,.3) 50%,transparent 60%);animation:profileShimmer 3s ease-in-out infinite}
         @keyframes profileShimmer{0%{transform:translateX(-100%) translateY(-100%)}100%{transform:translateX(100%) translateY(100%)}}
         .hero-image img:hover{filter:grayscale(0);transform:scale(1.08) rotate(3deg);box-shadow:0 30px 70px rgba(0,0,0,.15);border-color:var(--accent)}
-        .profile-sparkle{position:absolute;border-radius:50%;background:var(--accent);z-index:3;pointer-events:none;animation:sparkleFloat 3s ease-in-out infinite;box-shadow:0 0 8px var(--accent),0 0 16px var(--accent)}
-        .profile-sparkle:nth-child(1){top:5%;left:85%;animation-delay:0s;width:6px;height:6px}.profile-sparkle:nth-child(2){top:80%;left:82%;animation-delay:.4s;width:5px;height:5px}
-        .profile-sparkle:nth-child(3){top:15%;left:8%;animation-delay:.8s;width:7px;height:7px}.profile-sparkle:nth-child(4){top:78%;left:12%;animation-delay:1.2s;width:5px;height:5px}
-        .profile-sparkle:nth-child(5){top:45%;left:94%;animation-delay:1.6s;width:6px;height:6px}.profile-sparkle:nth-child(6){top:60%;left:5%;animation-delay:2s;width:4px;height:4px}
-        .profile-sparkle:nth-child(7){top:25%;left:90%;animation-delay:2.4s;width:7px;height:7px}.profile-sparkle:nth-child(8){top:90%;left:50%;animation-delay:2.8s;width:5px;height:5px}
-        @keyframes sparkleFloat{0%,100%{transform:translateY(0) scale(1);opacity:.3}25%{transform:translateY(-8px) scale(1.6);opacity:1}50%{transform:translateY(-4px) scale(1);opacity:.5}75%{transform:translateY(-14px) scale(1.3);opacity:.8}}
-        .hero-image .particle-ring{position:absolute;inset:-25px;border-radius:50%;z-index:0;pointer-events:none}
-        .hero-image .particle-ring .particle{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--secondary);animation:particleOrbit 6s linear infinite}
-        .hero-image .particle-ring .particle:nth-child(1){top:50%;left:-5px;animation-delay:0s}.hero-image .particle-ring .particle:nth-child(2){top:-5px;left:50%;animation-delay:.75s}
-        .hero-image .particle-ring .particle:nth-child(3){top:50%;right:-5px;animation-delay:1.5s}.hero-image .particle-ring .particle:nth-child(4){bottom:-5px;left:50%;animation-delay:2.25s}
-        .hero-image .particle-ring .particle:nth-child(5){top:15%;left:10%;animation-delay:3s}.hero-image .particle-ring .particle:nth-child(6){top:15%;right:10%;animation-delay:3.75s}
-        .hero-image .particle-ring .particle:nth-child(7){bottom:15%;right:10%;animation-delay:4.5s}.hero-image .particle-ring .particle:nth-child(8){bottom:15%;left:10%;animation-delay:5.25s}
-        @keyframes particleOrbit{0%{transform:rotate(0deg) translateX(120px) rotate(0deg);opacity:.8}50%{opacity:.3}100%{transform:rotate(360deg) translateX(120px) rotate(-360deg);opacity:.8}}
-        .hero-image .ripple-wave{position:absolute;inset:0;border-radius:50%;z-index:0;pointer-events:none}
-        .hero-image:hover .ripple-wave::before,.hero-image:hover .ripple-wave::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent);animation:rippleOut 1.5s ease-out infinite}
-        .hero-image:hover .ripple-wave::after{animation-delay:.75s}@keyframes rippleOut{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
         .hero-content{max-width:560px}.hero-content h1{font-size:2.6rem;line-height:1.2;margin-bottom:8px;font-weight:700;letter-spacing:-.5px;color:var(--primary)}
         .hero-content h1 .accent-text{color:var(--secondary)}#typing{color:var(--accent);font-size:1.1rem;margin-bottom:14px;min-height:28px;font-weight:500;letter-spacing:.5px}
         .hero-content p{color:var(--text-light);margin-bottom:24px;font-size:.92rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8}
@@ -159,6 +111,8 @@
         .secondary{background:rgba(255,255,255,0.3);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:2px solid var(--border-strong);color:var(--primary)}body.dark .secondary{background:rgba(255,255,255,0.05);border-color:var(--border-strong)}
         .secondary:hover{background:var(--primary);color:#fff;transform:translateY(-4px);border-color:var(--primary);box-shadow:0 14px 35px rgba(0,0,0,0.15)}
         .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:rippleEffect .6s;pointer-events:none}@keyframes rippleEffect{to{transform:scale(4);opacity:0}}
+
+        /* Stats, Cards, Timeline, Contact, Footer styles preserved from previous code */
         .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:50px 5%;position:relative;z-index:2;background:rgba(255,255,255,0.3);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-top:2px solid var(--border-strong);border-bottom:2px solid var(--border-strong)}
         body.dark .stats{background:rgba(10,10,22,0.4);border-color:var(--border-strong)}.stat-card{padding:28px 18px;text-align:center;transition:all 0.5s cubic-bezier(0.22,0.61,0.36,1);cursor:default;background:rgba(255,255,255,0.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--radius);border:2px solid var(--border-strong)}
         body.dark .stat-card{background:rgba(255,255,255,0.04);border-color:var(--border-strong)}.stat-card:hover{transform:translateY(-8px);background:rgba(255,255,255,0.55);box-shadow:var(--shadow-lg);border-color:var(--accent)}
@@ -199,63 +153,20 @@
         body.dark .social-links a{background:rgba(255,255,255,0.05);color:var(--text)}.social-links a:hover{background:var(--primary);color:#fff;transform:translateY(-6px);border-color:var(--primary);box-shadow:0 12px 35px rgba(0,0,0,0.2)}
         .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--secondary);animation:statusPulse 2s infinite;margin-right:5px}@keyframes statusPulse{0%,100%{box-shadow:0 0 0 0 rgba(45,106,79,.3)}50%{box-shadow:0 0 0 8px rgba(45,106,79,0)}}
         ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.2);border-radius:20px}body.dark ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2)}::selection{background:var(--accent);color:#fff}
-        @media print{header,footer,#backToTop,#scrollProgress,.news-ticker,.hero,.social-links,.contact-form,#itBackground{display:none!important}body{font-size:12pt;color:#000;background:#fff}.container{width:100%}section{padding:20px 0}}
+        @media print{header,footer,#backToTop,#scrollProgress,.news-ticker,.hero,.social-links,.contact-form,#topologyCanvas{display:none!important}body{font-size:12pt;color:#000;background:#fff}.container{width:100%}section{padding:20px 0}}
         @media(max-width:900px){.hero{gap:30px;padding:45px 18px}.hero-content h1{font-size:2.1rem}.stats{grid-template-columns:repeat(2,1fr);padding:35px 3%;gap:15px}}
         @media(max-width:650px){.news-ticker{font-size:.7rem;padding:8px 0}.navbar{padding:10px 14px;gap:8px}.hero-content h1{font-size:1.7rem}#typing{font-size:.95rem;min-height:24px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat-card{padding:16px 10px}.stat-card h3{font-size:1.5rem}.timeline{padding-left:22px}.timeline::before{left:4px}.timeline-item::before{left:-27px;width:10px;height:10px}.grid{grid-template-columns:1fr}section{padding:45px 0}section h2{font-size:1.6rem}.btn{padding:12px 24px;font-size:.85rem}}
     </style>
 </head>
 <body>
-<canvas id="itBackground"></canvas>
+<canvas id="topologyCanvas"></canvas>
 <div id="scrollProgress"></div>
 <div id="loader"><div class="spinner-container"><div class="spinner-ring"></div><div class="spinner-ring"></div></div><div class="loader-text">Loading</div><div class="loader-bar-container"><div class="loader-bar"></div></div></div>
 <div id="page-content">
 <div class="news-ticker"><div class="ticker-content"><span class="ticker-icon">🚀</span><span>Now Open: <span class="ticker-highlight">LMF Payment Services</span> — Los Baños, Laguna</span><span class="ticker-icon">💻</span><span>IT Infrastructure & <span class="ticker-highlight">Systems Administration</span></span><span class="ticker-icon">📱</span><span>E-Wallet & <span class="ticker-highlight">Remittance Solutions</span></span><span class="ticker-icon">🎓</span><span><span class="ticker-highlight">15+ Years</span> Professional Experience</span><span class="ticker-icon">⚡</span><span>Available for <span class="ticker-highlight">New Opportunities</span></span></div></div>
-<header>
-    <nav class="navbar">
-        <!-- Sliding indicator bar -->
-        <div class="nav-indicator" id="navIndicator"></div>
-        
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#home" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#certifications">Certifications</a></li>
-            <li><a href="#business">Business</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#testimonials">Testimonials</a></li>
-            <li><a href="#resume">Resume</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <a href="#home" class="logo" title="LJL Digital Hub"><img src="9048" alt="LJL Logo"><span class="logo-text">LJL Digital<span>HUB</span></span></a>
-        <button class="hamburger" id="hamburger" aria-label="Menu">☰</button>
-        <button id="themeToggle" aria-label="Toggle dark mode">🌙</button>
-    </nav>
-</header>
+<header><nav class="navbar"><div class="nav-indicator" id="navIndicator"></div><ul class="nav-links" id="navLinks"><li><a href="#home" class="active">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#business">Business</a></li><li><a href="#projects">Projects</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul><a href="#home" class="logo" title="LJL Digital Hub"><img src="9048" alt="LJL Logo"><span class="logo-text">LJL Digital<span>HUB</span></span></a><button class="hamburger" id="hamburger" aria-label="Menu">☰</button><button id="themeToggle" aria-label="Toggle dark mode">🌙</button></nav></header>
 
-<section id="home" class="hero">
-    <div class="hero-image fade-up">
-        <div class="shadow-glow"></div>
-        <div class="particle-ring"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
-        <div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div>
-        <div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div>
-        <div class="shimmer"></div><div class="ripple-wave"></div>
-        <img src="9007" alt="Luisito Jr. Bataller Labita">
-    </div>
-    <div class="hero-content fade-up">
-        <h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1>
-        <h2 id="typing"></h2>
-        <p>IT Infrastructure Specialist with 15+ years of experience designing, managing, and securing enterprise IT environments. Passionate about Windows Server, VMware, Networking, Cloud Technologies, and Digital Innovation.</p>
-        <div class="hero-availability">
-            <div class="avail-item"><span class="check-icon">✔</span> Available for Full-Time</div>
-            <div class="avail-item"><span class="check-icon">✔</span> Available for Consultancy</div>
-            <div class="avail-item"><span class="check-icon">✔</span> Based in Laguna, Philippines</div>
-        </div>
-        <div class="hero-badges"><span class="hero-badge"><span class="status-dot"></span>Available for Work</span><span class="hero-badge">📍 Los Baños, Laguna</span><span class="hero-badge">💼 15+ Years Exp</span></div>
-        <div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div>
-    </div>
-</section>
-
+<section id="home" class="hero"><div class="hero-image fade-up"><div class="shadow-glow"></div><div class="particle-ring"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="shimmer"></div><div class="ripple-wave"></div><img src="9007" alt="Luisito Jr. Bataller Labita"></div><div class="hero-content fade-up"><h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1><h2 id="typing"></h2><p>IT Infrastructure Specialist with 15+ years of experience designing, managing, and securing enterprise IT environments. Passionate about Windows Server, VMware, Networking, Cloud Technologies, and Digital Innovation.</p><div class="hero-availability"><div class="avail-item"><span class="check-icon">✔</span> Available for Full-Time</div><div class="avail-item"><span class="check-icon">✔</span> Available for Consultancy</div><div class="avail-item"><span class="check-icon">✔</span> Based in Laguna, Philippines</div></div><div class="hero-badges"><span class="hero-badge"><span class="status-dot"></span>Available for Work</span><span class="hero-badge">📍 Los Baños, Laguna</span><span class="hero-badge">💼 15+ Years Exp</span></div><div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div></div></section>
 <section class="stats"><div class="stat-card"><span class="stat-icon">💼</span><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div><div class="stat-card"><span class="stat-icon">🎓</span><h3>BSIT</h3><p>Graduate</p></div><div class="stat-card"><span class="stat-icon">🚀</span><h3>2023</h3><p>Founded LMF</p></div><div class="stat-card"><span class="stat-icon">🏢</span><h3>Enterprise</h3><p>IT Infrastructure</p></div></section>
 <section id="about"><div class="container fade-up"><h2>About <span class="accent-text">Me</span></h2><div class="section-divider"></div><p>I am Luisito Jr. Bataller Labita, a BS Information Technology graduate with over fifteen years of professional experience in IT, Systems Administration, Technical Support, Network Infrastructure, Leadership, and Customer Service.</p><p>My journey spans financial services, enterprise IT, and entrepreneurship. In 2023, I founded <strong>LMF Payment Services</strong> in Los Ba&ntilde;os, Laguna.</p></div></section>
 <section id="skills"><div class="container fade-up"><h2>Core <span class="accent-text">Skills</span></h2><div class="section-divider"></div><div class="grid"><div class="card"><span class="card-icon">🖥</span><h3>IT Infrastructure</h3><p>Windows Server • Networking • Troubleshooting • Backup & Recovery</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div></div><span class="card-tag">Expert</span></div><div class="card"><span class="card-icon">⚙</span><h3>Systems Administration</h3><p>Microsoft Technologies • VMware • Exchange • Technical Support</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">📊</span><h3>Business Management</h3><p>Operations • Leadership • Customer Service • Problem Solving</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">🚀</span><h3>Entrepreneurship</h3><p>Founder • LMF Payment Services • Business Operations</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div><span class="card-tag">Advanced</span></div></div></div></section>
@@ -270,18 +181,93 @@
 </div>
 <script>
 (function(){
-var cv=document.getElementById("itBackground"),ctx=cv.getContext("2d");
+// ============================================
+// NEXT-GEN NETWORK TOPOLOGY BACKGROUND
+// Floating servers, clouds, AI nodes, data packets
+// ============================================
+var cv=document.getElementById("topologyCanvas"),ctx=cv.getContext("2d");
 function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight}rs();window.addEventListener("resize",rs);
-var ns=[];for(var i=0;i<25;i++){ns.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*3+2,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,p:Math.random()*Math.PI*2})}
-var cs=[];for(var i=0;i<15;i++){var a=ns[Math.floor(Math.random()*ns.length)],b=ns[Math.floor(Math.random()*ns.length)];cs.push({a:a,b:b,o:Math.random()*.15+.05})}
-var bd=[];for(var i=0;i<40;i++){bd.push({x:Math.random()*cv.width,y:Math.random()*cv.height,s:Math.random()*1.5+.5,t:(Math.random()>.5?"1":"0"),o:Math.random()*.15+.05,z:Math.random()*10+8})}
-var rl=[];for(var i=0;i<30;i++){rl.push({x:Math.random()*cv.width,y:Math.random()*cv.height,b:Math.random()*Math.PI*2,c:Math.random()>.5?"#2d6a4f":"#2563eb"})}
-function draw(){ctx.clearRect(0,0,cv.width,cv.height);var dk=document.body.classList.contains("dark");
-cs.forEach(function(c){ctx.beginPath();ctx.moveTo(c.a.x,c.a.y);ctx.lineTo(c.b.x,c.b.y);ctx.strokeStyle=dk?"rgba(37,99,235,.1)":"rgba(37,99,235,.06)";ctx.lineWidth=1;ctx.stroke();var pp=(Date.now()/2000)%1,px=c.a.x+(c.b.x-c.a.x)*pp,py=c.a.y+(c.b.y-c.a.y)*pp;ctx.beginPath();ctx.arc(px,py,2,0,Math.PI*2);ctx.fillStyle=dk?"rgba(56,189,248,.4)":"rgba(37,99,235,.25)";ctx.fill()});
-ns.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1;n.p+=.02;var ps=1+Math.sin(n.p)*.4;ctx.beginPath();ctx.arc(n.x,n.y,n.r*ps,0,Math.PI*2);ctx.fillStyle=dk?"rgba(56,189,248,.5)":"rgba(37,99,235,.35)";ctx.fill();ctx.beginPath();ctx.arc(n.x,n.y,n.r*2.5,0,Math.PI*2);ctx.strokeStyle=dk?"rgba(56,189,248,.12)":"rgba(37,99,235,.08)";ctx.lineWidth=1;ctx.stroke()});
-bd.forEach(function(d){d.y+=d.s;if(d.y>cv.height+20){d.y=-20;d.x=Math.random()*cv.width}ctx.font=(d.z)+"px 'Courier New',monospace";ctx.fillStyle=dk?"rgba(56,189,248,"+d.o+")":"rgba(37,99,235,"+d.o+")";ctx.fillText(d.t,d.x,d.y)});
-rl.forEach(function(l){l.b+=.04;var al=.3+Math.sin(l.b)*.3;ctx.beginPath();ctx.arc(l.x,l.y,2.5,0,Math.PI*2);ctx.fillStyle=l.c.replace(")",","+al+")").replace("rgb","rgba").replace("#2d6a4f","rgba(45,106,79").replace("#2563eb","rgba(37,99,235");ctx.fill()});
-ctx.strokeStyle=dk?"rgba(37,99,235,.04)":"rgba(37,99,235,.03)";ctx.lineWidth=.5;for(var x=0;x<cv.width;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,cv.height);ctx.stroke()}for(var y=0;y<cv.height;y+=60){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(cv.width,y);ctx.stroke()}requestAnimationFrame(draw)}draw();
+
+// Server nodes (data centers)
+var servers=[];
+for(var i=0;i<8;i++){servers.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:12+Math.random()*6,glow:Math.random()*Math.PI*2,type:"server",vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15});}
+
+// Cloud nodes
+var clouds=[];
+for(var i=0;i<5;i++){clouds.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:18+Math.random()*8,glow:Math.random()*Math.PI*2,type:"cloud",vx:(Math.random()-.5)*.1,vy:(Math.random()-.5)*.1});}
+
+// AI nodes (hexagonal)
+var aiNodes=[];
+for(var i=0;i<6;i++){aiNodes.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:8+Math.random()*4,glow:Math.random()*Math.PI*2,type:"ai",vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2});}
+
+// Glowing particles
+var particles=[];
+for(var i=0;i<50;i++){particles.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2+1,opacity:Math.random()*.5+.2,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2});}
+
+// Data packets (moving between nodes)
+var packets=[];
+var allNodes=servers.concat(clouds).concat(aiNodes);
+for(var i=0;i<12;i++){var a=allNodes[Math.floor(Math.random()*allNodes.length)],b=allNodes[Math.floor(Math.random()*allNodes.length)];packets.push({a:a,b:b,progress:Math.random(),speed:0.002+Math.random()*0.004,size:2+Math.random()*2});}
+
+// Connections between nearby nodes
+function getConnections(){var cons=[];for(var i=0;i<allNodes.length;i++){for(var j=i+1;j<allNodes.length;j++){var dx=allNodes[i].x-allNodes[j].x,dy=allNodes[i].y-allNodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<250){cons.push({a:allNodes[i],b:allNodes[j],dist:dist})}}}return cons}
+
+function drawTopology(){
+ctx.clearRect(0,0,cv.width,cv.height);
+var dk=document.body.classList.contains("dark");
+var connections=getConnections();
+
+// Draw connection lines
+connections.forEach(function(c){var alpha=.08*(1-c.dist/250);ctx.beginPath();ctx.moveTo(c.a.x,c.a.y);ctx.lineTo(c.b.x,c.b.y);ctx.strokeStyle=dk?"rgba(88,166,255,"+alpha+")":"rgba(37,99,235,"+alpha+")";ctx.lineWidth=.6;ctx.stroke()});
+
+// Draw servers (rectangles with rack lines)
+servers.forEach(function(s){s.x+=s.vx;s.y+=s.vy;if(s.x<0||s.x>cv.width)s.vx*=-1;if(s.y<0||s.y>cv.height)s.vy*=-1;s.glow+=.015;var glowAlpha=.25+.15*Math.sin(s.glow);
+// Server body
+ctx.fillStyle=dk?"rgba(56,189,248,"+(.3+.15*Math.sin(s.glow))+")":"rgba(37,99,235,"+(.2+.1*Math.sin(s.glow))+")";
+roundRect(s.x-s.r,s.y-s.r*.7,s.r*2,s.r*1.4,3);
+// Rack lines
+ctx.strokeStyle=dk?"rgba(56,189,248,.4)":"rgba(37,99,235,.3)";ctx.lineWidth=.5;
+for(var l=0;l<3;l++){ctx.beginPath();ctx.moveTo(s.x-s.r*.7,s.y-s.r*.3+l*s.r*.35);ctx.lineTo(s.x+s.r*.7,s.y-s.r*.3+l*s.r*.35);ctx.stroke()}
+// Status LED
+ctx.beginPath();ctx.arc(s.x+s.r*.6,s.y-s.r*.5,2,0,Math.PI*2);ctx.fillStyle=dk?"#4ade80":"#2d6a4f";ctx.fill();
+// Glow
+ctx.beginPath();ctx.arc(s.x,s.y,s.r*1.5,0,Math.PI*2);ctx.fillStyle=dk?"rgba(56,189,248,"+glowAlpha+")":"rgba(37,99,235,"+(glowAlpha*.6)+")";ctx.fill()});
+
+// Draw clouds
+clouds.forEach(function(c){c.x+=c.vx;c.y+=c.vy;if(c.x<0||c.x>cv.width)c.vx*=-1;if(c.y<0||c.y>cv.height)c.vy*=-1;c.glow+=.01;
+// Cloud body (overlapping circles)
+ctx.fillStyle=dk?"rgba(255,255,255,"+(.06+.04*Math.sin(c.glow))+")":"rgba(0,0,0,"+(.03+.02*Math.sin(c.glow))+")";
+ctx.beginPath();ctx.arc(c.x,c.y,c.r,0,Math.PI*2);ctx.fill();
+ctx.beginPath();ctx.arc(c.x-c.r*.5,c.y,c.r*.7,0,Math.PI*2);ctx.fill();
+ctx.beginPath();ctx.arc(c.x+c.r*.5,c.y,c.r*.7,0,Math.PI*2);ctx.fill();
+ctx.beginPath();ctx.arc(c.x,c.y-c.r*.4,c.r*.6,0,Math.PI*2);ctx.fill();
+// Cloud icon outline
+ctx.strokeStyle=dk?"rgba(255,255,255,.1)":"rgba(0,0,0,.06)";ctx.lineWidth=1;
+ctx.beginPath();ctx.arc(c.x,c.y,c.r*1.2,0,Math.PI*2);ctx.stroke()});
+
+// Draw AI nodes (hexagons)
+aiNodes.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1;n.glow+=.02;
+drawHexagon(n.x,n.y,n.r,dk?"rgba(251,191,36,"+(.4+.2*Math.sin(n.glow))+")":"rgba(212,168,83,"+(.3+.15*Math.sin(n.glow))+")");
+// AI pulse ring
+ctx.beginPath();ctx.arc(n.x,n.y,n.r*2+Math.sin(n.glow)*4,0,Math.PI*2);ctx.strokeStyle=dk?"rgba(251,191,36,"+(.15+.1*Math.sin(n.glow))+")":"rgba(212,168,83,"+(.1+.05*Math.sin(n.glow))+")";ctx.lineWidth=1;ctx.stroke()});
+
+// Draw data packets moving along connections
+packets.forEach(function(p){p.progress+=p.speed;if(p.progress>1)p.progress=0;var px=p.a.x+(p.b.x-p.a.x)*p.progress,py=p.a.y+(p.b.y-p.a.y)*p.progress;
+ctx.beginPath();ctx.arc(px,py,p.size,0,Math.PI*2);ctx.fillStyle=dk?"#58a6ff":"#2563eb";ctx.fill();
+ctx.beginPath();ctx.arc(px,py,p.size*2.5,0,Math.PI*2);ctx.fillStyle=dk?"rgba(88,166,255,.2)":"rgba(37,99,235,.12)";ctx.fill()});
+
+// Draw glowing particles
+particles.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;
+ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=dk?"rgba(255,255,255,"+p.opacity+")":"rgba(0,0,0,"+(p.opacity*.4)+")";ctx.fill()});
+
+requestAnimationFrame(drawTopology)}
+
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();ctx.fill()}
+function drawHexagon(x,y,r,color){ctx.beginPath();for(var i=0;i<6;i++){var angle=Math.PI/3*i-Math.PI/6;var hx=x+r*Math.cos(angle),hy=y+r*Math.sin(angle);if(i===0)ctx.moveTo(hx,hy);else ctx.lineTo(hx,hy)}ctx.closePath();ctx.fillStyle=color;ctx.fill()}
+
+drawTopology();
+
+// Rest of script
 var sp=document.getElementById("scrollProgress");window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%"});
 var pc=document.getElementById("page-content"),ld=document.getElementById("loader");window.addEventListener("load",function(){setTimeout(function(){ld.classList.add("hidden");pc.classList.add("loaded");setTimeout(function(){if(ld.parentNode)ld.remove()},500)},1000)});
 var bdy=document.body,tt=document.getElementById("themeToggle");if(localStorage.getItem("theme")==="dark"){bdy.classList.add("dark");if(tt)tt.textContent="☀️"}if(tt){tt.addEventListener("click",function(){bdy.classList.toggle("dark");var d=bdy.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light")})}
@@ -293,26 +279,13 @@ var ro=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isInter
 var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.style.width=en.target.dataset.width})},{threshold:0.5});document.querySelectorAll(".skill-fill").forEach(function(f){so.observe(f)});
 document.querySelectorAll(".counter").forEach(function(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=Math.max(tv/90,1);function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+(ce.textContent.includes("+")?"+":"");requestAnimationFrame(u)}else{ce.textContent=tv+(ce.textContent.includes("+")?"+":"")}}u()}})},{threshold:0.5});co.observe(ce)});
 var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a"),indicator=document.getElementById("navIndicator");
-function updateNav(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});
-nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")});
-// Update sliding indicator
-var activeLink=document.querySelector(".nav-links a.active");
-if(activeLink&&indicator&&window.innerWidth>768){
-var linkRect=activeLink.getBoundingClientRect();
-var navRect=document.querySelector(".navbar").getBoundingClientRect();
-indicator.style.left=(linkRect.left-navRect.left)+"px";
-indicator.style.width=linkRect.width+"px";
-indicator.style.opacity="1";
-}else if(indicator){indicator.style.opacity="0"}
-}
-window.addEventListener("scroll",updateNav);window.addEventListener("resize",updateNav);
-document.querySelectorAll(".nav-links a").forEach(function(l){l.addEventListener("click",function(){setTimeout(updateNav,100)})});
-updateNav();
+function updateNav(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")});var activeLink=document.querySelector(".nav-links a.active");if(activeLink&&indicator&&window.innerWidth>768){var linkRect=activeLink.getBoundingClientRect();var navRect=document.querySelector(".navbar").getBoundingClientRect();indicator.style.left=(linkRect.left-navRect.left)+"px";indicator.style.width=linkRect.width+"px";indicator.style.opacity="1"}else if(indicator){indicator.style.opacity="0"}}
+window.addEventListener("scroll",updateNav);window.addEventListener("resize",updateNav);document.querySelectorAll(".nav-links a").forEach(function(l){l.addEventListener("click",function(){setTimeout(updateNav,100)})});updateNav();
 document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("click",function(e){var r=document.createElement("span");r.classList.add("ripple");this.appendChild(r);var rect=this.getBoundingClientRect();r.style.left=(e.clientX-rect.left)+"px";r.style.top=(e.clientY-rect.top)+"px";setTimeout(function(){r.remove()},600)})});
 var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>30?"0 8px 30px rgba(0,0,0,0.08)":"none"});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
 var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com")});
-console.log("✅ LJL Digital Hub — Sliding Nav Indicator Active!");
+console.log("⚡ LJL Digital Hub — Azure x Apple Topology Background Active!");
 })();
 </script>
 </body>
