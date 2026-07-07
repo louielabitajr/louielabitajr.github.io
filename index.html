@@ -31,7 +31,6 @@
         img{max-width:100%;display:block;transition:transform 0.6s cubic-bezier(0.22,0.61,0.36,1)}
         .container{width:min(1100px,90%);margin:auto;position:relative;z-index:2}
 
-        /* SCROLL SNAP */
         section{scroll-snap-align:start;scroll-snap-stop:always;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 0;position:relative;z-index:2}
         section h2{text-align:center;font-size:2.1rem;margin-bottom:8px;font-weight:700;letter-spacing:-.5px;color:var(--primary)}
         section h2 .accent-text{color:var(--secondary)}
@@ -105,9 +104,13 @@
         .hero-image .ripple-wave{position:absolute;inset:0;border-radius:50%;z-index:0;pointer-events:none}
         .hero-image:hover .ripple-wave::before,.hero-image:hover .ripple-wave::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent);animation:rippleOut 1.5s ease-out infinite}
         .hero-image:hover .ripple-wave::after{animation-delay:.75s}@keyframes rippleOut{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.5);opacity:0}}
-        .hero-content{max-width:530px}.hero-content h1{font-size:2.6rem;line-height:1.2;margin-bottom:8px;font-weight:700;letter-spacing:-.5px;color:var(--primary)}
+        .hero-content{max-width:560px}.hero-content h1{font-size:2.6rem;line-height:1.2;margin-bottom:8px;font-weight:700;letter-spacing:-.5px;color:var(--primary)}
         .hero-content h1 .accent-text{color:var(--secondary)}#typing{color:var(--accent);font-size:1.1rem;margin-bottom:14px;min-height:28px;font-weight:500;letter-spacing:.5px}
-        .hero-content p{color:var(--text-light);margin-bottom:24px;font-size:.92rem;max-width:460px;margin-left:auto;margin-right:auto;line-height:1.8}
+        .hero-content p{color:var(--text-light);margin-bottom:24px;font-size:.92rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8}
+        /* ============ AVAILABILITY BADGES ============ */
+        .hero-availability{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:22px}
+        .hero-availability .avail-item{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text);font-weight:500}
+        .hero-availability .avail-item .check-icon{color:var(--secondary);font-size:1rem;font-weight:700}
         .hero-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}
         .hero-badge{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;background:rgba(255,255,255,0.4);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:var(--primary-dark);border-radius:999px;font-size:.74rem;font-weight:500;letter-spacing:.2px;border:2px solid var(--border-strong)}
         body.dark .hero-badge{background:rgba(255,255,255,0.06);color:var(--accent);border-color:var(--border-strong)}
@@ -170,7 +173,36 @@
 <header><nav class="navbar"><ul class="nav-links" id="navLinks"><li><a href="#home" class="active">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#business">Business</a></li><li><a href="#projects">Projects</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
 <a href="#home" class="logo" title="LJL Digital Hub"><img src="9048" alt="LJL Logo"><span class="logo-text">LJL Digital<span>HUB</span></span></a>
 <button class="hamburger" id="hamburger" aria-label="Menu">☰</button><button id="themeToggle" aria-label="Toggle dark mode">🌙</button></nav></header>
-<section id="home" class="hero"><div class="hero-image fade-up"><div class="shadow-glow"></div><div class="particle-ring"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="shimmer"></div><div class="ripple-wave"></div><img src="9007" alt="Luisito Jr. Bataller Labita"></div><div class="hero-content fade-up"><h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1><h2 id="typing"></h2><div class="hero-badges"><span class="hero-badge"><span class="status-dot"></span>Available for Work</span><span class="hero-badge">📍 Los Baños, Laguna</span><span class="hero-badge">💼 15+ Years Exp</span></div><p>Building reliable technology solutions, strengthening business operations, and serving communities through innovation & trusted financial services.</p><div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div></div></section>
+
+<!-- ============ UPDATED HERO SECTION ============ -->
+<section id="home" class="hero">
+    <div class="hero-image fade-up">
+        <div class="shadow-glow"></div>
+        <div class="particle-ring"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+        <div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div>
+        <div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div><div class="profile-sparkle"></div>
+        <div class="shimmer"></div><div class="ripple-wave"></div>
+        <img src="9007" alt="Luisito Jr. Bataller Labita">
+    </div>
+    <div class="hero-content fade-up">
+        <h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1>
+        <h2 id="typing"></h2>
+        <p>IT Infrastructure Specialist with 15+ years of experience designing, managing, and securing enterprise IT environments. Passionate about Windows Server, VMware, Networking, Cloud Technologies, and Digital Innovation.</p>
+        <div class="hero-availability">
+            <div class="avail-item"><span class="check-icon">✔</span> Available for Full-Time</div>
+            <div class="avail-item"><span class="check-icon">✔</span> Available for Consultancy</div>
+            <div class="avail-item"><span class="check-icon">✔</span> Based in Laguna, Philippines</div>
+        </div>
+        <div class="hero-badges">
+            <span class="hero-badge"><span class="status-dot"></span>Available for Work</span>
+            <span class="hero-badge">📍 Los Baños, Laguna</span>
+            <span class="hero-badge">💼 15+ Years Exp</span>
+        </div>
+        <div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div>
+    </div>
+</section>
+<!-- ============================================= -->
+
 <section class="stats"><div class="stat-card"><span class="stat-icon">💼</span><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div><div class="stat-card"><span class="stat-icon">🎓</span><h3>BSIT</h3><p>Graduate</p></div><div class="stat-card"><span class="stat-icon">🚀</span><h3>2023</h3><p>Founded LMF</p></div><div class="stat-card"><span class="stat-icon">🏢</span><h3>Enterprise</h3><p>IT Infrastructure</p></div></section>
 <section id="about"><div class="container fade-up"><h2>About <span class="accent-text">Me</span></h2><div class="section-divider"></div><p>I am Luisito Jr. Bataller Labita, a BS Information Technology graduate with over fifteen years of professional experience in IT, Systems Administration, Technical Support, Network Infrastructure, Leadership, and Customer Service.</p><p>My journey spans financial services, enterprise IT, and entrepreneurship. In 2023, I founded <strong>LMF Payment Services</strong> in Los Ba&ntilde;os, Laguna.</p></div></section>
 <section id="skills"><div class="container fade-up"><h2>Core <span class="accent-text">Skills</span></h2><div class="section-divider"></div><div class="grid"><div class="card"><span class="card-icon">🖥</span><h3>IT Infrastructure</h3><p>Windows Server • Networking • Troubleshooting • Backup & Recovery</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div></div><span class="card-tag">Expert</span></div><div class="card"><span class="card-icon">⚙</span><h3>Systems Administration</h3><p>Microsoft Technologies • VMware • Exchange • Technical Support</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">📊</span><h3>Business Management</h3><p>Operations • Leadership • Customer Service • Problem Solving</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">🚀</span><h3>Entrepreneurship</h3><p>Founder • LMF Payment Services • Business Operations</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div><span class="card-tag">Advanced</span></div></div></div></section>
@@ -212,7 +244,7 @@ document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("click"
 var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>30?"0 8px 30px rgba(0,0,0,0.08)":"none"});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
 var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com")});
-console.log("✅ LJL Digital Hub — Scroll Snap Active! Error Fixed!");
+console.log("✅ LJL Digital Hub — Hero Updated!");
 })();
 </script>
 </body>
