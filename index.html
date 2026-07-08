@@ -37,9 +37,41 @@
         @media(max-width:768px){section{min-height:auto;scroll-snap-align:none;padding:60px 0}}
 
         /* ============================================
-           NEXT-GEN NETWORK TOPOLOGY BACKGROUND
+           TOPOLOGY CANVAS (Background + Loader)
         ============================================ */
-        #topologyCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:1}
+        #topologyCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+
+        /* ============================================
+           LOADER OVERLAY (on top of canvas)
+        ============================================ */
+        #loader{
+            position:fixed;top:0;left:0;width:100%;height:100%;
+            display:flex;flex-direction:column;align-items:center;justify-content:center;
+            z-index:9999;transition:opacity 0.6s ease,visibility 0.6s ease;
+            pointer-events:all;
+        }
+        #loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+        .loader-card{
+            background:rgba(255,255,255,0.55);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);
+            border:2px solid rgba(0,0,0,0.15);border-radius:24px;padding:40px 36px;
+            text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.1);
+            max-width:400px;width:90%;
+        }
+        body.dark .loader-card{background:rgba(18,18,26,0.7);border-color:rgba(255,255,255,0.15);box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+        .loader-title{font-size:1.2rem;font-weight:700;color:var(--primary);margin-bottom:4px;letter-spacing:-.3px}
+        .loader-subtitle{font-family:'Poppins',sans-serif;font-size:.75rem;color:var(--text-light);margin-bottom:20px;letter-spacing:2px;text-transform:uppercase}
+        .loader-steps{text-align:left;margin-bottom:20px}
+        .loader-step{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--text-light);margin-bottom:8px;font-family:'Poppins',sans-serif}
+        .loader-step .step-dot{width:8px;height:8px;border-radius:50%;background:var(--secondary);flex-shrink:0;animation:stepPulse 1.5s ease-in-out infinite}
+        .loader-step:nth-child(2) .step-dot{animation-delay:.3s}
+        .loader-step:nth-child(3) .step-dot{animation-delay:.6s}
+        .loader-step:nth-child(4) .step-dot{animation-delay:.9s}
+        @keyframes stepPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.5)}}
+        .loader-bar-container{width:100%;height:3px;background:rgba(0,0,0,0.08);border-radius:3px;overflow:hidden;margin-top:4px}
+        body.dark .loader-bar-container{background:rgba(255,255,255,0.08)}
+        .loader-bar-fill{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--secondary));border-radius:3px;animation:loaderFill 1.8s ease forwards}
+        @keyframes loaderFill{0%{width:0}30%{width:35%}60%{width:70%}100%{width:100%}}
+        .loader-status{font-size:.7rem;color:var(--secondary);margin-top:12px;font-weight:500;letter-spacing:.5px}
 
         .news-ticker{background:linear-gradient(135deg,#0f0f1a 0%,#1a1a2e 30%,#2d6a4f 60%,#1a1a2e 100%);background-size:300% 300%;animation:bannerGradientShift 8s ease infinite;color:#fff;padding:10px 0;font-size:.82rem;font-weight:500;overflow:hidden;position:relative;z-index:1000;white-space:nowrap;letter-spacing:.5px;border-bottom:3px solid var(--accent);box-shadow:0 4px 25px rgba(0,0,0,0.3),0 0 60px rgba(212,168,83,0.15)}
         @keyframes bannerGradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
@@ -54,13 +86,6 @@
         @keyframes tickerHighlight{0%,100%{text-shadow:0 0 8px rgba(212,168,83,0.3)}50%{text-shadow:0 0 20px rgba(212,168,83,0.7),0 0 40px rgba(212,168,83,0.3)}}
         #page-content{opacity:0;transform:translateY(8px);transition:opacity 0.6s cubic-bezier(0.22,0.61,0.36,1),transform 0.6s cubic-bezier(0.22,0.61,0.36,1)}
         #page-content.loaded{opacity:1;transform:translateY(0)}
-        #loader{position:fixed;top:0;left:0;width:100%;height:100%;background:var(--background);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.5s ease,visibility 0.5s ease}
-        #loader.hidden{opacity:0;visibility:hidden}.spinner-container{position:relative;width:60px;height:60px}.spinner-ring{position:absolute;width:100%;height:100%;border-radius:50%;border:2px solid transparent}
-        .spinner-ring:nth-child(1){border-top-color:var(--primary);animation:spinCw .8s linear infinite}.spinner-ring:nth-child(2){width:60%;height:60%;top:20%;left:20%;border-bottom-color:var(--accent);animation:spinCcw .6s linear infinite}
-        @keyframes spinCw{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}@keyframes spinCcw{0%{transform:rotate(360deg)}100%{transform:rotate(0)}}
-        .loader-text{margin-top:18px;font-size:.85rem;font-weight:600;color:var(--primary);letter-spacing:4px;animation:pulse 1s infinite;text-transform:uppercase}
-        @keyframes pulse{0%,100%{opacity:.4}50%{opacity:1}}.loader-bar-container{width:180px;height:2px;background:var(--border);border-radius:999px;margin-top:12px;overflow:hidden}
-        .loader-bar{height:100%;width:0;background:var(--accent);border-radius:999px;animation:loadBar 1s forwards}@keyframes loadBar{0%{width:0}50%{width:70%}100%{width:100%}}
         #scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:10001;transition:width 0.15s linear;box-shadow:0 0 10px var(--accent)}.section-divider{width:50px;height:2px;background:var(--accent);margin:0 auto 25px;border-radius:999px}
 
         header{position:sticky;top:0;z-index:999}
@@ -111,8 +136,6 @@
         .secondary{background:rgba(255,255,255,0.3);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:2px solid var(--border-strong);color:var(--primary)}body.dark .secondary{background:rgba(255,255,255,0.05);border-color:var(--border-strong)}
         .secondary:hover{background:var(--primary);color:#fff;transform:translateY(-4px);border-color:var(--primary);box-shadow:0 14px 35px rgba(0,0,0,0.15)}
         .ripple{position:absolute;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:rippleEffect .6s;pointer-events:none}@keyframes rippleEffect{to{transform:scale(4);opacity:0}}
-
-        /* Stats, Cards, Timeline, Contact, Footer styles preserved from previous code */
         .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:50px 5%;position:relative;z-index:2;background:rgba(255,255,255,0.3);backdrop-filter:blur(25px);-webkit-backdrop-filter:blur(25px);border-top:2px solid var(--border-strong);border-bottom:2px solid var(--border-strong)}
         body.dark .stats{background:rgba(10,10,22,0.4);border-color:var(--border-strong)}.stat-card{padding:28px 18px;text-align:center;transition:all 0.5s cubic-bezier(0.22,0.61,0.36,1);cursor:default;background:rgba(255,255,255,0.35);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:var(--radius);border:2px solid var(--border-strong)}
         body.dark .stat-card{background:rgba(255,255,255,0.04);border-color:var(--border-strong)}.stat-card:hover{transform:translateY(-8px);background:rgba(255,255,255,0.55);box-shadow:var(--shadow-lg);border-color:var(--accent)}
@@ -153,15 +176,32 @@
         body.dark .social-links a{background:rgba(255,255,255,0.05);color:var(--text)}.social-links a:hover{background:var(--primary);color:#fff;transform:translateY(-6px);border-color:var(--primary);box-shadow:0 12px 35px rgba(0,0,0,0.2)}
         .status-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--secondary);animation:statusPulse 2s infinite;margin-right:5px}@keyframes statusPulse{0%,100%{box-shadow:0 0 0 0 rgba(45,106,79,.3)}50%{box-shadow:0 0 0 8px rgba(45,106,79,0)}}
         ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.2);border-radius:20px}body.dark ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.2)}::selection{background:var(--accent);color:#fff}
-        @media print{header,footer,#backToTop,#scrollProgress,.news-ticker,.hero,.social-links,.contact-form,#topologyCanvas{display:none!important}body{font-size:12pt;color:#000;background:#fff}.container{width:100%}section{padding:20px 0}}
+        @media print{header,footer,#backToTop,#scrollProgress,.news-ticker,.hero,.social-links,.contact-form,#topologyCanvas,#loader{display:none!important}body{font-size:12pt;color:#000;background:#fff}.container{width:100%}section{padding:20px 0}}
         @media(max-width:900px){.hero{gap:30px;padding:45px 18px}.hero-content h1{font-size:2.1rem}.stats{grid-template-columns:repeat(2,1fr);padding:35px 3%;gap:15px}}
         @media(max-width:650px){.news-ticker{font-size:.7rem;padding:8px 0}.navbar{padding:10px 14px;gap:8px}.hero-content h1{font-size:1.7rem}#typing{font-size:.95rem;min-height:24px}.stats{grid-template-columns:1fr 1fr;gap:10px}.stat-card{padding:16px 10px}.stat-card h3{font-size:1.5rem}.timeline{padding-left:22px}.timeline::before{left:4px}.timeline-item::before{left:-27px;width:10px;height:10px}.grid{grid-template-columns:1fr}section{padding:45px 0}section h2{font-size:1.6rem}.btn{padding:12px 24px;font-size:.85rem}}
     </style>
 </head>
 <body>
+<!-- TOPOLOGY CANVAS (always visible - loader + background) -->
 <canvas id="topologyCanvas"></canvas>
 <div id="scrollProgress"></div>
-<div id="loader"><div class="spinner-container"><div class="spinner-ring"></div><div class="spinner-ring"></div></div><div class="loader-text">Loading</div><div class="loader-bar-container"><div class="loader-bar"></div></div></div>
+
+<!-- LOADER OVERLAY with glass card -->
+<div id="loader">
+    <div class="loader-card">
+        <div class="loader-title">LJL Digital Hub</div>
+        <div class="loader-subtitle">Initializing Infrastructure</div>
+        <div class="loader-steps">
+            <div class="loader-step"><span class="step-dot"></span> Establishing network topology...</div>
+            <div class="loader-step"><span class="step-dot"></span> Connecting to cloud servers...</div>
+            <div class="loader-step"><span class="step-dot"></span> Syncing AI nodes...</div>
+            <div class="loader-step"><span class="step-dot"></span> Loading secure modules...</div>
+        </div>
+        <div class="loader-bar-container"><div class="loader-bar-fill"></div></div>
+        <div class="loader-status">● System Ready</div>
+    </div>
+</div>
+
 <div id="page-content">
 <div class="news-ticker"><div class="ticker-content"><span class="ticker-icon">🚀</span><span>Now Open: <span class="ticker-highlight">LMF Payment Services</span> — Los Baños, Laguna</span><span class="ticker-icon">💻</span><span>IT Infrastructure & <span class="ticker-highlight">Systems Administration</span></span><span class="ticker-icon">📱</span><span>E-Wallet & <span class="ticker-highlight">Remittance Solutions</span></span><span class="ticker-icon">🎓</span><span><span class="ticker-highlight">15+ Years</span> Professional Experience</span><span class="ticker-icon">⚡</span><span>Available for <span class="ticker-highlight">New Opportunities</span></span></div></div>
 <header><nav class="navbar"><div class="nav-indicator" id="navIndicator"></div><ul class="nav-links" id="navLinks"><li><a href="#home" class="active">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#business">Business</a></li><li><a href="#projects">Projects</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul><a href="#home" class="logo" title="LJL Digital Hub"><img src="9048" alt="LJL Logo"><span class="logo-text">LJL Digital<span>HUB</span></span></a><button class="hamburger" id="hamburger" aria-label="Menu">☰</button><button id="themeToggle" aria-label="Toggle dark mode">🌙</button></nav></header>
@@ -182,94 +222,44 @@
 <script>
 (function(){
 // ============================================
-// NEXT-GEN NETWORK TOPOLOGY BACKGROUND
-// Floating servers, clouds, AI nodes, data packets
+// TOPOLOGY CANVAS (Loader + Background)
 // ============================================
 var cv=document.getElementById("topologyCanvas"),ctx=cv.getContext("2d");
 function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight}rs();window.addEventListener("resize",rs);
 
-// Server nodes (data centers)
-var servers=[];
-for(var i=0;i<8;i++){servers.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:12+Math.random()*6,glow:Math.random()*Math.PI*2,type:"server",vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15});}
+var servers=[],clouds=[],aiNodes=[],particles=[],packets=[];
+function initNodes(){
+servers=[];clouds=[];aiNodes=[];particles=[];packets=[];
+for(var i=0;i<8;i++){servers.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:12+Math.random()*6,glow:Math.random()*Math.PI*2,vx:(Math.random()-.5)*.15,vy:(Math.random()-.5)*.15})}
+for(var i=0;i<5;i++){clouds.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:18+Math.random()*8,glow:Math.random()*Math.PI*2,vx:(Math.random()-.5)*.1,vy:(Math.random()-.5)*.1})}
+for(var i=0;i<6;i++){aiNodes.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:8+Math.random()*4,glow:Math.random()*Math.PI*2,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2})}
+for(var i=0;i<50;i++){particles.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2+1,opacity:Math.random()*.5+.2,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2})}
+var allN=servers.concat(clouds).concat(aiNodes);
+for(var i=0;i<12;i++){var a=allN[Math.floor(Math.random()*allN.length)],b=allN[Math.floor(Math.random()*allN.length)];packets.push({a:a,b:b,progress:Math.random(),speed:0.002+Math.random()*0.004,size:2+Math.random()*2})}
+}initNodes();
 
-// Cloud nodes
-var clouds=[];
-for(var i=0;i<5;i++){clouds.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:18+Math.random()*8,glow:Math.random()*Math.PI*2,type:"cloud",vx:(Math.random()-.5)*.1,vy:(Math.random()-.5)*.1});}
-
-// AI nodes (hexagonal)
-var aiNodes=[];
-for(var i=0;i<6;i++){aiNodes.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:8+Math.random()*4,glow:Math.random()*Math.PI*2,type:"ai",vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2});}
-
-// Glowing particles
-var particles=[];
-for(var i=0;i<50;i++){particles.push({x:Math.random()*cv.width,y:Math.random()*cv.height,r:Math.random()*2+1,opacity:Math.random()*.5+.2,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.2});}
-
-// Data packets (moving between nodes)
-var packets=[];
-var allNodes=servers.concat(clouds).concat(aiNodes);
-for(var i=0;i<12;i++){var a=allNodes[Math.floor(Math.random()*allNodes.length)],b=allNodes[Math.floor(Math.random()*allNodes.length)];packets.push({a:a,b:b,progress:Math.random(),speed:0.002+Math.random()*0.004,size:2+Math.random()*2});}
-
-// Connections between nearby nodes
-function getConnections(){var cons=[];for(var i=0;i<allNodes.length;i++){for(var j=i+1;j<allNodes.length;j++){var dx=allNodes[i].x-allNodes[j].x,dy=allNodes[i].y-allNodes[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<250){cons.push({a:allNodes[i],b:allNodes[j],dist:dist})}}}return cons}
+function getCons(){var cons=[];var allN=servers.concat(clouds).concat(aiNodes);for(var i=0;i<allN.length;i++){for(var j=i+1;j<allN.length;j++){var dx=allN[i].x-allN[j].x,dy=allN[i].y-allN[j].y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<250){cons.push({a:allN[i],b:allN[j],dist:dist})}}}return cons}
+function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();ctx.fill()}
+function drawHex(x,y,r,c){ctx.beginPath();for(var i=0;i<6;i++){var a=Math.PI/3*i-Math.PI/6;var hx=x+r*Math.cos(a),hy=y+r*Math.sin(a);if(i===0)ctx.moveTo(hx,hy);else ctx.lineTo(hx,hy)}ctx.closePath();ctx.fillStyle=c;ctx.fill()}
 
 function drawTopology(){
-ctx.clearRect(0,0,cv.width,cv.height);
-var dk=document.body.classList.contains("dark");
-var connections=getConnections();
+ctx.clearRect(0,0,cv.width,cv.height);var dk=document.body.classList.contains("dark");var cons=getCons();
+cons.forEach(function(c){var alpha=.08*(1-c.dist/250);ctx.beginPath();ctx.moveTo(c.a.x,c.a.y);ctx.lineTo(c.b.x,c.b.y);ctx.strokeStyle=dk?"rgba(88,166,255,"+alpha+")":"rgba(37,99,235,"+alpha+")";ctx.lineWidth=.6;ctx.stroke()});
+servers.forEach(function(s){s.x+=s.vx;s.y+=s.vy;if(s.x<0||s.x>cv.width)s.vx*=-1;if(s.y<0||s.y>cv.height)s.vy*=-1;s.glow+=.015;ctx.fillStyle=dk?"rgba(56,189,248,"+(.3+.15*Math.sin(s.glow))+")":"rgba(37,99,235,"+(.2+.1*Math.sin(s.glow))+")";roundRect(s.x-s.r,s.y-s.r*.7,s.r*2,s.r*1.4,3);ctx.strokeStyle=dk?"rgba(56,189,248,.4)":"rgba(37,99,235,.3)";ctx.lineWidth=.5;for(var l=0;l<3;l++){ctx.beginPath();ctx.moveTo(s.x-s.r*.7,s.y-s.r*.3+l*s.r*.35);ctx.lineTo(s.x+s.r*.7,s.y-s.r*.3+l*s.r*.35);ctx.stroke()}ctx.beginPath();ctx.arc(s.x+s.r*.6,s.y-s.r*.5,2,0,Math.PI*2);ctx.fillStyle=dk?"#4ade80":"#2d6a4f";ctx.fill();var glowAlpha=.25+.15*Math.sin(s.glow);ctx.beginPath();ctx.arc(s.x,s.y,s.r*1.5,0,Math.PI*2);ctx.fillStyle=dk?"rgba(56,189,248,"+glowAlpha+")":"rgba(37,99,235,"+(glowAlpha*.6)+")";ctx.fill()});
+clouds.forEach(function(c){c.x+=c.vx;c.y+=c.vy;if(c.x<0||c.x>cv.width)c.vx*=-1;if(c.y<0||c.y>cv.height)c.vy*=-1;c.glow+=.01;ctx.fillStyle=dk?"rgba(255,255,255,"+(.06+.04*Math.sin(c.glow))+")":"rgba(0,0,0,"+(.03+.02*Math.sin(c.glow))+")";ctx.beginPath();ctx.arc(c.x,c.y,c.r,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(c.x-c.r*.5,c.y,c.r*.7,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(c.x+c.r*.5,c.y,c.r*.7,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(c.x,c.y-c.r*.4,c.r*.6,0,Math.PI*2);ctx.fill();ctx.strokeStyle=dk?"rgba(255,255,255,.1)":"rgba(0,0,0,.06)";ctx.lineWidth=1;ctx.beginPath();ctx.arc(c.x,c.y,c.r*1.2,0,Math.PI*2);ctx.stroke()});
+aiNodes.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1;n.glow+=.02;drawHex(n.x,n.y,n.r,dk?"rgba(251,191,36,"+(.4+.2*Math.sin(n.glow))+")":"rgba(212,168,83,"+(.3+.15*Math.sin(n.glow))+")");ctx.beginPath();ctx.arc(n.x,n.y,n.r*2+Math.sin(n.glow)*4,0,Math.PI*2);ctx.strokeStyle=dk?"rgba(251,191,36,"+(.15+.1*Math.sin(n.glow))+")":"rgba(212,168,83,"+(.1+.05*Math.sin(n.glow))+")";ctx.lineWidth=1;ctx.stroke()});
+packets.forEach(function(p){p.progress+=p.speed;if(p.progress>1)p.progress=0;var px=p.a.x+(p.b.x-p.a.x)*p.progress,py=p.a.y+(p.b.y-p.a.y)*p.progress;ctx.beginPath();ctx.arc(px,py,p.size,0,Math.PI*2);ctx.fillStyle=dk?"#58a6ff":"#2563eb";ctx.fill();ctx.beginPath();ctx.arc(px,py,p.size*2.5,0,Math.PI*2);ctx.fillStyle=dk?"rgba(88,166,255,.2)":"rgba(37,99,235,.12)";ctx.fill()});
+particles.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=dk?"rgba(255,255,255,"+p.opacity+")":"rgba(0,0,0,"+(p.opacity*.4)+")";ctx.fill()});
+requestAnimationFrame(drawTopology)}drawTopology();
 
-// Draw connection lines
-connections.forEach(function(c){var alpha=.08*(1-c.dist/250);ctx.beginPath();ctx.moveTo(c.a.x,c.a.y);ctx.lineTo(c.b.x,c.b.y);ctx.strokeStyle=dk?"rgba(88,166,255,"+alpha+")":"rgba(37,99,235,"+alpha+")";ctx.lineWidth=.6;ctx.stroke()});
+// ============================================
+// LOADER + PAGE TRANSITION
+// ============================================
+var pc=document.getElementById("page-content"),ld=document.getElementById("loader");
+window.addEventListener("load",function(){setTimeout(function(){ld.classList.add("hidden");pc.classList.add("loaded");setTimeout(function(){if(ld.parentNode)ld.remove()},600)},2000)});
 
-// Draw servers (rectangles with rack lines)
-servers.forEach(function(s){s.x+=s.vx;s.y+=s.vy;if(s.x<0||s.x>cv.width)s.vx*=-1;if(s.y<0||s.y>cv.height)s.vy*=-1;s.glow+=.015;var glowAlpha=.25+.15*Math.sin(s.glow);
-// Server body
-ctx.fillStyle=dk?"rgba(56,189,248,"+(.3+.15*Math.sin(s.glow))+")":"rgba(37,99,235,"+(.2+.1*Math.sin(s.glow))+")";
-roundRect(s.x-s.r,s.y-s.r*.7,s.r*2,s.r*1.4,3);
-// Rack lines
-ctx.strokeStyle=dk?"rgba(56,189,248,.4)":"rgba(37,99,235,.3)";ctx.lineWidth=.5;
-for(var l=0;l<3;l++){ctx.beginPath();ctx.moveTo(s.x-s.r*.7,s.y-s.r*.3+l*s.r*.35);ctx.lineTo(s.x+s.r*.7,s.y-s.r*.3+l*s.r*.35);ctx.stroke()}
-// Status LED
-ctx.beginPath();ctx.arc(s.x+s.r*.6,s.y-s.r*.5,2,0,Math.PI*2);ctx.fillStyle=dk?"#4ade80":"#2d6a4f";ctx.fill();
-// Glow
-ctx.beginPath();ctx.arc(s.x,s.y,s.r*1.5,0,Math.PI*2);ctx.fillStyle=dk?"rgba(56,189,248,"+glowAlpha+")":"rgba(37,99,235,"+(glowAlpha*.6)+")";ctx.fill()});
-
-// Draw clouds
-clouds.forEach(function(c){c.x+=c.vx;c.y+=c.vy;if(c.x<0||c.x>cv.width)c.vx*=-1;if(c.y<0||c.y>cv.height)c.vy*=-1;c.glow+=.01;
-// Cloud body (overlapping circles)
-ctx.fillStyle=dk?"rgba(255,255,255,"+(.06+.04*Math.sin(c.glow))+")":"rgba(0,0,0,"+(.03+.02*Math.sin(c.glow))+")";
-ctx.beginPath();ctx.arc(c.x,c.y,c.r,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(c.x-c.r*.5,c.y,c.r*.7,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(c.x+c.r*.5,c.y,c.r*.7,0,Math.PI*2);ctx.fill();
-ctx.beginPath();ctx.arc(c.x,c.y-c.r*.4,c.r*.6,0,Math.PI*2);ctx.fill();
-// Cloud icon outline
-ctx.strokeStyle=dk?"rgba(255,255,255,.1)":"rgba(0,0,0,.06)";ctx.lineWidth=1;
-ctx.beginPath();ctx.arc(c.x,c.y,c.r*1.2,0,Math.PI*2);ctx.stroke()});
-
-// Draw AI nodes (hexagons)
-aiNodes.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1;n.glow+=.02;
-drawHexagon(n.x,n.y,n.r,dk?"rgba(251,191,36,"+(.4+.2*Math.sin(n.glow))+")":"rgba(212,168,83,"+(.3+.15*Math.sin(n.glow))+")");
-// AI pulse ring
-ctx.beginPath();ctx.arc(n.x,n.y,n.r*2+Math.sin(n.glow)*4,0,Math.PI*2);ctx.strokeStyle=dk?"rgba(251,191,36,"+(.15+.1*Math.sin(n.glow))+")":"rgba(212,168,83,"+(.1+.05*Math.sin(n.glow))+")";ctx.lineWidth=1;ctx.stroke()});
-
-// Draw data packets moving along connections
-packets.forEach(function(p){p.progress+=p.speed;if(p.progress>1)p.progress=0;var px=p.a.x+(p.b.x-p.a.x)*p.progress,py=p.a.y+(p.b.y-p.a.y)*p.progress;
-ctx.beginPath();ctx.arc(px,py,p.size,0,Math.PI*2);ctx.fillStyle=dk?"#58a6ff":"#2563eb";ctx.fill();
-ctx.beginPath();ctx.arc(px,py,p.size*2.5,0,Math.PI*2);ctx.fillStyle=dk?"rgba(88,166,255,.2)":"rgba(37,99,235,.12)";ctx.fill()});
-
-// Draw glowing particles
-particles.forEach(function(p){p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>cv.width)p.vx*=-1;if(p.y<0||p.y>cv.height)p.vy*=-1;
-ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=dk?"rgba(255,255,255,"+p.opacity+")":"rgba(0,0,0,"+(p.opacity*.4)+")";ctx.fill()});
-
-requestAnimationFrame(drawTopology)}
-
-function roundRect(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();ctx.fill()}
-function drawHexagon(x,y,r,color){ctx.beginPath();for(var i=0;i<6;i++){var angle=Math.PI/3*i-Math.PI/6;var hx=x+r*Math.cos(angle),hy=y+r*Math.sin(angle);if(i===0)ctx.moveTo(hx,hy);else ctx.lineTo(hx,hy)}ctx.closePath();ctx.fillStyle=color;ctx.fill()}
-
-drawTopology();
-
-// Rest of script
+// Rest
 var sp=document.getElementById("scrollProgress");window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%"});
-var pc=document.getElementById("page-content"),ld=document.getElementById("loader");window.addEventListener("load",function(){setTimeout(function(){ld.classList.add("hidden");pc.classList.add("loaded");setTimeout(function(){if(ld.parentNode)ld.remove()},500)},1000)});
 var bdy=document.body,tt=document.getElementById("themeToggle");if(localStorage.getItem("theme")==="dark"){bdy.classList.add("dark");if(tt)tt.textContent="☀️"}if(tt){tt.addEventListener("click",function(){bdy.classList.toggle("dark");var d=bdy.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light")})}
 var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");if(ham){ham.addEventListener("click",function(e){e.stopPropagation();nl.classList.toggle("show")})}nl.querySelectorAll("a").forEach(function(l){l.addEventListener("click",function(){nl.classList.remove("show")})});document.addEventListener("click",function(e){if(!nl.contains(e.target)&&e.target!==ham){nl.classList.remove("show")}});
 var tp=document.getElementById("typing");if(tp){var w=["IT Infrastructure Specialist","Systems Administrator","Network Engineer","Founder of LMF Payment Services","Technology Leader"],wi=0,ci=0,dl=false;function t(){var c=w[wi];tp.textContent=c.substring(0,dl?ci--:ci++);if(!dl&&ci>c.length){dl=true;setTimeout(t,1500);return}if(dl&&ci<0){dl=false;wi=(wi+1)%w.length}setTimeout(t,dl?40:80)}t()}
@@ -279,13 +269,13 @@ var ro=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isInter
 var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting)en.target.style.width=en.target.dataset.width})},{threshold:0.5});document.querySelectorAll(".skill-fill").forEach(function(f){so.observe(f)});
 document.querySelectorAll(".counter").forEach(function(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=Math.max(tv/90,1);function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+(ce.textContent.includes("+")?"+":"");requestAnimationFrame(u)}else{ce.textContent=tv+(ce.textContent.includes("+")?"+":"")}}u()}})},{threshold:0.5});co.observe(ce)});
 var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a"),indicator=document.getElementById("navIndicator");
-function updateNav(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")});var activeLink=document.querySelector(".nav-links a.active");if(activeLink&&indicator&&window.innerWidth>768){var linkRect=activeLink.getBoundingClientRect();var navRect=document.querySelector(".navbar").getBoundingClientRect();indicator.style.left=(linkRect.left-navRect.left)+"px";indicator.style.width=linkRect.width+"px";indicator.style.opacity="1"}else if(indicator){indicator.style.opacity="0"}}
+function updateNav(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")});var al=document.querySelector(".nav-links a.active");if(al&&indicator&&window.innerWidth>768){var lr=al.getBoundingClientRect();var nr=document.querySelector(".navbar").getBoundingClientRect();indicator.style.left=(lr.left-nr.left)+"px";indicator.style.width=lr.width+"px";indicator.style.opacity="1"}else if(indicator){indicator.style.opacity="0"}}
 window.addEventListener("scroll",updateNav);window.addEventListener("resize",updateNav);document.querySelectorAll(".nav-links a").forEach(function(l){l.addEventListener("click",function(){setTimeout(updateNav,100)})});updateNav();
 document.querySelectorAll(".btn").forEach(function(b){b.addEventListener("click",function(e){var r=document.createElement("span");r.classList.add("ripple");this.appendChild(r);var rect=this.getBoundingClientRect();r.style.left=(e.clientX-rect.left)+"px";r.style.top=(e.clientY-rect.top)+"px";setTimeout(function(){r.remove()},600)})});
 var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>30?"0 8px 30px rgba(0,0,0,0.08)":"none"});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
 var em=document.querySelector('a[href^="mailto:"]');if(em)em.addEventListener("click",function(){navigator.clipboard.writeText("louielabitajr@gmail.com")});
-console.log("⚡ LJL Digital Hub — Azure x Apple Topology Background Active!");
+console.log("⚡ LJL Digital Hub — Topology Background + Glass Loader Integrated!");
 })();
 </script>
 </body>
