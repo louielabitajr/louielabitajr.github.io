@@ -27,9 +27,8 @@
         *{margin:0;padding:0;box-sizing:border-box}
         html{scroll-behavior:smooth;overflow-y:scroll;height:100%}
         body{font-family:'Poppins',sans-serif;background:var(--background);color:var(--text);line-height:1.7;transition:var(--transition);overflow-x:hidden;font-weight:400;min-height:100%}
-        img{max-width:100%;display:block;transition:transform 0.6s cubic-bezier(0.22,0.61,0.36,1)}
+        img{max-width:100%;display:block}
         .container{width:min(1100px,90%);margin:auto;position:relative;z-index:2}
-
         section{padding:80px 0;position:relative;z-index:2}
         section h2{text-align:center;font-size:2.1rem;margin-bottom:8px;font-weight:700;letter-spacing:-.5px;color:var(--primary)}
         section h2 .accent-text{color:var(--secondary)}
@@ -50,9 +49,10 @@
         .ticker-highlight{color:var(--accent);font-weight:700;letter-spacing:1px;animation:tickerHighlight 1.5s ease-in-out infinite}
         @keyframes tickerHighlight{0%,100%{text-shadow:0 0 8px rgba(212,168,83,0.3)}50%{text-shadow:0 0 20px rgba(212,168,83,0.7),0 0 40px rgba(212,168,83,0.3)}}
 
+        /* BOOT LOADER */
         #bootLoader{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.6s ease,visibility 0.6s ease;pointer-events:all}
         #bootLoader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-        .boot-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(6,8,13,0.9);z-index:0}
+        .boot-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(6,8,13,0.92);z-index:0}
         .boot-terminal{position:relative;z-index:1;background:rgba(10,12,20,0.95);border:1px solid rgba(88,166,255,0.3);border-radius:16px;padding:30px 28px;width:min(550px,92%);max-height:80vh;overflow:hidden;box-shadow:0 0 60px rgba(37,99,235,0.15),0 20px 60px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace}
         .boot-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
         .boot-dot{width:10px;height:10px;border-radius:50%}.boot-dot.red{background:#f85149}.boot-dot.amber{background:#d2991d}.boot-dot.green{background:#3fb950}
@@ -69,49 +69,31 @@
         .boot-ready .ready-text{font-size:1rem;font-weight:700;color:#3fb950;letter-spacing:1px}
         @media(max-width:650px){.boot-terminal{padding:20px 16px}.boot-logs{font-size:.6rem;max-height:180px}}
 
-        #page-content{opacity:0;transition:opacity 0.5s ease}
-        #page-content.visible{opacity:1}
+        #page-content{opacity:1;transition:opacity 0.5s ease}
         #scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;background:var(--accent);z-index:10001;transition:width 0.15s linear}
         .section-divider{width:50px;height:2px;background:var(--accent);margin:0 auto 25px;border-radius:999px}
 
         header{position:sticky;top:0;z-index:999}.navbar{display:flex;justify-content:space-between;align-items:center;padding:12px 32px;background:rgba(255,255,255,0.5);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:2px solid var(--border-strong);transition:all var(--transition);flex-wrap:wrap;gap:12px}body.dark .navbar{background:rgba(10,10,22,0.6)}.nav-links{display:flex;gap:6px;list-style:none;flex-wrap:wrap}.nav-links a{text-decoration:none;color:var(--text);font-weight:500;transition:all 0.3s ease;font-size:.83rem;white-space:nowrap;padding:8px 14px;border-radius:8px}.nav-links a:hover{color:var(--primary);background:rgba(37,99,235,0.05)}.nav-links a.active{color:var(--accent);font-weight:700}.logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}.logo img{height:36px;width:auto;border-radius:8px}.logo-text{font-size:1rem;font-weight:700;color:var(--text)}.logo-text span{color:var(--secondary);font-weight:500;font-size:.65rem;letter-spacing:3px;display:block;line-height:1}#themeToggle,.hamburger{width:40px;height:40px;border-radius:50%;border:2px solid var(--border-strong);cursor:pointer;font-size:1.1rem;transition:all var(--transition);flex-shrink:0;display:flex;align-items:center;justify-content:center}#themeToggle{background:rgba(255,255,255,0.4);backdrop-filter:blur(12px);color:var(--text)}.hamburger{display:none}@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none;flex-direction:column;width:100%;gap:2px;padding:12px;background:var(--surface);backdrop-filter:blur(30px);border-radius:var(--radius);box-shadow:var(--shadow-lg);border:2px solid var(--border-strong)}.nav-links.show{display:flex}.nav-links a{padding:10px 14px;text-align:center}}
 
-        .hero{padding:80px 24px;display:flex;align-items:center;justify-content:center;gap:50px;flex-wrap:wrap;text-align:center}.hero-image{position:relative;flex-shrink:0}.hero-image img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid var(--border-strong);box-shadow:0 20px 50px rgba(0,0,0,.06);animation:profileFloat 5s ease-in-out infinite}@keyframes profileFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.hero-content{max-width:560px}.hero-content h1{font-size:2.6rem;line-height:1.2;margin-bottom:8px;font-weight:700;letter-spacing:-.5px;color:var(--primary)}.hero-content h1 .accent-text{color:var(--secondary)}#typing{color:var(--accent);font-size:1.1rem;margin-bottom:14px;min-height:28px;font-weight:500}.hero-content p{color:var(--text-light);margin-bottom:24px;font-size:.92rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8}.hero-availability{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:22px}.hero-availability .avail-item{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text);font-weight:500}.hero-availability .avail-item .check-icon{color:var(--secondary);font-size:1rem;font-weight:700}.hero-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;background:rgba(255,255,255,0.4);backdrop-filter:blur(14px);color:var(--primary-dark);border-radius:999px;font-size:.74rem;border:2px solid var(--border-strong)}body.dark .hero-badge{background:rgba(255,255,255,0.06);color:var(--accent)}.buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.btn{text-decoration:none;padding:14px 30px;border-radius:999px;transition:all 0.5s;font-weight:500;font-size:.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:none}.primary{background:var(--primary);color:#fff;border:2px solid var(--primary)}.primary:hover{background:var(--primary-dark);transform:translateY(-4px)}.secondary{background:rgba(255,255,255,0.3);backdrop-filter:blur(14px);border:2px solid var(--border-strong);color:var(--primary)}.secondary:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
+        .hero{padding:80px 24px;display:flex;align-items:center;justify-content:center;gap:50px;flex-wrap:wrap;text-align:center}.hero-image img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid var(--border-strong);box-shadow:0 20px 50px rgba(0,0,0,.06);animation:profileFloat 5s ease-in-out infinite}@keyframes profileFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.hero-content{max-width:560px}.hero-content h1{font-size:2.6rem;line-height:1.2;margin-bottom:8px;font-weight:700;letter-spacing:-.5px;color:var(--primary)}.hero-content h1 .accent-text{color:var(--secondary)}#typing{color:var(--accent);font-size:1.1rem;margin-bottom:14px;min-height:28px;font-weight:500}.hero-content p{color:var(--text-light);margin-bottom:24px;font-size:.92rem;max-width:500px;margin-left:auto;margin-right:auto;line-height:1.8}.hero-availability{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:22px}.hero-availability .avail-item{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text);font-weight:500}.hero-availability .avail-item .check-icon{color:var(--secondary);font-size:1rem;font-weight:700}.hero-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;background:rgba(255,255,255,0.4);backdrop-filter:blur(14px);color:var(--primary-dark);border-radius:999px;font-size:.74rem;border:2px solid var(--border-strong)}body.dark .hero-badge{background:rgba(255,255,255,0.06);color:var(--accent)}.buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.btn{text-decoration:none;padding:14px 30px;border-radius:999px;transition:all 0.5s;font-weight:500;font-size:.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:none}.primary{background:var(--primary);color:#fff;border:2px solid var(--primary)}.primary:hover{background:var(--primary-dark);transform:translateY(-4px)}.secondary{background:rgba(255,255,255,0.3);backdrop-filter:blur(14px);border:2px solid var(--border-strong);color:var(--primary)}.secondary:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
 
         .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:50px 5%;background:rgba(255,255,255,0.3);backdrop-filter:blur(25px);border-top:2px solid var(--border-strong);border-bottom:2px solid var(--border-strong)}body.dark .stats{background:rgba(10,10,22,0.4)}.stat-card{padding:28px 18px;text-align:center;background:rgba(255,255,255,0.35);backdrop-filter:blur(14px);border-radius:var(--radius);border:2px solid var(--border-strong)}.stat-card .stat-icon{font-size:2rem;margin-bottom:6px}.stat-card h3{color:var(--primary);font-size:2.2rem;font-weight:700}.stat-card p{color:var(--text-light);font-size:.82rem;font-weight:500;text-transform:uppercase;letter-spacing:1px}
 
-        /* ============================================
-           CONSISTENT GLASS CARDS FOR ALL SECTIONS
-        ============================================ */
         .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:25px}
-        .card,.testimonial-card{
-            background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));
-            border:2px solid var(--border-strong);border-radius:var(--radius);padding:30px 26px;
-            transition:all 0.5s cubic-bezier(0.22,0.61,0.36,1);position:relative;overflow:hidden;
-        }
+        .card,.testimonial-card{background:var(--surface);backdrop-filter:blur(var(--glass-blur));-webkit-backdrop-filter:blur(var(--glass-blur));border:2px solid var(--border-strong);border-radius:var(--radius);padding:30px 26px;transition:all 0.5s cubic-bezier(0.22,0.61,0.36,1);position:relative;overflow:hidden}
         .card:hover,.testimonial-card:hover{background:var(--surface-hover);transform:translateY(-10px);box-shadow:var(--shadow-lg);border-color:var(--accent)}
         .card .card-icon{font-size:2.4rem;margin-bottom:10px;display:block}
         .card h3,.testimonial-card h3{color:var(--primary);margin-bottom:10px;font-size:1.15rem;font-weight:600}
         .card p,.testimonial-card p{color:var(--text-light);line-height:1.7;font-size:.88rem}
         .card .card-tag{display:inline-block;margin-top:12px;padding:5px 14px;background:rgba(212,168,83,0.15);color:var(--accent);border-radius:999px;font-size:.72rem;font-weight:500;letter-spacing:.3px;backdrop-filter:blur(8px);border:1.5px solid rgba(212,168,83,0.3)}
         body.dark .card .card-tag{background:rgba(251,191,36,0.1);border-color:rgba(251,191,36,0.2)}
-        
-        /* Testimonial specific */
-        .testimonial-card{text-align:center}
-        .testimonial-card .testimonial-stars{color:var(--accent);font-size:.9rem;margin-bottom:8px;letter-spacing:2px}
-        .testimonial-card p{font-style:italic;margin-bottom:14px;position:relative;z-index:1}
-        .testimonial-card .testimonial-author{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}
-        .testimonial-card .testimonial-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.8rem}
-        .testimonial-card strong{font-size:.85rem;font-weight:500}
+        .testimonial-card{text-align:center}.testimonial-card .testimonial-stars{color:var(--accent);font-size:.9rem;margin-bottom:8px;letter-spacing:2px}.testimonial-card p{font-style:italic;margin-bottom:14px;position:relative;z-index:1}.testimonial-card .testimonial-author{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px}.testimonial-card .testimonial-avatar{width:36px;height:36px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:600;font-size:.8rem}.testimonial-card strong{font-size:.85rem;font-weight:500}
 
-        .timeline{position:relative;max-width:700px;margin:auto;padding-left:35px}.timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border-strong)}.timeline-item{position:relative;background:var(--surface);backdrop-filter:blur(var(--glass-blur));margin-bottom:25px;padding:26px;border-radius:var(--radius);border:2px solid var(--border-strong);transition:all 0.5s}.timeline-item:hover{transform:translateX(8px);border-color:var(--accent);box-shadow:var(--shadow-lg)}.timeline-item::before{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--accent);left:-37px;top:28px;border:2px solid var(--surface)}.timeline-item h3{color:var(--primary);margin-bottom:4px;font-size:1.05rem;font-weight:600}.timeline-item span{color:var(--text-light);font-size:.82rem;margin-bottom:8px;display:block}.timeline-item .timeline-date{display:inline-block;padding:4px 14px;background:rgba(212,168,83,0.12);color:var(--accent);border-radius:999px;font-size:.72rem;font-weight:500;margin-bottom:8px;border:1.5px solid rgba(212,168,83,0.2)}
-        .timeline-item p{font-size:.88rem;color:var(--text-light);line-height:1.7;margin-top:6px}
+        .timeline{position:relative;max-width:700px;margin:auto;padding-left:35px}.timeline::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border-strong)}.timeline-item{position:relative;background:var(--surface);backdrop-filter:blur(var(--glass-blur));margin-bottom:25px;padding:26px;border-radius:var(--radius);border:2px solid var(--border-strong);transition:all 0.5s}.timeline-item:hover{transform:translateX(8px);border-color:var(--accent);box-shadow:var(--shadow-lg)}.timeline-item::before{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:var(--accent);left:-37px;top:28px;border:2px solid var(--surface)}.timeline-item h3{color:var(--primary);margin-bottom:4px;font-size:1.05rem;font-weight:600}.timeline-item span{color:var(--text-light);font-size:.82rem;margin-bottom:8px;display:block}.timeline-item .timeline-date{display:inline-block;padding:4px 14px;background:rgba(212,168,83,0.12);color:var(--accent);border-radius:999px;font-size:.72rem;font-weight:500;margin-bottom:8px;border:1.5px solid rgba(212,168,83,0.2)}.timeline-item p{font-size:.88rem;color:var(--text-light);line-height:1.7;margin-top:6px}
 
         .project-image{width:100%;height:185px;object-fit:cover;border-radius:14px;margin-bottom:16px;transition:transform 0.6s;filter:brightness(.95);border:2px solid var(--border-strong)}.card:hover .project-image{transform:scale(1.04);filter:brightness(1)}
-
         #resume{text-align:center;background:rgba(255,255,255,0.25);backdrop-filter:blur(25px);border-top:2px solid var(--border-strong);border-bottom:2px solid var(--border-strong)}body.dark #resume{background:rgba(10,10,22,0.35)}#resume .btn{margin-top:20px}
         .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:25px;max-width:880px;margin:auto}@media(max-width:700px){.contact-grid{grid-template-columns:1fr}}.contact-info,.contact-form{background:var(--surface);backdrop-filter:blur(var(--glass-blur));border-radius:var(--radius);padding:32px 28px;border:2px solid var(--border-strong)}.contact-info h3,.contact-form h3{margin-bottom:16px;color:var(--primary);font-size:1.1rem;font-weight:600}.contact-info p{margin-bottom:12px;font-size:.88rem;color:var(--text-light);display:flex;align-items:center;gap:8px}.contact-info a{color:var(--primary);text-decoration:none;font-weight:500}.contact-form input,.contact-form textarea{width:100%;padding:14px 18px;margin-bottom:14px;border:2px solid var(--border-strong);border-radius:12px;font-family:'Poppins',sans-serif;font-size:.88rem;background:rgba(255,255,255,0.25);color:var(--text);resize:vertical}.contact-form textarea{min-height:120px}.contact-form button{width:100%}
-
         footer{padding:40px 20px;text-align:center;background:rgba(15,15,26,0.9);backdrop-filter:blur(25px);color:#fff;border-top:2px solid rgba(255,255,255,0.15);margin-top:50px}footer p{color:rgba(255,255,255,.7);margin:4px 0;font-size:.85rem}.footer-brand{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px}.footer-brand img{height:34px;width:auto;border-radius:6px}.footer-brand span{font-size:1.5rem;font-weight:700;color:#fff}
         .social-links{display:flex;justify-content:center;gap:12px;margin-top:18px}.social-links a{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;background:rgba(255,255,255,0.25);color:var(--primary);border:2px solid var(--border-strong);transition:all 0.5s;font-size:1.1rem}.social-links a:hover{background:var(--primary);color:#fff;transform:translateY(-4px)}
         .fade-up{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.22,0.61,0.36,1)}.fade-up.show{opacity:1;transform:translateY(0)}
@@ -127,6 +109,7 @@
 <canvas id="topologyCanvas"></canvas>
 <div id="scrollProgress"></div>
 
+<!-- BOOT LOADER -->
 <div id="bootLoader">
     <div class="boot-overlay"></div>
     <div class="boot-terminal">
@@ -137,10 +120,10 @@
             <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Mounting virtual filesystems</span></div>
             <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Starting network daemon</span></div>
             <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Connecting cloud infrastructure</span></div>
-            <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Syncing AI nodes (6 detected)</span></div>
+            <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Syncing AI nodes</span></div>
             <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Initializing VMware vSphere</span></div>
             <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Loading Windows Server DCs</span></div>
-            <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Verifying SSL/TLS certs</span></div>
+            <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Starting LMF Payments module</span></div>
             <div class="log-line"><span class="prompt">[</span><span class="ok">OK</span><span class="prompt">]</span> <span class="info">Loading portfolio assets</span></div>
         </div>
         <div class="boot-status-text" id="bootStatusText">Initializing... 0%</div>
@@ -149,7 +132,8 @@
     </div>
 </div>
 
-<div id="page-content" class="visible">
+<!-- PAGE CONTENT -->
+<div id="page-content">
 <div class="news-ticker"><div class="ticker-content"><span class="ticker-icon">🚀</span><span>Now Open: <span class="ticker-highlight">LMF Payment Services</span> — Los Baños, Laguna</span><span class="ticker-icon">💻</span><span>IT Infrastructure & <span class="ticker-highlight">Systems Administration</span></span><span class="ticker-icon">📱</span><span>E-Wallet & <span class="ticker-highlight">Remittance Solutions</span></span><span class="ticker-icon">🎓</span><span><span class="ticker-highlight">15+ Years</span> Professional Experience</span><span class="ticker-icon">⚡</span><span>Available for <span class="ticker-highlight">New Opportunities</span></span></div></div>
 <header><nav class="navbar"><ul class="nav-links" id="navLinks"><li><a href="#home" class="active">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#business">Business</a></li><li><a href="#projects">Projects</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul><a href="#home" class="logo"><img src="9048" alt="LJL"><span class="logo-text">LJL Digital<span>HUB</span></span></a><button class="hamburger" id="hamburger">☰</button><button id="themeToggle">🌙</button></nav></header>
 
@@ -161,17 +145,14 @@
 
 <section id="skills"><div class="container fade-up"><h2>Core <span class="accent-text">Skills</span></h2><div class="section-divider"></div><div class="grid"><div class="card"><span class="card-icon">🖥</span><h3>IT Infrastructure</h3><p>Windows Server • Networking • Troubleshooting • Backup & Recovery</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div></div><span class="card-tag">Expert</span></div><div class="card"><span class="card-icon">⚙</span><h3>Systems Administration</h3><p>Microsoft Technologies • VMware • Exchange • Technical Support</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">📊</span><h3>Business Management</h3><p>Operations • Leadership • Customer Service • Problem Solving</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">🚀</span><h3>Entrepreneurship</h3><p>Founder • LMF Payment Services • Business Operations</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div><span class="card-tag">Advanced</span></div></div></div></section>
 
-<section id="experience"><div class="container fade-up"><h2>Career <span class="accent-text">Journey</span></h2><div class="section-divider"></div><div class="timeline"><div class="timeline-item"><span class="timeline-date">Early Career</span><h3>Cash Teller</h3><span>RD Pawnshop</span><p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p></div><div class="timeline-item"><span class="timeline-date">Growth</span><h3>Vault Custodian</h3><span>RD Pawnshop</span><p>Managed vault operations, reconciliation, inventory control, and security procedures.</p></div><div class="timeline-item"><span class="timeline-date">Leadership</span><h3>Branch Manager</h3><span>RD Pawnshop</span><p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p></div><div class="timeline-item"><span class="timeline-date">IT Career</span><h3>IT Infrastructure Staff</h3><span>Enterprise IT</span><p>Technical support, systems administration, Windows Server, VMware, network troubleshooting, Exchange, backup & DR.</p></div><div class="timeline-item"><span class="timeline-date">2023 – Present</span><h3>Founder & Owner</h3><span>LMF Payment Services</span><p>Founded and manage a payment & remittance center in Los Ba&ntilde;os, Laguna. Business operations, customer service, and financial transactions.</p></div></div></div></section>
+<section id="experience"><div class="container fade-up"><h2>Career <span class="accent-text">Journey</span></h2><div class="section-divider"></div><div class="timeline"><div class="timeline-item"><span class="timeline-date">Early Career</span><h3>Cash Teller</h3><span>RD Pawnshop</span><p>Started my career in financial services — customer service, cash handling, accuracy, and professionalism.</p></div><div class="timeline-item"><span class="timeline-date">Growth</span><h3>Vault Custodian</h3><span>RD Pawnshop</span><p>Managed vault operations, reconciliation, inventory control, and security procedures.</p></div><div class="timeline-item"><span class="timeline-date">Leadership</span><h3>Branch Manager</h3><span>RD Pawnshop</span><p>Led branch operations, supervised employees, improved customer service, and achieved business targets.</p></div><div class="timeline-item"><span class="timeline-date">IT Career</span><h3>IT Infrastructure Staff</h3><span>Enterprise IT</span><p>Windows Server, VMware, networking, Exchange, backup and disaster recovery.</p></div><div class="timeline-item"><span class="timeline-date">2023 – Present</span><h3>Founder & Owner</h3><span>LMF Payment Services</span><p>Founded and manage a payment & remittance center in Los Ba&ntilde;os, Laguna.</p></div></div></div></section>
 
-<!-- CERTIFICATIONS - WITH CARDS -->
 <section id="certifications"><div class="container fade-up"><h2>Certifications & <span class="accent-text">Education</span></h2><div class="section-divider"></div><div class="grid"><div class="card"><span class="card-icon">🎓</span><h3>BS Information Technology</h3><p>Bachelor's Degree in Information Technology</p><span class="card-tag">Graduate</span></div><div class="card"><span class="card-icon">🏅</span><h3>Microsoft Certified</h3><p>Windows Server Administration</p><span class="card-tag">Certified</span></div><div class="card"><span class="card-icon">🏅</span><h3>VMware Certified</h3><p>Data Center Virtualization</p><span class="card-tag">Certified</span></div><div class="card"><span class="card-icon">🏅</span><h3>ITIL Foundation</h3><p>IT Service Management Best Practices</p><span class="card-tag">Certified</span></div></div></div></section>
 
-<!-- LMF PAYMENT SERVICES - WITH CARDS -->
 <section id="business"><div class="container fade-up"><h2>LMF <span class="accent-text">Payment Services</span></h2><div class="section-divider"></div><p>Trusted community payment & remittance center established in 2023. Reliable financial services with excellent customer support and operational integrity.</p><div class="grid"><div class="card"><span class="card-icon">💳</span><h3>Bills Payment</h3><p>Fast and secure payment processing for utilities, internet, and more.</p><span class="card-tag">Available</span></div><div class="card"><span class="card-icon">💸</span><h3>Domestic Remittance</h3><p>Reliable money transfer services nationwide.</p><span class="card-tag">Available</span></div><div class="card"><span class="card-icon">📱</span><h3>E-Wallet Assistance</h3><p>Cash In and Cash Out services for GCash, Maya, and more.</p><span class="card-tag">Available</span></div><div class="card"><span class="card-icon">🤝</span><h3>Customer Service</h3><p>Professional and friendly assistance for every customer.</p><span class="card-tag">24/7 Support</span></div></div></div></section>
 
 <section id="projects"><div class="container fade-up"><h2>Featured <span class="accent-text">Projects</span></h2><div class="section-divider"></div><div class="grid"><div class="card"><img src="project1.jpg" alt="Enterprise IT" class="project-image"><h3>Enterprise IT Support</h3><p>Windows Server, VMware, Exchange, Networking — full infrastructure management.</p><span class="card-tag">Infrastructure</span></div><div class="card"><span class="card-icon">💼</span><h3>LMF Payment Services</h3><p>Community payment center — Los Ba&ntilde;os, Laguna.</p><span class="card-tag">Business</span></div><div class="card"><span class="card-icon">🌐</span><h3>Portfolio Website</h3><p>Modern, responsive — built with HTML, CSS & JS.</p><span class="card-tag">Web Dev</span></div></div></div></section>
 
-<!-- TESTIMONIALS - NOW WITH CARDS -->
 <section id="testimonials"><div class="container fade-up"><h2>What <span class="accent-text">People Say</span></h2><div class="section-divider"></div><div class="grid"><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p>"Luisito is an exceptional IT professional. His technical expertise and dedication make him a valuable asset to any team."</p><div class="testimonial-author"><div class="testimonial-avatar">JC</div><strong>Former IT Colleague</strong></div></div><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p>"LMF Payment Services has been a reliable partner for our community. Fast, trustworthy, and always helpful."</p><div class="testimonial-author"><div class="testimonial-avatar">MC</div><strong>Loyal Customer</strong></div></div><div class="testimonial-card"><div class="testimonial-stars">★★★★★</div><p>"His leadership skills and problem-solving abilities are outstanding. Highly recommended!"</p><div class="testimonial-author"><div class="testimonial-avatar">BP</div><strong>Business Partner</strong></div></div></div></div></section>
 
 <section id="resume"><div class="container fade-up"><h2>Download <span class="accent-text">Resume</span></h2><div class="section-divider"></div><p>Get my complete professional resume with qualifications, skills & experience.</p><a href="resume.pdf" class="btn primary" download>Download Resume (PDF)</a></div></section>
@@ -182,6 +163,7 @@
 </div>
 
 <script>
+// Topology Canvas
 var cv=document.getElementById("topologyCanvas"),ctx=cv.getContext("2d");
 function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight}rs();window.addEventListener("resize",rs);
 var s=[],c=[],a=[],p=[],pk=[];
@@ -200,10 +182,56 @@ a.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y
 pk.forEach(function(k){k.pr+=k.sp;if(k.pr>1)k.pr=0;var px=k.a.x+(k.b.x-k.a.x)*k.pr,py=k.a.y+(k.b.y-k.a.y)*k.pr;ctx.beginPath();ctx.arc(px,py,k.z,0,Math.PI*2);ctx.fillStyle=dk?"#58a6ff":"#2563eb";ctx.fill()});
 p.forEach(function(pt){pt.x+=pt.vx;pt.y+=pt.vy;if(pt.x<0||pt.x>cv.width)pt.vx*=-1;if(pt.y<0||pt.y>cv.height)pt.vy*=-1;ctx.beginPath();ctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);ctx.fillStyle=dk?"rgba(255,255,255,"+pt.o+")":"rgba(0,0,0,"+(pt.o*.25)+")";ctx.fill()});requestAnimationFrame(draw)}draw();
 
-var bl=document.getElementById("bootLoader"),br=document.getElementById("bootReady"),bsf=document.getElementById("bootStatusFill"),bst=document.getElementById("bootStatusText"),pc=document.getElementById("page-content");
-pc.classList.add("visible");var bp=0,bi=setInterval(function(){bp+=Math.random()*12+4;if(bp>100)bp=100;bsf.style.width=bp+"%";if(bp<30)bst.textContent="Booting kernel... "+Math.floor(bp)+"%";else if(bp<60)bst.textContent="Starting services... "+Math.floor(bp)+"%";else if(bp<90)bst.textContent="Loading modules... "+Math.floor(bp)+"%";else{bst.textContent="Ready... 100%";clearInterval(bi);setTimeout(function(){br.classList.add("show")},200);setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},600)},900)},130);
-setTimeout(function(){if(!bl.classList.contains("hidden")){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},600)}},4000);
+// FIXED BOOT LOADER
+var bl=document.getElementById("bootLoader");
+var br=document.getElementById("bootReady");
+var bsf=document.getElementById("bootStatusFill");
+var bst=document.getElementById("bootStatusText");
+var pc=document.getElementById("page-content");
 
+// Start boot sequence
+var bp=0;
+var bi=setInterval(function(){
+    bp+=Math.random()*10+5;
+    if(bp>=100){
+        bp=100;
+        clearInterval(bi);
+        bsf.style.width="100%";
+        bst.textContent="Ready... 100%";
+        // Show ready message
+        setTimeout(function(){br.classList.add("show");},300);
+        // Hide loader and keep page visible
+        setTimeout(function(){
+            bl.classList.add("hidden");
+            // Remove from DOM after transition
+            setTimeout(function(){
+                if(bl.parentNode)bl.remove();
+            },700);
+        },1200);
+    }else{
+        bsf.style.width=bp+"%";
+        if(bp<30)bst.textContent="Booting kernel... "+Math.floor(bp)+"%";
+        else if(bp<60)bst.textContent="Starting services... "+Math.floor(bp)+"%";
+        else if(bp<85)bst.textContent="Loading modules... "+Math.floor(bp)+"%";
+        else bst.textContent="Finalizing... "+Math.floor(bp)+"%";
+    }
+},150);
+
+// Fallback: force hide loader after 5 seconds
+setTimeout(function(){
+    if(!bl.classList.contains("hidden")){
+        clearInterval(bi);
+        bsf.style.width="100%";
+        bst.textContent="Ready... 100%";
+        br.classList.add("show");
+        setTimeout(function(){
+            bl.classList.add("hidden");
+            setTimeout(function(){if(bl.parentNode)bl.remove();},700);
+        },500);
+    }
+},5000);
+
+// Rest of script
 var sp=document.getElementById("scrollProgress");window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%"});
 var bdy=document.body,tt=document.getElementById("themeToggle");if(localStorage.getItem("theme")==="dark"){bdy.classList.add("dark");if(tt)tt.textContent="☀️"}if(tt){tt.addEventListener("click",function(){bdy.classList.toggle("dark");var d=bdy.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light")})}
 var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");if(ham){ham.addEventListener("click",function(e){e.stopPropagation();nl.classList.toggle("show")})}nl.querySelectorAll("a").forEach(function(l){l.addEventListener("click",function(){nl.classList.remove("show")})});document.addEventListener("click",function(e){if(!nl.contains(e.target)&&e.target!==ham)nl.classList.remove("show")});
@@ -216,6 +244,7 @@ document.querySelectorAll(".counter").forEach(function(ce){var tv=parseInt(ce.da
 var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a");window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")})});
 var nb=document.querySelector(".navbar");window.addEventListener("scroll",function(){nb.style.boxShadow=window.scrollY>30?"0 4px 20px rgba(0,0,0,0.06)":"none"});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
+console.log("✅ LJL Digital Hub — Boot Fixed & Site Visible!");
 </script>
 </body>
 </html>
