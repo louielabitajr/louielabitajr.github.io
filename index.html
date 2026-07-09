@@ -35,7 +35,7 @@
         section>div>p{text-align:center;max-width:650px;margin:0 auto 30px;color:var(--text-light);font-size:.9rem;line-height:1.8}
         @media(max-width:768px){section{padding:60px 0}}
 
-        #topologyCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
+        canvas#topologyCanvas{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 
         #floatingMsgContainer{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:998;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
         #floatingBtn{width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--accent));display:flex;align-items:center;justify-content:center;box-shadow:0 8px 30px var(--accent-glow),0 0 0 0 var(--accent-glow);animation:floatPulse 2.5s ease-in-out infinite;cursor:pointer;border:2px solid rgba(255,255,255,0.25);transition:all 0.4s ease;font-size:1.3rem;color:#fff;position:relative;z-index:2}
@@ -65,7 +65,6 @@
         .ticker-highlight{color:var(--gold);font-weight:700;letter-spacing:.5px;animation:tickerHighlight 1.5s ease-in-out infinite}
         @keyframes tickerHighlight{0%,100%{text-shadow:0 0 6px rgba(184,136,62,0.3)}50%{text-shadow:0 0 18px rgba(184,136,62,0.6)}}
 
-        /* BOOT LOADER - FIXED */
         #bootLoader{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:9999;pointer-events:all;background:rgba(4,10,20,0.95)}
         #bootLoader.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.5s ease,visibility 0.5s ease}
         .boot-terminal{background:rgba(10,22,40,0.95);border:1px solid rgba(184,136,62,0.3);border-radius:16px;padding:30px 28px;width:min(550px,92%);max-height:80vh;overflow:hidden;box-shadow:0 0 60px rgba(184,136,62,0.1),0 20px 60px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace}
@@ -129,7 +128,6 @@
     </div>
 </div>
 
-<!-- FIXED BOOT LOADER - No overlay div, background on #bootLoader itself -->
 <div id="bootLoader">
     <div class="boot-terminal">
         <div class="boot-header"><span class="boot-dot red"></span><span class="boot-dot amber"></span><span class="boot-dot green"></span><span class="boot-title">LJL_DIGITAL_HUB — SYSTEM BOOT</span></div>
@@ -157,9 +155,9 @@
 <a href="#home" class="logo"><img src="9050" alt="LJL"><span class="logo-text">LJL Digital<span>HUB</span></span></a>
 <button class="hamburger" id="hamburger">☰</button><button id="themeToggle">🌙</button></nav></header>
 
-<section id="home" class="hero"><div class="hero-image fade-up"><img src="9007" alt="Luisito Jr. Bataller Labita"></div><div class="hero-content fade-up"><h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1><h2 id="typing"></h2><p>IT Infrastructure Specialist with 15+ years of experience designing, managing, and securing enterprise IT environments. Passionate about Windows Server, VMware, Networking, Cloud Technologies, and Digital Innovation.</p><div class="hero-availability"><div class="avail-item"><span class="check-icon">✔</span> Available for Full-Time</div><div class="avail-item"><span class="check-icon">✔</span> Available for Consultancy</div><div class="avail-item"><span class="check-icon">✔</span> Based in Laguna, Philippines</div></div><div class="hero-badges"><span class="hero-badge"><span class="status-dot"></span>Available for Work</span><span class="hero-badge">📍 Los Baños, Laguna</span><span class="hero-badge">💼 15+ Years Exp</span></div><div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div></div></section>
+<section id="home" class="hero"><div class="hero-image fade-up"><img src="9007" alt="Luisito Jr. Bataller Labita"></div><div class="hero-content fade-up"><h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1><h2 id="typing"></h2><p>IT Infrastructure Specialist with 15+ years of experience designing, managing, and securing enterprise IT environments.</p><div class="hero-availability"><div class="avail-item"><span class="check-icon">✔</span> Available for Full-Time</div><div class="avail-item"><span class="check-icon">✔</span> Available for Consultancy</div><div class="avail-item"><span class="check-icon">✔</span> Based in Laguna, Philippines</div></div><div class="hero-badges"><span class="hero-badge"><span class="status-dot"></span>Available for Work</span><span class="hero-badge">📍 Los Baños, Laguna</span><span class="hero-badge">💼 15+ Years Exp</span></div><div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div></div></section>
 <section class="stats"><div class="stat-card"><span class="stat-icon">💼</span><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div><div class="stat-card"><span class="stat-icon">🎓</span><h3>BSIT</h3><p>Graduate</p></div><div class="stat-card"><span class="stat-icon">🚀</span><h3>2023</h3><p>Founded LMF</p></div><div class="stat-card"><span class="stat-icon">🏢</span><h3>Enterprise</h3><p>IT Infrastructure</p></div></section>
-<section id="about"><div class="container fade-up"><h2>About <span class="accent-text">Me</span></h2><div class="section-divider"></div><p>I am Luisito Jr. Bataller Labita, a BS Information Technology graduate with over fifteen years of professional experience in IT, Systems Administration, Technical Support, Network Infrastructure, Leadership, and Customer Service.</p></div></section>
+<section id="about"><div class="container fade-up"><h2>About <span class="accent-text">Me</span></h2><div class="section-divider"></div><p>I am Luisito Jr. Bataller Labita, a BS Information Technology graduate with over fifteen years of professional experience in IT.</p></div></section>
 <section id="skills"><div class="container fade-up"><h2>Core <span class="accent-text">Skills</span></h2><div class="section-divider"></div><div class="grid"><div class="card"><span class="card-icon">🖥</span><h3>IT Infrastructure</h3><p>Windows Server • Networking • Troubleshooting • Backup & Recovery</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>95%</span></div><div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div></div><span class="card-tag">Expert</span></div><div class="card"><span class="card-icon">⚙</span><h3>Systems Administration</h3><p>Microsoft Technologies • VMware • Exchange • Technical Support</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>90%</span></div><div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">📊</span><h3>Business Management</h3><p>Operations • Leadership • Customer Service • Problem Solving</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>88%</span></div><div class="skill-bar"><div class="skill-fill" data-width="88%"></div></div></div><span class="card-tag">Advanced</span></div><div class="card"><span class="card-icon">🚀</span><h3>Entrepreneurship</h3><p>Founder • LMF Payment Services • Business Operations</p><div class="skill"><div class="skill-title"><span>Expertise</span><span>85%</span></div><div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div></div><span class="card-tag">Advanced</span></div></div></div></section>
 <section id="experience"><div class="container fade-up"><h2>Career <span class="accent-text">Journey</span></h2><div class="section-divider"></div><div class="timeline"><div class="timeline-item"><span class="timeline-date">Early Career</span><h3>Cash Teller</h3><span>RD Pawnshop</span><p>Started my career in financial services.</p></div><div class="timeline-item"><span class="timeline-date">Growth</span><h3>Vault Custodian</h3><span>RD Pawnshop</span><p>Managed vault operations and security.</p></div><div class="timeline-item"><span class="timeline-date">Leadership</span><h3>Branch Manager</h3><span>RD Pawnshop</span><p>Led branch operations and teams.</p></div><div class="timeline-item"><span class="timeline-date">IT Career</span><h3>IT Infrastructure Staff</h3><span>Enterprise IT</span><p>Windows Server, VMware, networking.</p></div><div class="timeline-item"><span class="timeline-date">2023 – Present</span><h3>Founder & Owner</h3><span>LMF Payment Services</span><p>Payment & remittance center in Los Ba&ntilde;os, Laguna.</p></div></div></div></section>
 <section id="certifications"><div class="container fade-up"><h2>Certifications & <span class="accent-text">Education</span></h2><div class="section-divider"></div><div class="grid"><div class="card"><span class="card-icon">🎓</span><h3>BS Information Technology</h3><p>Bachelor's Degree in IT</p><span class="card-tag">Graduate</span></div><div class="card"><span class="card-icon">🏅</span><h3>Microsoft Certified</h3><p>Windows Server Administration</p><span class="card-tag">Certified</span></div><div class="card"><span class="card-icon">🏅</span><h3>VMware Certified</h3><p>Data Center Virtualization</p><span class="card-tag">Certified</span></div><div class="card"><span class="card-icon">🏅</span><h3>ITIL Foundation</h3><p>IT Service Management</p><span class="card-tag">Certified</span></div></div></div></section>
@@ -172,8 +170,9 @@
 </div>
 
 <script>
-// Canvas
+// Canvas - fixed pointer-events
 var cv=document.getElementById("topologyCanvas"),ctx=cv.getContext("2d");
+cv.style.pointerEvents="none";
 function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight}rs();window.addEventListener("resize",rs);
 var s=[],c=[],a=[],p=[],pk=[];
 function init(){s=[];c=[];a=[];p=[];pk=[];
@@ -191,54 +190,25 @@ a.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y
 pk.forEach(function(k){k.pr+=k.sp;if(k.pr>1)k.pr=0;var px=k.a.x+(k.b.x-k.a.x)*k.pr,py=k.a.y+(k.b.y-k.a.y)*k.pr;ctx.beginPath();ctx.arc(px,py,k.z,0,Math.PI*2);ctx.fillStyle="#c8963e";ctx.fill()});
 p.forEach(function(pt){pt.x+=pt.vx;pt.y+=pt.vy;if(pt.x<0||pt.x>cv.width)pt.vx*=-1;if(pt.y<0||pt.y>cv.height)pt.vy*=-1;ctx.beginPath();ctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);ctx.fillStyle=dk?"rgba(255,255,255,"+pt.o+")":"rgba(0,0,0,"+(pt.o*.2)+")";ctx.fill()});requestAnimationFrame(draw)}draw();
 
-// FIXED BOOT LOADER - Simplified and guaranteed to work
+// Boot Loader
 (function(){
-    var bl=document.getElementById("bootLoader");
-    var br=document.getElementById("bootReady");
-    var bsf=document.getElementById("bootStatusFill");
-    var bst=document.getElementById("bootStatusText");
-    
-    if(!bl||!bsf||!bst)return; // Safety check
-    
+    var bl=document.getElementById("bootLoader"),br=document.getElementById("bootReady"),bsf=document.getElementById("bootStatusFill"),bst=document.getElementById("bootStatusText");
+    if(!bl||!bsf||!bst)return;
     var bp=0;
     var bi=setInterval(function(){
-        bp+=8;
-        if(bp>=100){
-            bp=100;
-            clearInterval(bi);
-            bsf.style.width="100%";
-            bst.textContent="Ready... 100%";
-            if(br) setTimeout(function(){br.classList.add("show");},200);
-            setTimeout(function(){
-                bl.classList.add("hidden");
-                setTimeout(function(){if(bl.parentNode)bl.remove();},600);
-            },1000);
-        }else{
-            bsf.style.width=bp+"%";
-            if(bp<30)bst.textContent="Booting kernel... "+bp+"%";
-            else if(bp<60)bst.textContent="Starting services... "+bp+"%";
-            else if(bp<85)bst.textContent="Loading modules... "+bp+"%";
-            else bst.textContent="Finalizing... "+bp+"%";
-        }
+        bp+=8;if(bp>=100){bp=100;clearInterval(bi);bsf.style.width="100%";bst.textContent="Ready... 100%";
+        if(br)setTimeout(function(){br.classList.add("show")},200);
+        setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},600)},1000)}
+        else{bsf.style.width=bp+"%";if(bp<30)bst.textContent="Booting kernel... "+bp+"%";else if(bp<60)bst.textContent="Starting services... "+bp+"%";else if(bp<85)bst.textContent="Loading modules... "+bp+"%";else bst.textContent="Finalizing... "+bp+"%"}
     },120);
-    
-    // Emergency fallback - force hide after 4 seconds
-    setTimeout(function(){
-        if(bl&&!bl.classList.contains("hidden")){
-            clearInterval(bi);
-            bsf.style.width="100%";
-            bst.textContent="Ready... 100%";
-            if(br)br.classList.add("show");
-            setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove();},600);},600);
-        }
-    },4000);
+    setTimeout(function(){if(bl&&!bl.classList.contains("hidden")){clearInterval(bi);bsf.style.width="100%";bst.textContent="Ready... 100%";if(br)br.classList.add("show");setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},600)},600)}},4000);
 })();
 
 // Floating button
 var floatBtn=document.getElementById("floatingBtn"),floatPopup=document.getElementById("floatPopup"),floatClose=document.getElementById("floatPopupClose");
-if(floatBtn){floatBtn.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.toggle("show");floatBtn.classList.toggle("active");floatBtn.textContent=floatPopup.classList.contains("show")?"✕":"💬";});}
-if(floatClose){floatClose.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.remove("show");floatBtn.classList.remove("active");floatBtn.textContent="💬";});}
-document.addEventListener("click",function(e){if(floatPopup&&!floatPopup.contains(e.target)&&e.target!==floatBtn){floatPopup.classList.remove("show");if(floatBtn){floatBtn.classList.remove("active");floatBtn.textContent="💬";}}});
+if(floatBtn){floatBtn.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.toggle("show");floatBtn.classList.toggle("active");floatBtn.textContent=floatPopup.classList.contains("show")?"✕":"💬"})}
+if(floatClose){floatClose.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.remove("show");floatBtn.classList.remove("active");floatBtn.textContent="💬"})}
+document.addEventListener("click",function(e){if(floatPopup&&!floatPopup.contains(e.target)&&e.target!==floatBtn){floatPopup.classList.remove("show");if(floatBtn){floatBtn.classList.remove("active");floatBtn.textContent="💬"}}});
 
 // Rest
 var sp=document.getElementById("scrollProgress");window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%"});
@@ -253,7 +223,7 @@ var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isInter
 document.querySelectorAll(".counter").forEach(function(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=Math.max(tv/80,1);function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+(ce.textContent.includes("+")?"+":"");requestAnimationFrame(u)}else{ce.textContent=tv+(ce.textContent.includes("+")?"+":"")}}u()}})},{threshold:0.5});co.observe(ce)});
 var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a");window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")})});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
-console.log("✅ LJL Digital Hub — Fixed! Boot loader now disappears!");
+console.log("✅ LJL Digital Hub — Working!");
 </script>
 </body>
 </html>
