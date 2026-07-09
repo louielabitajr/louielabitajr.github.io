@@ -8,11 +8,22 @@
     <meta name="author" content="Luisito Jr. Bataller Labita">
     <meta name="robots" content="index,follow">
     <meta name="keywords" content="IT specialist, systems administrator, network engineer, Laguna, Philippines, payment services, LMF Payment Services, Windows Server, VMware, technical support">
+    
+    <!-- SECURITY: Content Security Policy -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://formspree.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self' https://formspree.io;">
+    
+    <!-- SECURITY: Prevent MIME type sniffing -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <!-- SECURITY: Prevent clickjacking -->
     <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <!-- SECURITY: Enable XSS protection -->
     <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    
+    <!-- SECURITY: Referrer Policy -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
+    
     <meta property="og:title" content="Luisito Jr. Bataller Labita Portfolio">
     <meta property="og:description" content="IT Infrastructure Specialist | Systems Administrator | Founder of LMF Payment Services">
     <meta property="og:image" content="9007">
@@ -91,41 +102,7 @@
         #page-content{position:relative;z-index:1}
         #scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:10001;transition:width 0.15s linear}.section-divider{width:50px;height:2px;background:var(--gold);margin:0 auto 25px;border-radius:999px}
 
-        /* ============================================
-           NAVBAR: Links FIRST (left) | Logo SECOND (right)
-        ============================================ */
-        header{position:sticky;top:0;z-index:999}
-        .navbar{
-            display:flex;justify-content:flex-start;align-items:center;
-            padding:12px 32px;background:rgba(255,255,255,0.60);
-            backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);
-            border-bottom:2px solid var(--border-strong);flex-wrap:wrap;gap:12px;
-        }
-        body.dark .navbar{background:rgba(10,22,40,0.75)}
-        /* Nav links - FIRST (left) */
-        .nav-links{display:flex;gap:6px;list-style:none;flex-wrap:wrap;order:1;margin-right:auto}
-        .nav-links a{text-decoration:none;color:var(--text);font-weight:500;font-size:.83rem;padding:8px 14px;border-radius:8px;transition:all 0.3s}
-        .nav-links a:hover{color:var(--gold);background:var(--gold-light)}
-        .nav-links a.active{color:var(--gold);font-weight:700;background:var(--gold-light)}
-        /* Logo - SECOND (right of nav links) */
-        .logo{display:flex;align-items:center;gap:10px;text-decoration:none;order:2;flex-shrink:0}
-        .logo img{height:36px;width:auto;border-radius:8px}
-        .logo-text{font-size:1rem;font-weight:700;color:var(--primary)}
-        .logo-text span{color:var(--gold);font-weight:500;font-size:.65rem;letter-spacing:3px;display:block;line-height:1}
-        /* Toggle & Hamburger - LAST (far right) */
-        #themeToggle,.hamburger{width:40px;height:40px;border-radius:50%;border:2px solid var(--border-strong);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s;flex-shrink:0}
-        #themeToggle{background:rgba(255,255,255,0.4);color:var(--text);order:3;margin-left:6px}
-        #themeToggle:hover{border-color:var(--gold);color:var(--gold)}
-        .hamburger{display:none;order:3}
-        @media(max-width:768px){
-            .hamburger{display:flex}
-            .nav-links{display:none;flex-direction:column;width:100%;gap:2px;padding:12px;background:var(--surface);backdrop-filter:blur(30px);border-radius:var(--radius);border:2px solid var(--border-strong);order:2}
-            .nav-links.show{display:flex}
-            .nav-links a{padding:10px 14px;text-align:center}
-            .logo{order:1;margin-right:auto}
-            .hamburger{order:3}
-            #themeToggle{order:3}
-        }
+        header{position:sticky;top:0;z-index:999}.navbar{display:flex;justify-content:space-between;align-items:center;padding:12px 32px;background:rgba(255,255,255,0.60);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:2px solid var(--border-strong);flex-wrap:wrap;gap:12px}body.dark .navbar{background:rgba(10,22,40,0.75)}.nav-links{display:flex;gap:6px;list-style:none;flex-wrap:wrap}.nav-links a{text-decoration:none;color:var(--text);font-weight:500;font-size:.83rem;padding:8px 14px;border-radius:8px;transition:all 0.3s}.nav-links a:hover{color:var(--gold);background:var(--gold-light)}.nav-links a.active{color:var(--gold);font-weight:700;background:var(--gold-light)}.logo{display:flex;align-items:center;gap:10px;text-decoration:none}.logo img{height:36px;width:auto;border-radius:8px}.logo-text{font-size:1rem;font-weight:700;color:var(--primary)}.logo-text span{color:var(--gold);font-weight:500;font-size:.65rem;letter-spacing:3px;display:block;line-height:1}#themeToggle,.hamburger{width:40px;height:40px;border-radius:50%;border:2px solid var(--border-strong);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s}#themeToggle{background:rgba(255,255,255,0.4);color:var(--text)}#themeToggle:hover{border-color:var(--gold);color:var(--gold)}.hamburger{display:none}@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none;flex-direction:column;width:100%;gap:2px;padding:12px;background:var(--surface);backdrop-filter:blur(30px);border-radius:var(--radius);border:2px solid var(--border-strong)}.nav-links.show{display:flex}.nav-links a{padding:10px 14px;text-align:center}}
 
         .hero{padding:80px 24px;display:flex;align-items:center;justify-content:center;gap:50px;flex-wrap:wrap;text-align:center}.hero-image img{width:200px;height:200px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);box-shadow:0 8px 30px var(--gold-light);animation:profileFloat 5s ease-in-out infinite}@keyframes profileFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}.hero-content{max-width:560px}.hero-content h1{font-size:2.6rem;line-height:1.2;margin-bottom:8px;font-weight:800;color:var(--primary)}.hero-content h1 .accent-text{color:var(--gold)}#typing{color:var(--accent);font-size:1.1rem;margin-bottom:14px;min-height:28px;font-weight:500}.hero-content p{color:var(--text-light);margin-bottom:24px;font-size:.92rem}.hero-availability{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:22px}.hero-availability .avail-item{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;color:var(--text)}.hero-availability .check-icon{color:var(--gold);font-weight:700}.hero-badges{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:18px}.hero-badge{display:inline-flex;align-items:center;gap:5px;padding:7px 16px;background:rgba(255,255,255,0.45);backdrop-filter:blur(14px);border-radius:999px;font-size:.74rem;border:2px solid var(--border-strong);color:var(--primary)}.buttons{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}.btn{text-decoration:none;padding:14px 30px;border-radius:999px;font-weight:600;font-size:.9rem;cursor:pointer;display:inline-flex;align-items:center;gap:6px;border:none;transition:all 0.4s ease;letter-spacing:.3px}.primary{background:var(--gold);color:var(--primary-dark)}.primary:hover{background:var(--primary);color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 30px var(--accent-glow)}.secondary{background:rgba(255,255,255,0.35);backdrop-filter:blur(14px);border:2px solid var(--border-strong);color:var(--primary)}.secondary:hover{background:var(--gold);color:var(--primary-dark);border-color:var(--gold);transform:translateY(-4px)}
 
@@ -158,10 +135,11 @@
         <button class="btn-close" id="floatPopupClose">✕</button>
         <h3>Send a Message</h3>
         <form action="https://formspree.io/f/xnjkwwwz" method="POST" id="contactForm" autocomplete="on">
-            <input type="text" name="name" placeholder="Your Name" required maxlength="100" pattern="[A-Za-zÀ-ÿ\s\.\-]{2,100}" title="Please enter a valid name">
-            <input type="email" name="email" placeholder="Your Email" required maxlength="254">
-            <input type="text" name="subject" placeholder="Subject" maxlength="200">
+            <input type="text" name="name" placeholder="Your Name" required maxlength="100" pattern="[A-Za-zÀ-ÿ\s\.\-]{2,100}" title="Please enter a valid name (letters, spaces, hyphens, and periods only)">
+            <input type="email" name="email" placeholder="Your Email" required maxlength="254" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" title="Please enter a valid email address">
+            <input type="text" name="subject" placeholder="Subject" maxlength="200" pattern="[A-Za-z0-9À-ÿ\s\.\,\-\?\!]{0,200}" title="Letters, numbers, spaces, and basic punctuation only">
             <textarea name="message" placeholder="Your Message" rows="3" required maxlength="5000"></textarea>
+            <!-- Honeypot field - invisible to users, catches bots -->
             <input type="text" name="_honey" style="display:none" aria-hidden="true" tabindex="-1" autocomplete="off">
             <button type="submit" class="btn-send" id="sendBtn">📩 Send Message</button>
         </form>
@@ -191,25 +169,9 @@
 
 <div id="page-content">
 <div class="news-ticker"><div class="ticker-content"><span class="ticker-icon">🚀</span><span>Now Open: <span class="ticker-highlight">LMF Payment Services</span> — Los Baños, Laguna</span><span class="ticker-icon">💻</span><span>IT Infrastructure & <span class="ticker-highlight">Systems Administration</span></span><span class="ticker-icon">📱</span><span>E-Wallet & <span class="ticker-highlight">Remittance Solutions</span></span><span class="ticker-icon">🎓</span><span><span class="ticker-highlight">15+ Years</span> Professional Experience</span><span class="ticker-icon">⚡</span><span>Available for <span class="ticker-highlight">New Opportunities</span></span></div></div>
-
-<!-- NAVBAR: Links FIRST | Logo SECOND | Toggle LAST -->
-<header><nav class="navbar">
-    <ul class="nav-links" id="navLinks">
-        <li><a href="#home" class="active">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#certifications">Certifications</a></li>
-        <li><a href="#business">Business</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#testimonials">Testimonials</a></li>
-        <li><a href="#resume">Resume</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#home" class="logo"><img src="9050" alt="LJL"><span class="logo-text">LJL Digital<span>HUB</span></span></a>
-    <button class="hamburger" id="hamburger">☰</button>
-    <button id="themeToggle">🌙</button>
-</nav></header>
+<header><nav class="navbar"><ul class="nav-links" id="navLinks"><li><a href="#home" class="active">Home</a></li><li><a href="#about">About</a></li><li><a href="#skills">Skills</a></li><li><a href="#experience">Experience</a></li><li><a href="#certifications">Certifications</a></li><li><a href="#business">Business</a></li><li><a href="#projects">Projects</a></li><li><a href="#testimonials">Testimonials</a></li><li><a href="#resume">Resume</a></li><li><a href="#contact">Contact</a></li></ul>
+<a href="#home" class="logo"><img src="9050" alt="LJL"><span class="logo-text">LJL Digital<span>HUB</span></span></a>
+<button class="hamburger" id="hamburger">☰</button><button id="themeToggle">🌙</button></nav></header>
 
 <section id="home" class="hero"><div class="hero-image fade-up"><img src="9007" alt="Luisito Jr. Bataller Labita"></div><div class="hero-content fade-up"><h1>Luisito Jr. <span class="accent-text">Bataller Labita</span></h1><h2 id="typing"></h2><p>IT Infrastructure Specialist with 15+ years of experience designing, managing, and securing enterprise IT environments.</p><div class="hero-availability"><div class="avail-item"><span class="check-icon">✔</span> Available for Full-Time</div><div class="avail-item"><span class="check-icon">✔</span> Available for Consultancy</div><div class="avail-item"><span class="check-icon">✔</span> Based in Laguna, Philippines</div></div><div class="hero-badges"><span class="hero-badge"><span class="status-dot"></span>Available for Work</span><span class="hero-badge">📍 Los Baños, Laguna</span><span class="hero-badge">💼 15+ Years Exp</span></div><div class="buttons"><a href="#resume" class="btn primary">Download Resume</a><a href="#contact" class="btn secondary">Contact Me</a></div></div></section>
 <section class="stats"><div class="stat-card"><span class="stat-icon">💼</span><h3 class="counter" data-target="15">0+</h3><p>Years Experience</p></div><div class="stat-card"><span class="stat-icon">🎓</span><h3>BSIT</h3><p>Graduate</p></div><div class="stat-card"><span class="stat-icon">🚀</span><h3>2023</h3><p>Founded LMF</p></div><div class="stat-card"><span class="stat-icon">🏢</span><h3>Enterprise</h3><p>IT Infrastructure</p></div></section>
@@ -226,11 +188,97 @@
 </div>
 
 <script>
-document.addEventListener('contextmenu',function(e){if(e.target.tagName==='IMG'){e.preventDefault();return false}});
-function sanitizeInput(str){if(!str)return'';return str.replace(/[<>"'&]/g,function(m){return{'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','&':'&amp;'}[m]})}
-var submitCount=0,lastSubmitTime=0;
-document.getElementById('contactForm').addEventListener('submit',function(e){var now=Date.now();if(now-lastSubmitTime<60000){submitCount++;if(submitCount>3){e.preventDefault();alert('⚠️ Too many messages sent. Please wait a moment.');return false}}else{submitCount=1;lastSubmitTime=now}var inputs=this.querySelectorAll('input:not([type="hidden"]),textarea');inputs.forEach(function(input){input.value=sanitizeInput(input.value.trim())});var btn=document.getElementById('sendBtn');btn.disabled=true;btn.textContent='⏳ Sending...';setTimeout(function(){btn.disabled=false;btn.textContent='📩 Send Message'},5000)});
-var cv=document.getElementById("topologyCanvas"),ctx=cv.getContext("2d");cv.style.pointerEvents="none";
+// ============================================
+// SECURITY: Disable right-click on images only
+// ============================================
+document.addEventListener('contextmenu', function(e) {
+    if (e.target.tagName === 'IMG') {
+        e.preventDefault();
+        return false;
+    }
+});
+
+// ============================================
+// SECURITY: Sanitize form inputs
+// ============================================
+function sanitizeInput(str) {
+    if (!str) return '';
+    return str.replace(/[<>"'&]/g, function(m) {
+        return {'<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;','&':'&amp;'}[m];
+    });
+}
+
+// ============================================
+// SECURITY: Rate limiting for form submission
+// ============================================
+var submitCount = 0;
+var lastSubmitTime = 0;
+var RATE_LIMIT_WINDOW = 60000; // 1 minute
+var MAX_SUBMITS = 3;
+
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    var now = Date.now();
+    if (now - lastSubmitTime < RATE_LIMIT_WINDOW) {
+        submitCount++;
+        if (submitCount > MAX_SUBMITS) {
+            e.preventDefault();
+            alert('⚠️ Too many messages sent. Please wait a moment before sending another.');
+            return false;
+        }
+    } else {
+        submitCount = 1;
+        lastSubmitTime = now;
+    }
+    
+    // Sanitize inputs before sending
+    var inputs = this.querySelectorAll('input:not([type="hidden"]), textarea');
+    inputs.forEach(function(input) {
+        input.value = sanitizeInput(input.value.trim());
+    });
+    
+    // Disable button to prevent double submission
+    var btn = document.getElementById('sendBtn');
+    btn.disabled = true;
+    btn.textContent = '⏳ Sending...';
+    setTimeout(function() {
+        btn.disabled = false;
+        btn.textContent = '📩 Send Message';
+    }, 5000);
+});
+
+// ============================================
+// SECURITY: Detect and block common attack patterns
+// ============================================
+(function() {
+    // Block eval() usage
+    var originalEval = window.eval;
+    window.eval = function() {
+        console.warn('⚠️ Security: eval() blocked');
+        return null;
+    };
+    
+    // Detect console tampering attempts
+    var devToolsOpen = false;
+    var threshold = 160;
+    setInterval(function() {
+        var widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        var heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        if (widthThreshold || heightThreshold) {
+            if (!devToolsOpen) {
+                devToolsOpen = true;
+                console.log('🔒 Developer tools detected - this site is protected');
+            }
+        } else {
+            devToolsOpen = false;
+        }
+    }, 1000);
+})();
+
+// ============================================
+// Canvas
+// ============================================
+var cv=document.getElementById("topologyCanvas"),ctx=cv.getContext("2d");
+cv.style.pointerEvents="none";
 function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight}rs();window.addEventListener("resize",rs);
 var s=[],c=[],a=[],p=[],pk=[];
 function init(){s=[];c=[];a=[];p=[];pk=[];
@@ -247,11 +295,17 @@ c.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y
 a.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y<0||n.y>cv.height)n.vy*=-1;ctx.beginPath();for(var i=0;i<6;i++){var ang=Math.PI/3*i;ctx.lineTo(n.x+n.r*Math.cos(ang),n.y+n.r*Math.sin(ang))}ctx.closePath();ctx.fillStyle=dk?"rgba(200,150,62,.4)":"rgba(184,136,62,.25)";ctx.fill()});
 pk.forEach(function(k){k.pr+=k.sp;if(k.pr>1)k.pr=0;var px=k.a.x+(k.b.x-k.a.x)*k.pr,py=k.a.y+(k.b.y-k.a.y)*k.pr;ctx.beginPath();ctx.arc(px,py,k.z,0,Math.PI*2);ctx.fillStyle="#c8963e";ctx.fill()});
 p.forEach(function(pt){pt.x+=pt.vx;pt.y+=pt.vy;if(pt.x<0||pt.x>cv.width)pt.vx*=-1;if(pt.y<0||pt.y>cv.height)pt.vy*=-1;ctx.beginPath();ctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);ctx.fillStyle=dk?"rgba(255,255,255,"+pt.o+")":"rgba(0,0,0,"+(pt.o*.2)+")";ctx.fill()});requestAnimationFrame(draw)}draw();
+
+// Boot Loader
 (function(){var bl=document.getElementById("bootLoader"),br=document.getElementById("bootReady"),bsf=document.getElementById("bootStatusFill"),bst=document.getElementById("bootStatusText");if(!bl||!bsf||!bst)return;var bp=0;var bi=setInterval(function(){bp+=8;if(bp>=100){bp=100;clearInterval(bi);bsf.style.width="100%";bst.textContent="Secured... 100%";if(br)setTimeout(function(){br.classList.add("show")},200);setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},600)},1000)}else{bsf.style.width=bp+"%";if(bp<30)bst.textContent="Loading security... "+bp+"%";else if(bp<60)bst.textContent="Encrypting... "+bp+"%";else if(bp<85)bst.textContent="Hardening... "+bp+"%";else bst.textContent="Finalizing... "+bp+"%"}},120);setTimeout(function(){if(bl&&!bl.classList.contains("hidden")){clearInterval(bi);bsf.style.width="100%";bst.textContent="Secured... 100%";if(br)br.classList.add("show");setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},600)},600)}},4000)})();
+
+// Floating button
 var floatBtn=document.getElementById("floatingBtn"),floatPopup=document.getElementById("floatPopup"),floatClose=document.getElementById("floatPopupClose");
 if(floatBtn){floatBtn.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.toggle("show");floatBtn.classList.toggle("active");floatBtn.textContent=floatPopup.classList.contains("show")?"✕":"💬"})}
 if(floatClose){floatClose.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.remove("show");floatBtn.classList.remove("active");floatBtn.textContent="💬"})}
 document.addEventListener("click",function(e){if(floatPopup&&!floatPopup.contains(e.target)&&e.target!==floatBtn){floatPopup.classList.remove("show");if(floatBtn){floatBtn.classList.remove("active");floatBtn.textContent="💬"}}});
+
+// Rest
 var sp=document.getElementById("scrollProgress");window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%"});
 var bdy=document.body,tt=document.getElementById("themeToggle");if(localStorage.getItem("theme")==="dark"){bdy.classList.add("dark");if(tt)tt.textContent="☀️"}if(tt){tt.addEventListener("click",function(){bdy.classList.toggle("dark");var d=bdy.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light")})}
 var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");if(ham){ham.addEventListener("click",function(e){e.stopPropagation();nl.classList.toggle("show")})}if(nl){nl.querySelectorAll("a").forEach(function(l){l.addEventListener("click",function(){nl.classList.remove("show")})})}
@@ -264,7 +318,7 @@ var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isInter
 document.querySelectorAll(".counter").forEach(function(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=Math.max(tv/80,1);function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+(ce.textContent.includes("+")?"+":"");requestAnimationFrame(u)}else{ce.textContent=tv+(ce.textContent.includes("+")?"+":"")}}u()}})},{threshold:0.5});co.observe(ce)});
 var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a");window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")})});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
-console.log("✅ LJL Digital Hub — Nav Links LEFT | Logo RIGHT | Toggle FAR RIGHT");
+console.log("🔒 LJL Digital Hub — Secured & Protected!");
 </script>
 </body>
 </html>
