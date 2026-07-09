@@ -65,10 +65,10 @@
         .ticker-highlight{color:var(--gold);font-weight:700;letter-spacing:.5px;animation:tickerHighlight 1.5s ease-in-out infinite}
         @keyframes tickerHighlight{0%,100%{text-shadow:0 0 6px rgba(184,136,62,0.3)}50%{text-shadow:0 0 18px rgba(184,136,62,0.6)}}
 
-        #bootLoader{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity 0.6s ease,visibility 0.6s ease;pointer-events:all}
-        #bootLoader.hidden{opacity:0;visibility:hidden;pointer-events:none}
-        .boot-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(4,10,20,0.95);z-index:0}
-        .boot-terminal{position:relative;z-index:1;background:rgba(10,22,40,0.95);border:1px solid rgba(184,136,62,0.3);border-radius:16px;padding:30px 28px;width:min(550px,92%);max-height:80vh;overflow:hidden;box-shadow:0 0 60px rgba(184,136,62,0.1),0 20px 60px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace}
+        /* BOOT LOADER - FIXED */
+        #bootLoader{position:fixed;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;z-index:9999;pointer-events:all;background:rgba(4,10,20,0.95)}
+        #bootLoader.hidden{opacity:0;visibility:hidden;pointer-events:none;transition:opacity 0.5s ease,visibility 0.5s ease}
+        .boot-terminal{background:rgba(10,22,40,0.95);border:1px solid rgba(184,136,62,0.3);border-radius:16px;padding:30px 28px;width:min(550px,92%);max-height:80vh;overflow:hidden;box-shadow:0 0 60px rgba(184,136,62,0.1),0 20px 60px rgba(0,0,0,0.5);font-family:'JetBrains Mono',monospace}
         .boot-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,0.08)}
         .boot-dot{width:10px;height:10px;border-radius:50%}.boot-dot.red{background:#c9485e}.boot-dot.amber{background:#d4a853}.boot-dot.green{background:#3fb950}
         .boot-title{color:#8892a4;font-size:.7rem;margin-left:8px;letter-spacing:1px}
@@ -84,7 +84,8 @@
         .boot-ready .ready-text{font-size:1rem;font-weight:700;color:#3fb950;letter-spacing:1px}
         @media(max-width:650px){.boot-terminal{padding:20px 16px}.boot-logs{font-size:.6rem;max-height:180px}}
 
-        #page-content{opacity:1}#scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:10001;transition:width 0.15s linear}.section-divider{width:50px;height:2px;background:var(--gold);margin:0 auto 25px;border-radius:999px}
+        #page-content{position:relative;z-index:1}
+        #scrollProgress{position:fixed;top:0;left:0;width:0%;height:3px;background:linear-gradient(90deg,var(--accent),var(--gold));z-index:10001;transition:width 0.15s linear}.section-divider{width:50px;height:2px;background:var(--gold);margin:0 auto 25px;border-radius:999px}
 
         header{position:sticky;top:0;z-index:999}.navbar{display:flex;justify-content:space-between;align-items:center;padding:12px 32px;background:rgba(255,255,255,0.60);backdrop-filter:blur(30px);-webkit-backdrop-filter:blur(30px);border-bottom:2px solid var(--border-strong);flex-wrap:wrap;gap:12px}body.dark .navbar{background:rgba(10,22,40,0.75)}.nav-links{display:flex;gap:6px;list-style:none;flex-wrap:wrap}.nav-links a{text-decoration:none;color:var(--text);font-weight:500;font-size:.83rem;padding:8px 14px;border-radius:8px;transition:all 0.3s}.nav-links a:hover{color:var(--gold);background:var(--gold-light)}.nav-links a.active{color:var(--gold);font-weight:700;background:var(--gold-light)}.logo{display:flex;align-items:center;gap:10px;text-decoration:none}.logo img{height:36px;width:auto;border-radius:8px}.logo-text{font-size:1rem;font-weight:700;color:var(--primary)}.logo-text span{color:var(--gold);font-weight:500;font-size:.65rem;letter-spacing:3px;display:block;line-height:1}#themeToggle,.hamburger{width:40px;height:40px;border-radius:50%;border:2px solid var(--border-strong);cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all 0.3s}#themeToggle{background:rgba(255,255,255,0.4);color:var(--text)}#themeToggle:hover{border-color:var(--gold);color:var(--gold)}.hamburger{display:none}@media(max-width:768px){.hamburger{display:flex}.nav-links{display:none;flex-direction:column;width:100%;gap:2px;padding:12px;background:var(--surface);backdrop-filter:blur(30px);border-radius:var(--radius);border:2px solid var(--border-strong)}.nav-links.show{display:flex}.nav-links a{padding:10px 14px;text-align:center}}
 
@@ -128,8 +129,8 @@
     </div>
 </div>
 
+<!-- FIXED BOOT LOADER - No overlay div, background on #bootLoader itself -->
 <div id="bootLoader">
-    <div class="boot-overlay"></div>
     <div class="boot-terminal">
         <div class="boot-header"><span class="boot-dot red"></span><span class="boot-dot amber"></span><span class="boot-dot green"></span><span class="boot-title">LJL_DIGITAL_HUB — SYSTEM BOOT</span></div>
         <div class="boot-logs">
@@ -171,6 +172,7 @@
 </div>
 
 <script>
+// Canvas
 var cv=document.getElementById("topologyCanvas"),ctx=cv.getContext("2d");
 function rs(){cv.width=window.innerWidth;cv.height=window.innerHeight}rs();window.addEventListener("resize",rs);
 var s=[],c=[],a=[],p=[],pk=[];
@@ -189,18 +191,60 @@ a.forEach(function(n){n.x+=n.vx;n.y+=n.vy;if(n.x<0||n.x>cv.width)n.vx*=-1;if(n.y
 pk.forEach(function(k){k.pr+=k.sp;if(k.pr>1)k.pr=0;var px=k.a.x+(k.b.x-k.a.x)*k.pr,py=k.a.y+(k.b.y-k.a.y)*k.pr;ctx.beginPath();ctx.arc(px,py,k.z,0,Math.PI*2);ctx.fillStyle="#c8963e";ctx.fill()});
 p.forEach(function(pt){pt.x+=pt.vx;pt.y+=pt.vy;if(pt.x<0||pt.x>cv.width)pt.vx*=-1;if(pt.y<0||pt.y>cv.height)pt.vy*=-1;ctx.beginPath();ctx.arc(pt.x,pt.y,pt.r,0,Math.PI*2);ctx.fillStyle=dk?"rgba(255,255,255,"+pt.o+")":"rgba(0,0,0,"+(pt.o*.2)+")";ctx.fill()});requestAnimationFrame(draw)}draw();
 
-var bl=document.getElementById("bootLoader"),br=document.getElementById("bootReady"),bsf=document.getElementById("bootStatusFill"),bst=document.getElementById("bootStatusText");
-var bp=0,bi=setInterval(function(){bp+=Math.random()*10+5;if(bp>=100){bp=100;clearInterval(bi);bsf.style.width="100%";bst.textContent="Ready... 100%";setTimeout(function(){br.classList.add("show")},300);setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},700)},1200)}else{bsf.style.width=bp+"%";if(bp<30)bst.textContent="Booting... "+Math.floor(bp)+"%";else if(bp<60)bst.textContent="Services... "+Math.floor(bp)+"%";else if(bp<85)bst.textContent="Modules... "+Math.floor(bp)+"%";else bst.textContent="Finalizing... "+Math.floor(bp)+"%"}},150);
-setTimeout(function(){if(!bl.classList.contains("hidden")){clearInterval(bi);bsf.style.width="100%";br.classList.add("show");setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove()},700)},500)}},5000);
+// FIXED BOOT LOADER - Simplified and guaranteed to work
+(function(){
+    var bl=document.getElementById("bootLoader");
+    var br=document.getElementById("bootReady");
+    var bsf=document.getElementById("bootStatusFill");
+    var bst=document.getElementById("bootStatusText");
+    
+    if(!bl||!bsf||!bst)return; // Safety check
+    
+    var bp=0;
+    var bi=setInterval(function(){
+        bp+=8;
+        if(bp>=100){
+            bp=100;
+            clearInterval(bi);
+            bsf.style.width="100%";
+            bst.textContent="Ready... 100%";
+            if(br) setTimeout(function(){br.classList.add("show");},200);
+            setTimeout(function(){
+                bl.classList.add("hidden");
+                setTimeout(function(){if(bl.parentNode)bl.remove();},600);
+            },1000);
+        }else{
+            bsf.style.width=bp+"%";
+            if(bp<30)bst.textContent="Booting kernel... "+bp+"%";
+            else if(bp<60)bst.textContent="Starting services... "+bp+"%";
+            else if(bp<85)bst.textContent="Loading modules... "+bp+"%";
+            else bst.textContent="Finalizing... "+bp+"%";
+        }
+    },120);
+    
+    // Emergency fallback - force hide after 4 seconds
+    setTimeout(function(){
+        if(bl&&!bl.classList.contains("hidden")){
+            clearInterval(bi);
+            bsf.style.width="100%";
+            bst.textContent="Ready... 100%";
+            if(br)br.classList.add("show");
+            setTimeout(function(){bl.classList.add("hidden");setTimeout(function(){if(bl.parentNode)bl.remove();},600);},600);
+        }
+    },4000);
+})();
 
+// Floating button
 var floatBtn=document.getElementById("floatingBtn"),floatPopup=document.getElementById("floatPopup"),floatClose=document.getElementById("floatPopupClose");
-floatBtn.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.toggle("show");floatBtn.classList.toggle("active");floatBtn.textContent=floatPopup.classList.contains("show")?"✕":"💬"});
-floatClose.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.remove("show");floatBtn.classList.remove("active");floatBtn.textContent="💬"});
-document.addEventListener("click",function(e){if(!floatPopup.contains(e.target)&&e.target!==floatBtn){floatPopup.classList.remove("show");floatBtn.classList.remove("active");floatBtn.textContent="💬"}});
+if(floatBtn){floatBtn.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.toggle("show");floatBtn.classList.toggle("active");floatBtn.textContent=floatPopup.classList.contains("show")?"✕":"💬";});}
+if(floatClose){floatClose.addEventListener("click",function(e){e.stopPropagation();floatPopup.classList.remove("show");floatBtn.classList.remove("active");floatBtn.textContent="💬";});}
+document.addEventListener("click",function(e){if(floatPopup&&!floatPopup.contains(e.target)&&e.target!==floatBtn){floatPopup.classList.remove("show");if(floatBtn){floatBtn.classList.remove("active");floatBtn.textContent="💬";}}});
 
+// Rest
 var sp=document.getElementById("scrollProgress");window.addEventListener("scroll",function(){var h=document.documentElement,sh=h.scrollHeight-h.clientHeight,st=h.scrollTop;sp.style.width=(st/sh*100)+"%"});
 var bdy=document.body,tt=document.getElementById("themeToggle");if(localStorage.getItem("theme")==="dark"){bdy.classList.add("dark");if(tt)tt.textContent="☀️"}if(tt){tt.addEventListener("click",function(){bdy.classList.toggle("dark");var d=bdy.classList.contains("dark");tt.textContent=d?"☀️":"🌙";localStorage.setItem("theme",d?"dark":"light")})}
-var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");if(ham){ham.addEventListener("click",function(e){e.stopPropagation();nl.classList.toggle("show")})}nl.querySelectorAll("a").forEach(function(l){l.addEventListener("click",function(){nl.classList.remove("show")})});document.addEventListener("click",function(e){if(!nl.contains(e.target)&&e.target!==ham)nl.classList.remove("show")});
+var ham=document.getElementById("hamburger"),nl=document.getElementById("navLinks");if(ham){ham.addEventListener("click",function(e){e.stopPropagation();nl.classList.toggle("show")})}if(nl){nl.querySelectorAll("a").forEach(function(l){l.addEventListener("click",function(){nl.classList.remove("show")})})}
+document.addEventListener("click",function(e){if(nl&&!nl.contains(e.target)&&e.target!==ham)nl.classList.remove("show")});
 var tp=document.getElementById("typing");if(tp){var w=["IT Infrastructure Specialist","Systems Administrator","Network Engineer","Founder of LMF Payment Services","Technology Leader"],wi=0,ci=0,dl=false;function t(){var cw=w[wi];tp.textContent=cw.substring(0,dl?ci--:ci++);if(!dl&&ci>cw.length){dl=true;setTimeout(t,1500);return}if(dl&&ci<0){dl=false;wi=(wi+1)%w.length}setTimeout(t,dl?40:80)}t()}
 document.querySelectorAll('a[href^="#"]').forEach(function(l){l.addEventListener("click",function(e){e.preventDefault();var t=document.querySelector(this.getAttribute("href"));if(t)t.scrollIntoView({behavior:"smooth"})})});
 var bb=document.createElement("button");bb.id="backToTop";bb.innerHTML="↑";document.body.appendChild(bb);window.addEventListener("scroll",function(){bb.style.display=window.scrollY>500?"flex":"none";bb.style.alignItems="center";bb.style.justifyContent="center"});bb.addEventListener("click",function(){window.scrollTo({top:0,behavior:"smooth"})});
@@ -209,7 +253,7 @@ var so=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isInter
 document.querySelectorAll(".counter").forEach(function(ce){var tv=parseInt(ce.dataset.target);var co=new IntersectionObserver(function(e){e.forEach(function(en){if(en.isIntersecting&&!ce.dataset.animated){ce.dataset.animated="true";var c=0,s=Math.max(tv/80,1);function u(){c+=s;if(c<tv){ce.textContent=Math.floor(c)+(ce.textContent.includes("+")?"+":"");requestAnimationFrame(u)}else{ce.textContent=tv+(ce.textContent.includes("+")?"+":"")}}u()}})},{threshold:0.5});co.observe(ce)});
 var secs=document.querySelectorAll("section"),nls=document.querySelectorAll(".nav-links a");window.addEventListener("scroll",function(){var cur="";secs.forEach(function(s){if(pageYOffset>=s.offsetTop-120)cur=s.getAttribute("id")});nls.forEach(function(l){l.classList.remove("active");if(l.getAttribute("href")==="#"+cur)l.classList.add("active")})});
 var ys=document.getElementById("year");if(ys)ys.textContent=new Date().getFullYear();
-console.log("✅ LJL Digital Hub — Fixed & Complete!");
+console.log("✅ LJL Digital Hub — Fixed! Boot loader now disappears!");
 </script>
 </body>
 </html>
