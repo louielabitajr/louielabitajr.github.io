@@ -3,29 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aarav Raj | Portfolio</title>
+    <title>Aarav Raj | Portfolio (Single File)</title>
+    
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Stripe.js -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <!-- React & ReactDOM (via CDN) -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <!-- Babel (to compile JSX in the browser) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Framer Motion (via CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/framer-motion@11.2.6/dist/framer-motion.js"></script>
+
+    <!-- Tailwind Configuration (Derived from Adobe XD Design System) -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                        signature: ['"Brush Script MT"', 'cursive'],
                     },
                     colors: {
                         brand: {
                             gold: '#e5b876',
                             goldLight: '#f5d4a1',
-                            dark: '#0a0a0a',
+                            dark: '#050505',
                             card: '#111111',
                             border: '#222222'
                         }
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        floatCard: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        pulseGlow: {
+                            '0%': { transform: 'scale(1)', opacity: '0.5' },
+                            '100%': { transform: 'scale(1.2)', opacity: '0.8' },
+                        },
+                        imgGlow: {
+                            '0%': { boxShadow: '0 0 20px rgba(229, 184, 118, 0.1)' },
+                            '100%': { boxShadow: '0 0 40px rgba(229, 184, 118, 0.3)' },
+                        }
+                    },
+                    animation: {
+                        float: 'float 6s ease-in-out infinite',
+                        floatCard: 'floatCard 5s ease-in-out infinite',
+                        pulseGlow: 'pulseGlow 8s infinite alternate ease-in-out',
+                        imgGlow: 'imgGlow 4s infinite alternate',
                     }
                 }
             }
@@ -33,24 +75,6 @@
     </script>
 
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background-color: #050505;
-            color: #ffffff;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #e5b876; }
-
         /* Custom Cursor Glow */
         #cursor-glow {
             position: fixed;
@@ -63,934 +87,364 @@
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease-out;
         }
-
-        /* Background Glow Effects */
-        .glow-spot {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(120px);
-            z-index: 0;
-            pointer-events: none;
-            animation: pulseGlow 8s infinite alternate ease-in-out;
-        }
-        .glow-1 { top: -10%; right: -5%; width: 400px; height: 400px; background: rgba(229, 184, 118, 0.15); animation-delay: 0s; }
-        .glow-2 { bottom: 20%; left: -10%; width: 350px; height: 350px; background: rgba(229, 184, 118, 0.08); animation-delay: 2s; }
-        .glow-3 { bottom: -10%; right: 20%; width: 300px; height: 300px; background: rgba(229, 184, 118, 0.05); animation-delay: 4s; }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
-            100% { transform: scale(1.2) translate(20px, -20px); opacity: 0.8; }
-        }
-
-        @media (min-width: 768px) {
-            .glow-1 { width: 600px; height: 600px; }
-            .glow-2 { width: 500px; height: 500px; }
-            .glow-3 { width: 400px; height: 400px; }
-        }
-
-        /* Glassmorphism Card Base */
         .glass-card {
             background: rgba(17, 17, 17, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 1.5rem;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, border-color 0.4s ease;
         }
-        .glass-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -15px rgba(229, 184, 118, 0.15);
-            border-color: rgba(229, 184, 118, 0.2);
-        }
-        
-        /* Skill Cards */
         .skill-card {
             background: rgba(17, 17, 17, 0.8);
             border: 1px solid #222;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border-radius: 1rem;
         }
-        .skill-card:hover {
-            border-color: #e5b876;
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px -10px rgba(229, 184, 118, 0.3);
-        }
-
-        /* Timeline Line Animation */
-        .timeline-line { 
-            position: absolute; 
-            left: 6px; 
-            top: 0; 
-            bottom: 0; 
-            width: 1px; 
-            background: #333; 
-            transform-origin: top;
-            transform: scaleY(0);
-            transition: transform 1s ease-out;
-        }
-        .timeline-line.animate {
-            transform: scaleY(1);
-        }
-        .timeline-dot { 
-            position: absolute; 
-            left: 0; 
-            top: 6px; 
-            width: 13px; 
-            height: 13px; 
-            border-radius: 50%; 
-            background: #e5b876; 
-            border: 2px solid #111; 
-            box-shadow: 0 0 0 4px rgba(229, 184, 118, 0.2); 
-            transform: scale(0);
-            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
-        }
-        .timeline-dot.animate {
-            transform: scale(1);
-        }
-
-        /* Signature Text Effect */
-        .signature-text {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 3rem;
-            line-height: 1.1;
-            color: rgba(229, 184, 118, 0.6);
-            transform: rotate(-10deg);
-            position: absolute;
-            top: 20px;
-            right: 0;
-            text-align: right;
-            pointer-events: none;
-            z-index: 10;
-            animation: floatSignature 6s infinite ease-in-out;
-        }
-
-        @keyframes floatSignature {
-            0%, 100% { transform: rotate(-10deg) translateY(0); }
-            50% { transform: rotate(-10deg) translateY(-15px); }
-        }
-
-        /* Floating Stats Card */
-        .floating-stats {
-            animation: floatCard 5s infinite ease-in-out;
-        }
-
-        @keyframes floatCard {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        /* Mobile Menu Transition */
-        #mobile-menu {
-            transition: max-height 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
-            max-height: 0;
-            opacity: 0;
-            overflow: hidden;
-        }
-        #mobile-menu.open {
-            max-height: 500px;
-            opacity: 1;
-        }
-        
-        /* Prevent Image Overflow */
-        img { max-width: 100%; height: auto; }
-
-        /* Reveal Animations (Intersection Observer) */
-        .reveal {
-            opacity: 0;
-            transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translate(0, 0) scale(1);
-        }
-        .reveal-up { transform: translateY(50px); }
-        .reveal-left { transform: translateX(-50px); }
-        .reveal-right { transform: translateX(50px); }
-        .reveal-zoom { transform: scale(0.9); }
-        
-        /* Delay Classes */
-        .delay-100 { transition-delay: 100ms; }
-        .delay-200 { transition-delay: 200ms; }
-        .delay-300 { transition-delay: 300ms; }
-        .delay-400 { transition-delay: 400ms; }
-        .delay-500 { transition-delay: 500ms; }
-        .delay-600 { transition-delay: 600ms; }
-        .delay-700 { transition-delay: 700ms; }
-        .delay-800 { transition-delay: 800ms; }
-
-        /* Typewriter Cursor */
-        .typewriter::after {
-            content: '|';
-            animation: blink 0.8s infinite;
-            color: #e5b876;
-            margin-left: 2px;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
-        /* Button Hover Effects */
-        .btn-hover-effect {
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-        }
-        .btn-hover-effect::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.4s ease;
-            z-index: -1;
-        }
-        .btn-hover-effect:hover::before {
-            left: 100%;
-        }
-
-        /* Image Glow Pulse */
-        .image-glow {
-            animation: imgGlow 4s infinite alternate;
-        }
-        @keyframes imgGlow {
-            0% { box-shadow: 0 0 20px rgba(229, 184, 118, 0.1); }
-            100% { box-shadow: 0 0 40px rgba(229, 184, 118, 0.3); }
-        }
-
+        /* Timeline specific CSS that Tailwind doesn't handle easily inline */
+        .timeline-line { position: absolute; left: 6px; top: 0; bottom: 0; width: 1px; background: #333; }
+        .timeline-dot { position: absolute; left: 0; top: 6px; width: 13px; height: 13px; border-radius: 50%; background: #e5b876; border: 2px solid #111; box-shadow: 0 0 0 4px rgba(229, 184, 118, 0.2); }
     </style>
 </head>
-<body class="relative font-sans antialiased">
-
-    <!-- Custom Cursor Glow -->
+<body class="relative font-sans antialiased bg-brand-dark text-white overflow-x-hidden">
+    
     <div id="cursor-glow"></div>
+    <div id="root"></div>
 
-    <!-- Background Glows -->
-    <div class="glow-spot glow-1"></div>
-    <div class="glow-spot glow-2"></div>
-    <div class="glow-spot glow-3"></div>
+    <script type="text/babel">
+        // Framer Motion destructuring
+        const { motion, AnimatePresence } = window.Motion;
 
-    <!-- Navigation -->
-    <nav class="relative z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex justify-between items-center">
-        <div class="text-2xl font-bold tracking-widest text-white cursor-pointer hover:text-brand-gold transition-colors duration-300">
-            <span class="text-brand-gold">A</span>R
-        </div>
-        
-        <!-- Desktop Menu -->
-        <div class="hidden md:flex space-x-8 text-sm text-gray-400 font-medium">
-            <a href="#" class="text-white hover:text-brand-gold transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full">Home</a>
-            <a href="#about" class="hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full">About</a>
-            <a href="#skills" class="hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full">Skills</a>
-            <a href="#projects" class="hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full">Projects</a>
-            <a href="#experience" class="hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full">Experience</a>
-            <a href="#contact" class="hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full">Contact</a>
-        </div>
+        // --- STRIPE DEMO FUNCTION ---
+        // In a real Next.js app, this would be a fetch request to /api/checkout
+        const handleStripeCheckout = async () => {
+            // NOTE: This is a frontend simulation. Real Stripe requires a backend API route.
+            // const stripe = await loadStripe('pk_test_YOUR_PUBLISHABLE_KEY');
+            alert("Redirecting to Stripe Checkout...\n\n(In a real Next.js app, this would securely create a checkout session via an API route and redirect the user to Stripe's payment page.)");
+            // window.location.href = "https://buy.stripe.com/test_your_payment_link"; 
+        };
 
-        <a href="#contact" class="hidden md:flex items-center gap-2 bg-brand-gold/10 text-brand-gold border border-brand-gold/30 px-5 py-2 rounded-full text-sm font-medium hover:bg-brand-gold hover:text-black transition-all duration-300 transform hover:scale-105 btn-hover-effect">
-            Let's Talk <i class="fas fa-arrow-up-right text-xs transition-transform duration-300 group-hover:translate-x-1"></i>
-        </a>
-        
-        <!-- Mobile Menu Toggle Button -->
-        <button id="menu-toggle" class="md:hidden text-white text-2xl focus:outline-none transition-transform duration-300 hover:scale-110">
-            <i class="fas fa-bars"></i>
-        </button>
-    </nav>
+        // --- COMPONENTS ---
 
-    <!-- Mobile Dropdown Menu -->
-    <div id="mobile-menu" class="md:hidden bg-[#0a0a0a] border-b border-gray-800 w-full absolute z-40">
-        <div class="flex flex-col px-6 py-4 space-y-4 text-gray-300">
-            <a href="#" class="hover:text-brand-gold transition-colors duration-300 transform hover:translate-x-2">Home</a>
-            <a href="#about" class="hover:text-brand-gold transition-colors duration-300 transform hover:translate-x-2">About</a>
-            <a href="#skills" class="hover:text-brand-gold transition-colors duration-300 transform hover:translate-x-2">Skills</a>
-            <a href="#projects" class="hover:text-brand-gold transition-colors duration-300 transform hover:translate-x-2">Projects</a>
-            <a href="#experience" class="hover:text-brand-gold transition-colors duration-300 transform hover:translate-x-2">Experience</a>
-            <a href="#contact" class="hover:text-brand-gold transition-colors duration-300 transform hover:translate-x-2">Contact</a>
-            <a href="#contact" class="inline-block text-center bg-brand-gold text-black px-5 py-2 rounded-full text-sm font-medium mt-2 transform hover:scale-105 transition-transform duration-300">
-                Let's Talk
-            </a>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-20">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            <!-- Left Content -->
-            <div class="order-2 lg:order-1 reveal reveal-left">
-                <p class="text-gray-400 text-lg mb-2">Hello, I'm</p>
-                <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-2">
-                    Aarav <span class="text-brand-gold">Raj</span>
-                </h1>
-                <h2 class="text-xl md:text-2xl text-gray-300 font-medium mb-6 h-8 typewriter" id="typewriter-text"></h2>
-                
-                <p class="text-gray-400 max-w-lg mb-8 leading-relaxed">
-                    I design and build modern, responsive, and user-focused web experiences that help brands grow and make an impact.
-                </p>
-
-                <div class="flex flex-col sm:flex-row gap-4 mb-10">
-                    <a href="#projects" class="bg-brand-gold text-black px-6 py-3 rounded-full font-semibold hover:bg-brand-goldLight transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 btn-hover-effect">
-                        View My Work <i class="fas fa-arrow-right"></i>
-                    </a>
-                    <a href="#" class="border border-gray-600 text-white px-6 py-3 rounded-full font-semibold hover:border-brand-gold hover:text-brand-gold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105 btn-hover-effect">
-                        Download Resume <i class="fas fa-download"></i>
-                    </a>
-                </div>
-
-                <!-- Social Icons -->
-                <div class="flex gap-5 text-gray-400 text-lg">
-                    <a href="#" class="hover:text-brand-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#" class="hover:text-brand-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1" aria-label="GitHub"><i class="fab fa-github"></i></a>
-                    <a href="#" class="hover:text-brand-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="hover:text-brand-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <!-- Right Content (Image & Signature) -->
-            <div class="order-1 lg:order-2 relative flex justify-center lg:justify-end mt-8 lg:mt-0 reveal reveal-right delay-200">
-                <!-- Signature -->
-                <div class="signature-text hidden lg:block">
-                    Turning<br>Ideas into<br>Real Experiences
-                </div>
-
-                <!-- Image Placeholder -->
-                <div class="relative w-full max-w-sm sm:max-w-md h-[400px] sm:h-[500px] rounded-3xl overflow-hidden border border-gray-800 shadow-2xl image-glow transition-transform duration-500 hover:scale-[1.02]">
-                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Aarav Raj" class="w-full h-full object-cover object-top opacity-90 transition-transform duration-700 hover:scale-110">
-                    
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent"></div>
-                    <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-transparent opacity-50"></div>
-                </div>
-
-                <!-- Stats Card (Floating) -->
-                <div class="absolute -bottom-6 right-0 sm:right-4 lg:right-10 glass-card p-4 sm:p-5 w-56 sm:w-64 shadow-xl border border-gray-700/50 floating-stats">
-                    <div class="flex items-center justify-between mb-3 border-b border-gray-800 pb-2">
-                        <span class="text-xl sm:text-2xl font-bold text-brand-gold">2+</span>
-                        <span class="text-[10px] sm:text-xs text-gray-400 text-right leading-tight">Years Experience</span>
-                    </div>
-                    <div class="flex items-center justify-between mb-3 border-b border-gray-800 pb-2">
-                        <span class="text-xl sm:text-2xl font-bold text-white">20+</span>
-                        <span class="text-[10px] sm:text-xs text-gray-400 text-right leading-tight">Projects Completed</span>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <span class="text-xl sm:text-2xl font-bold text-white">10+</span>
-                        <span class="text-[10px] sm:text-xs text-gray-400 text-right leading-tight">Happy Clients</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16 reveal reveal-up">
-        <div class="glass-card p-6 sm:p-8 md:p-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-            
-            <div class="lg:col-span-4">
-                <p class="text-brand-gold text-sm font-semibold tracking-wider mb-3">ABOUT ME</p>
-                <h2 class="text-3xl sm:text-4xl font-bold leading-tight">A Bit More<br>About Me</h2>
-            </div>
-
-            <div class="lg:col-span-5 flex flex-col justify-center">
-                <p class="text-gray-400 leading-relaxed mb-8">
-                    I'm a passionate Web Developer with a strong interest in building clean, functional, and visually appealing websites. I enjoy turning ideas into real-world digital products that solve problems and create value.
-                </p>
-                
-                <div class="flex flex-wrap gap-4 sm:gap-6 text-sm text-gray-300">
-                    <div class="flex items-center gap-2 transition-transform duration-300 hover:scale-110 hover:text-brand-gold cursor-default">
-                        <i class="fas fa-lightbulb text-brand-gold"></i> Problem Solver
-                    </div>
-                    <div class="flex items-center gap-2 transition-transform duration-300 hover:scale-110 hover:text-brand-gold cursor-default">
-                        <i class="fas fa-bolt text-brand-gold"></i> Fast Learner
-                    </div>
-                    <div class="flex items-center gap-2 transition-transform duration-300 hover:scale-110 hover:text-brand-gold cursor-default">
-                        <i class="fas fa-users text-brand-gold"></i> Team Player
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-3 flex flex-col justify-center space-y-3 text-sm border-t lg:border-t-0 lg:border-l border-gray-800 pt-6 lg:pt-0 lg:pl-8">
-                <div class="flex justify-between transition-colors duration-300 hover:text-brand-gold cursor-default">
-                    <span class="text-gray-500">Name</span>
-                    <span class="text-white font-medium">Aarav Raj</span>
-                </div>
-                <div class="flex justify-between transition-colors duration-300 hover:text-brand-gold cursor-default">
-                    <span class="text-gray-500">Email</span>
-                    <span class="text-white font-medium text-right">aaravraj@email.com</span>
-                </div>
-                <div class="flex justify-between transition-colors duration-300 hover:text-brand-gold cursor-default">
-                    <span class="text-gray-500">Location</span>
-                    <span class="text-white font-medium text-right">New Delhi, India</span>
-                </div>
-                <div class="flex justify-between items-center transition-colors duration-300 hover:text-brand-gold cursor-default">
-                    <span class="text-gray-500">Availability</span>
-                    <span class="text-green-400 font-medium flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Open
-                    </span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section (Expanded & Animated) -->
-    <section id="skills" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        
-        <div class="mb-10 reveal reveal-up">
-            <p class="text-brand-gold text-sm font-semibold tracking-wider mb-3">MY SKILLS</p>
-            <h2 class="text-3xl sm:text-4xl font-bold leading-tight mb-4">Tools &<br>Technologies</h2>
-            <p class="text-gray-400 text-sm leading-relaxed max-w-2xl">
-                I work with a comprehensive set of modern technologies to build fast, scalable, and beautiful web experiences. Here is my complete toolkit.
-            </p>
-        </div>
-
-        <div class="space-y-12">
-            
-            <!-- Category 1: Frontend -->
-            <div class="reveal reveal-up delay-100">
-                <h3 class="text-lg font-semibold text-white mb-4 border-b border-gray-800 pb-2">Frontend Development</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-                    
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-100">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-500 text-lg sm:text-xl transition-transform duration-300 group-hover:scale-110">
-                            <i class="fab fa-html5"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">HTML5</span>
+        const Navbar = () => {
+            const [isOpen, setIsOpen] = React.useState(false);
+            return (
+                <nav className="relative z-50 w-full max-w-7xl mx-auto px-4 sm:px-6 py-6 flex justify-between items-center border-b border-white/5 bg-brand-dark/80 backdrop-blur-md">
+                    <div className="text-2xl font-bold tracking-widest text-white cursor-pointer hover:text-brand-gold transition-colors duration-300">
+                        <span className="text-brand-gold">A</span>R
                     </div>
                     
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-200">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 text-lg sm:text-xl">
-                            <i class="fab fa-css3-alt"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">CSS3</span>
+                    <div className="hidden md:flex space-x-8 text-sm text-gray-400 font-medium">
+                        {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
+                            <a key={item} href={`#${item.toLowerCase()}`} className="hover:text-white transition-all duration-300 relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-brand-gold after:transition-all after:duration-300 hover:after:w-full">
+                                {item}
+                            </a>
+                        ))}
                     </div>
 
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-300">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-500 text-lg sm:text-xl">
-                            <i class="fab fa-js"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">JavaScript</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-400">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 text-lg sm:text-xl">
-                            <i class="fab fa-react"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">React</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-500">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-white/10 flex items-center justify-center text-white text-lg sm:text-xl">
-                            <i class="fas fa-n"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Next.js</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-600">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 text-lg sm:text-xl">
-                            <i class="fab fa-vuejs"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Vue.js</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-100">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 text-lg sm:text-xl">
-                            <i class="fab fa-angular"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Angular</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-200">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-600/10 flex items-center justify-center text-blue-500 text-lg sm:text-xl">
-                            <i class="fab fa-js-square"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">TypeScript</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-300">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-400/10 flex items-center justify-center text-blue-400 text-lg sm:text-xl">
-                            <i class="fas fa-bold"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Bootstrap</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Category 2: Styling & UI -->
-            <div class="reveal reveal-up delay-200">
-                <h3 class="text-lg font-semibold text-white mb-4 border-b border-gray-800 pb-2">Styling & UI Design</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
+                    <button onClick={handleStripeCheckout} className="hidden md:flex items-center gap-2 bg-brand-gold/10 text-brand-gold border border-brand-gold/30 px-5 py-2 rounded-full text-sm font-medium hover:bg-brand-gold hover:text-black transition-all duration-300 transform hover:scale-105">
+                        Hire Me <i className="fas fa-arrow-up-right text-xs"></i>
+                    </button>
                     
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-100">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 text-lg sm:text-xl">
-                            <i class="fas fa-wind"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Tailwind CSS</span>
+                    <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-white text-2xl focus:outline-none">
+                        <i className={`fas ${isOpen ? 'fa-times' : 'fa-bars'}`}></i>
+                    </button>
+
+                    {/* Mobile Menu */}
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.div 
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="absolute top-full left-0 w-full bg-[#0a0a0a] border-b border-gray-800 md:hidden overflow-hidden"
+                            >
+                                <div className="flex flex-col px-6 py-4 space-y-4 text-gray-300">
+                                    {['Home', 'About', 'Skills', 'Projects', 'Experience', 'Contact'].map((item) => (
+                                        <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setIsOpen(false)} className="hover:text-brand-gold transition-colors">
+                                            {item}
+                                        </a>
+                                    ))}
+                                    <button onClick={handleStripeCheckout} className="text-center bg-brand-gold text-black px-5 py-2 rounded-full text-sm font-medium mt-2">
+                                        Hire Me
+                                    </button>
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </nav>
+            );
+        };
+
+        const Hero = () => {
+            return (
+                <section className="pt-10 pb-20">
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <motion.div 
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="order-2 lg:order-1"
+                        >
+                            <p className="text-gray-400 text-lg mb-2">Hello, I'm</p>
+                            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight mb-2">
+                                Aarav <span className="text-brand-gold">Raj</span>
+                            </h1>
+                            <h2 className="text-xl md:text-2xl text-gray-300 font-medium mb-6 h-8">
+                                Web Developer & UI/UX Enthusiast
+                            </h2>
+                            
+                            <p className="text-gray-400 max-w-lg mb-8 leading-relaxed">
+                                I design and build modern, responsive, and user-focused web experiences that help brands grow and make an impact.
+                            </p>
+
+                            <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                                <a href="#projects" className="bg-brand-gold text-black px-6 py-3 rounded-full font-semibold hover:bg-brand-goldLight transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105">
+                                    View My Work <i className="fas fa-arrow-right"></i>
+                                </a>
+                                <button onClick={handleStripeCheckout} className="border border-gray-600 text-white px-6 py-3 rounded-full font-semibold hover:border-brand-gold hover:text-brand-gold transition-all duration-300 flex items-center justify-center gap-2 transform hover:scale-105">
+                                    Hire Me (Stripe) <i className="fas fa-credit-card"></i>
+                                </button>
+                            </div>
+
+                            <div className="flex gap-5 text-gray-400 text-lg">
+                                {['linkedin-in', 'github', 'instagram'].map((icon) => (
+                                    <a key={icon} href="#" className="hover:text-brand-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1">
+                                        <i className={`fab fa-${icon}`}></i>
+                                    </a>
+                                ))}
+                                <a href="#" className="hover:text-brand-gold transition-all duration-300 transform hover:scale-125 hover:-translate-y-1"><i className="fas fa-envelope"></i></a>
+                            </div>
+                        </motion.div>
+
+                        <motion.div 
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="order-1 lg:order-2 relative flex justify-center lg:justify-end mt-8 lg:mt-0"
+                        >
+                            <div className="hidden lg:block absolute top-5 right-0 text-right font-signature text-4xl text-brand-gold/60 -rotate-12 pointer-events-none z-10 animate-float">
+                                Turning<br/>Ideas into<br/>Real Experiences
+                            </div>
+
+                            <div className="relative w-full max-w-sm sm:max-w-md h-[400px] sm:h-[500px] rounded-3xl overflow-hidden border border-gray-800 animate-imgGlow">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1000&auto=format&fit=crop" alt="Aarav Raj" className="w-full h-full object-cover object-top opacity-90" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
+                            </div>
+
+                            <div className="absolute -bottom-6 right-0 sm:right-4 lg:right-10 glass-card p-4 sm:p-5 w-56 sm:w-64 shadow-xl animate-floatCard">
+                                <div className="flex items-center justify-between mb-3 border-b border-gray-800 pb-2">
+                                    <span className="text-xl sm:text-2xl font-bold text-brand-gold">2+</span>
+                                    <span className="text-[10px] sm:text-xs text-gray-400 text-right leading-tight">Years Experience</span>
+                                </div>
+                                <div className="flex items-center justify-between mb-3 border-b border-gray-800 pb-2">
+                                    <span className="text-xl sm:text-2xl font-bold text-white">20+</span>
+                                    <span className="text-[10px] sm:text-xs text-gray-400 text-right leading-tight">Projects Completed</span>
+                                </div>
+                                <div className="flex items-center justify-between">
+                                    <span className="text-xl sm:text-2xl font-bold text-white">10+</span>
+                                    <span className="text-[10px] sm:text-xs text-gray-400 text-right leading-tight">Happy Clients</span>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </section>
+            );
+        };
+
+        const Skills = () => {
+            const skillList = [
+                { name: 'HTML5', icon: 'fab fa-html5', color: 'text-orange-500', bg: 'bg-orange-500/10' },
+                { name: 'CSS3', icon: 'fab fa-css3-alt', color: 'text-blue-500', bg: 'bg-blue-500/10' },
+                { name: 'JavaScript', icon: 'fab fa-js', color: 'text-yellow-500', bg: 'bg-yellow-500/10' },
+                { name: 'React', icon: 'fab fa-react', color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+                { name: 'Next.js', icon: 'fas fa-n', color: 'text-white', bg: 'bg-white/10' },
+                { name: 'Tailwind', icon: 'fas fa-wind', color: 'text-teal-400', bg: 'bg-teal-500/10' },
+                { name: 'Node.js', icon: 'fab fa-node-js', color: 'text-green-500', bg: 'bg-green-500/10' },
+                { name: 'Stripe', icon: 'fab fa-stripe-s', color: 'text-indigo-400', bg: 'bg-indigo-500/10' },
+                { name: 'Framer', icon: 'fas fa-cube', color: 'text-pink-400', bg: 'bg-pink-500/10' },
+                { name: 'Figma', icon: 'fab fa-figma', color: 'text-purple-500', bg: 'bg-purple-500/10' },
+                { name: 'Adobe XD', icon: 'fas fa-palette', color: 'text-rose-400', bg: 'bg-rose-500/10' },
+                { name: 'Git', icon: 'fab fa-git-alt', color: 'text-orange-600', bg: 'bg-orange-600/10' }
+            ];
+
+            return (
+                <section id="skills" className="py-16">
+                    <div className="mb-10">
+                        <p className="text-brand-gold text-sm font-semibold tracking-wider mb-3">MY SKILLS</p>
+                        <h2 className="text-3xl sm:text-4xl font-bold leading-tight">Tools &<br/>Technologies</h2>
                     </div>
 
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-200">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 text-lg sm:text-xl">
-                            <i class="fab fa-figma"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Figma</span>
-                    </div>
+                    <motion.div 
+                        initial="hidden"
+                        whileInView="visible"
+                        viewport={{ once: true, amount: 0.1 }}
+                        variants={{
+                            hidden: { opacity: 0 },
+                            visible: { opacity: 1, transition: { staggerChildren: 0.1 } }
+                        }}
+                        className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4"
+                    >
+                        {skillList.map((skill, index) => (
+                            <motion.div 
+                                key={index}
+                                variants={{
+                                    hidden: { opacity: 0, scale: 0.8 },
+                                    visible: { opacity: 1, scale: 1, transition: { type: 'spring', stiffness: 200 } }
+                                }}
+                                className="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 hover:border-brand-gold hover:-translate-y-1 hover:shadow-lg hover:shadow-brand-gold/20 transition-all duration-300"
+                            >
+                                <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-lg ${skill.bg} flex items-center justify-center ${skill.color} text-lg sm:text-xl`}>
+                                    <i className={skill.icon}></i>
+                                </div>
+                                <span className="text-[10px] sm:text-xs text-gray-300 text-center">{skill.name}</span>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </section>
+            );
+        };
 
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-300">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-500 text-lg sm:text-xl">
-                            <i class="fas fa-paint-brush"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Sass/SCSS</span>
-                    </div>
+        const Projects = () => {
+            const projects = [
+                { title: "Velora - E-commerce Website", desc: "A modern and responsive e-commerce platform with a seamless shopping experience.", img: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000", tags: ["Next.js", "Tailwind CSS", "Stripe"] },
+                { title: "Taskly - Productivity App", desc: "A task management app to help teams collaborate and stay organized.", img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000", tags: ["React", "Node.js", "MongoDB"] },
+                { title: "Roamly - Travel Website", desc: "A visually stunning travel website to explore and book unique destinations.", img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000", tags: ["HTML", "CSS", "JavaScript"] }
+            ];
 
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-400">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 text-lg sm:text-xl">
-                            <i class="fas fa-layer-group"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Material UI</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-500">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 text-lg sm:text-xl">
-                            <i class="fas fa-cube"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Framer Motion</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-600">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 text-lg sm:text-xl">
-                            <i class="fas fa-palette"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Adobe XD</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Category 3: Backend & Databases -->
-            <div class="reveal reveal-up delay-300">
-                <h3 class="text-lg font-semibold text-white mb-4 border-b border-gray-800 pb-2">Backend & Databases</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-                    
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-100">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 text-lg sm:text-xl">
-                            <i class="fab fa-node-js"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Node.js</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-200">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gray-500/10 flex items-center justify-center text-gray-300 text-base sm:text-xl font-bold">
-                            ex
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Express.js</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-300">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-green-600/10 flex items-center justify-center text-green-500 text-lg sm:text-xl">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">MongoDB</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-400">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 text-lg sm:text-xl">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">PostgreSQL</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-500">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 text-lg sm:text-xl">
-                            <i class="fas fa-fire"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Firebase</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-600">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-red-600/10 flex items-center justify-center text-red-500 text-lg sm:text-xl">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Python</span>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- Category 4: Tools, DevOps & Version Control -->
-            <div class="reveal reveal-up delay-400">
-                <h3 class="text-lg font-semibold text-white mb-4 border-b border-gray-800 pb-2">Tools, DevOps & Version Control</h3>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3 sm:gap-4">
-                    
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-100">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-orange-600/10 flex items-center justify-center text-orange-500 text-lg sm:text-xl">
-                            <i class="fab fa-git-alt"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Git</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-200">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gray-700/50 flex items-center justify-center text-white text-lg sm:text-xl">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">GitHub</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-300">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-400/10 flex items-center justify-center text-blue-400 text-lg sm:text-xl">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">VS Code</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-400">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-blue-600/10 flex items-center justify-center text-blue-500 text-lg sm:text-xl">
-                            <i class="fab fa-docker"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Docker</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-500">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-yellow-500/10 flex items-center justify-center text-yellow-400 text-lg sm:text-xl">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">Vite</span>
-                    </div>
-
-                    <div class="skill-card p-3 sm:p-4 flex flex-col items-center gap-2 sm:gap-3 reveal reveal-zoom delay-600">
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-red-500/10 flex items-center justify-center text-red-400 text-lg sm:text-xl">
-                            <i class="fas fa-cloud"></i>
-                        </div>
-                        <span class="text-[10px] sm:text-xs text-gray-300 text-center">AWS</span>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-            
-            <div class="lg:col-span-4 reveal reveal-left">
-                <p class="text-brand-gold text-sm font-semibold tracking-wider mb-3">EXPERIENCE</p>
-                <h2 class="text-3xl sm:text-4xl font-bold leading-tight">My Professional<br>Journey</h2>
-            </div>
-
-            <div class="lg:col-span-8 pl-2 sm:pl-4 relative reveal reveal-right delay-200">
-                
-                <!-- Timeline Item 1 -->
-                <div class="relative pl-6 sm:pl-8 pb-10">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-dot"></div>
-                    <div class="flex flex-col md:flex-row md:items-start gap-2 md:gap-10 transition-transform duration-300 hover:translate-x-2">
-                        <div class="w-32 text-xs sm:text-sm text-brand-gold font-medium pt-1">2023 - Present</div>
-                        <div class="flex-1">
-                            <h3 class="text-base sm:text-lg font-semibold text-white">Frontend Developer</h3>
-                            <p class="text-brand-gold text-xs sm:text-sm mb-2">TechNova Solutions</p>
-                            <p class="text-gray-400 text-xs sm:text-sm">Building modern web applications using React, Next.js, and Tailwind CSS.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="relative pl-6 sm:pl-8 pb-10">
-                    <div class="timeline-line"></div>
-                    <div class="timeline-dot" style="top: 10px;"></div>
-                    <div class="flex flex-col md:flex-row md:items-start gap-2 md:gap-10 transition-transform duration-300 hover:translate-x-2">
-                        <div class="w-32 text-xs sm:text-sm text-brand-gold font-medium pt-1">2022 - 2023</div>
-                        <div class="flex-1">
-                            <h3 class="text-base sm:text-lg font-semibold text-white">Web Developer Intern</h3>
-                            <p class="text-brand-gold text-xs sm:text-sm mb-2">Digital Creators Hub</p>
-                            <p class="text-gray-400 text-xs sm:text-sm">Worked on multiple client projects and improved my problem-solving skills.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="relative pl-6 sm:pl-8 pb-0">
-                    <div class="timeline-line" style="bottom: auto; height: 20px;"></div> 
-                    <div class="timeline-dot" style="top: 10px;"></div>
-                    <div class="flex flex-col md:flex-row md:items-start gap-2 md:gap-10 transition-transform duration-300 hover:translate-x-2">
-                        <div class="w-32 text-xs sm:text-sm text-brand-gold font-medium pt-1">2021 - 2022</div>
-                        <div class="flex-1">
-                            <h3 class="text-base sm:text-lg font-semibold text-white">Freelance Web Developer</h3>
-                            <p class="text-brand-gold text-xs sm:text-sm mb-2">Self-Employed</p>
-                            <p class="text-gray-400 text-xs sm:text-sm">Designed and developed websites for small businesses and startups.</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-10 reveal reveal-up">
-            <div>
-                <p class="text-brand-gold text-sm font-semibold tracking-wider mb-3">FEATURED PROJECTS</p>
-                <h2 class="text-3xl sm:text-4xl font-bold leading-tight">Some Things<br>I've Built</h2>
-            </div>
-            <a href="#" class="text-brand-gold text-sm font-medium hover:underline flex items-center gap-2 mt-4 md:mt-0 transition-transform duration-300 hover:translate-x-1">
-                View All Projects <i class="fas fa-arrow-up-right"></i>
-            </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <!-- Project 1 -->
-            <div class="glass-card p-4 group reveal reveal-up delay-100">
-                <div class="rounded-xl overflow-hidden mb-4 h-48 relative">
-                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop" alt="Velora" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
-                </div>
-                <h3 class="text-lg font-semibold mb-1 group-hover:text-brand-gold transition-colors duration-300">Velora - E-commerce Website</h3>
-                <p class="text-gray-400 text-xs mb-4 line-clamp-2">A modern and responsive e-commerce platform with a seamless shopping experience.</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">Next.js</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">Tailwind CSS</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">Stripe</span>
-                </div>
-                <a href="#" class="text-brand-gold text-xs font-medium flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
-                    View Project <i class="fas fa-arrow-up-right"></i>
-                </a>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="glass-card p-4 group reveal reveal-up delay-200">
-                <div class="rounded-xl overflow-hidden mb-4 h-48 relative">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop" alt="Taskly" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
-                </div>
-                <h3 class="text-lg font-semibold mb-1 group-hover:text-brand-gold transition-colors duration-300">Taskly - Productivity App</h3>
-                <p class="text-gray-400 text-xs mb-4 line-clamp-2">A task management app to help teams collaborate and stay organized.</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">React</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">Node.js</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">MongoDB</span>
-                </div>
-                <a href="#" class="text-brand-gold text-xs font-medium flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
-                    View Project <i class="fas fa-arrow-up-right"></i>
-                </a>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="glass-card p-4 group reveal reveal-up delay-300">
-                <div class="rounded-xl overflow-hidden mb-4 h-48 relative">
-                    <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop" alt="Roamly" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                    <div class="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
-                </div>
-                <h3 class="text-lg font-semibold mb-1 group-hover:text-brand-gold transition-colors duration-300">Roamly - Travel Website</h3>
-                <p class="text-gray-400 text-xs mb-4 line-clamp-2">A visually stunning travel website to explore and book unique destinations.</p>
-                <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">HTML</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">CSS</span>
-                    <span class="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">JavaScript</span>
-                </div>
-                <a href="#" class="text-brand-gold text-xs font-medium flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
-                    View Project <i class="fas fa-arrow-up-right"></i>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-16">
-        
-        <div class="mb-8 md:mb-10 reveal reveal-up">
-            <p class="text-brand-gold text-sm font-semibold tracking-wider mb-3">TESTIMONIALS</p>
-            <h2 class="text-3xl sm:text-4xl font-bold leading-tight">What People<br>Say</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <!-- Testimonial 1 -->
-            <div class="glass-card p-5 sm:p-6 flex flex-col justify-between reveal reveal-up delay-100">
-                <p class="text-gray-300 text-sm italic mb-6 leading-relaxed">
-                    "Aarav is a talented developer who delivers high-quality work on time. Highly recommended!"
-                </p>
-                <div class="flex items-center justify-between border-t border-gray-800 pt-4">
-                    <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=150&auto=format&fit=crop" alt="Rohan" class="w-10 h-10 rounded-full object-cover transition-transform duration-300 hover:scale-110">
+            return (
+                <section id="projects" className="py-16">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 md:mb-10">
                         <div>
-                            <h4 class="text-sm font-semibold">Rohan Mehta</h4>
-                            <p class="text-[10px] text-gray-500">CEO, TechNova</p>
+                            <p className="text-brand-gold text-sm font-semibold tracking-wider mb-3">FEATURED PROJECTS</p>
+                            <h2 className="text-3xl sm:text-4xl font-bold leading-tight">Some Things<br/>I've Built</h2>
+                        </div>
+                        <a href="#" className="text-brand-gold text-sm font-medium hover:underline flex items-center gap-2 mt-4 md:mt-0 transition-transform duration-300 hover:translate-x-1">
+                            View All Projects <i className="fas fa-arrow-up-right"></i>
+                        </a>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {projects.map((proj, idx) => (
+                            <motion.div 
+                                key={idx}
+                                initial={{ opacity: 0, y: 50 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                                className="glass-card p-4 group hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-gold/10 transition-all duration-500"
+                            >
+                                <div className="rounded-xl overflow-hidden mb-4 h-48 relative">
+                                    <img src={proj.img} alt={proj.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                                    <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500"></div>
+                                </div>
+                                <h3 className="text-lg font-semibold mb-1 group-hover:text-brand-gold transition-colors duration-300">{proj.title}</h3>
+                                <p className="text-gray-400 text-xs mb-4 line-clamp-2">{proj.desc}</p>
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                    {proj.tags.map(tag => (
+                                        <span key={tag} className="text-[10px] bg-gray-800 text-gray-300 px-2 py-1 rounded transition-colors duration-300 group-hover:bg-brand-gold/20 group-hover:text-brand-gold">{tag}</span>
+                                    ))}
+                                </div>
+                                <a href="#" className="text-brand-gold text-xs font-medium flex items-center gap-1 group-hover:gap-3 transition-all duration-300">
+                                    View Project <i className="fas fa-arrow-up-right"></i>
+                                </a>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+            );
+        };
+
+        const Experience = () => {
+            const jobs = [
+                { year: "2023 - Present", role: "Frontend Developer", company: "TechNova Solutions", desc: "Building modern web applications using React, Next.js, and Tailwind CSS." },
+                { year: "2022 - 2023", role: "Web Developer Intern", company: "Digital Creators Hub", desc: "Worked on multiple client projects and improved my problem-solving skills." },
+                { year: "2021 - 2022", role: "Freelance Web Developer", company: "Self-Employed", desc: "Designed and developed websites for small businesses and startups." }
+            ];
+
+            return (
+                <section id="experience" className="py-16">
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+                        <div className="lg:col-span-4">
+                            <p className="text-brand-gold text-sm font-semibold tracking-wider mb-3">EXPERIENCE</p>
+                            <h2 className="text-3xl sm:text-4xl font-bold leading-tight">My Professional<br/>Journey</h2>
+                        </div>
+                        <div className="lg:col-span-8 pl-2 sm:pl-4 relative">
+                            {jobs.map((job, idx) => (
+                                <motion.div 
+                                    key={idx}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    whileInView={{ opacity: 1, x: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5, delay: idx * 0.2 }}
+                                    className="relative pl-6 sm:pl-8 pb-10"
+                                >
+                                    <div className="timeline-line" style={{ bottom: idx === jobs.length - 1 ? 'auto' : '0', height: idx === jobs.length - 1 ? '20px' : '100%' }}></div>
+                                    <div className="timeline-dot" style={{ top: idx === 0 ? '6px' : '10px' }}></div>
+                                    <div className="flex flex-col md:flex-row md:items-start gap-2 md:gap-10 transition-transform duration-300 hover:translate-x-2">
+                                        <div className="w-32 text-xs sm:text-sm text-brand-gold font-medium pt-1">{job.year}</div>
+                                        <div className="flex-1">
+                                            <h3 className="text-base sm:text-lg font-semibold text-white">{job.role}</h3>
+                                            <p className="text-brand-gold text-xs sm:text-sm mb-2">{job.company}</p>
+                                            <p className="text-gray-400 text-xs sm:text-sm">{job.desc}</p>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
                     </div>
-                    <div class="text-brand-gold text-xs">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
+                </section>
+            );
+        };
 
-            <!-- Testimonial 2 -->
-            <div class="glass-card p-5 sm:p-6 flex flex-col justify-between reveal reveal-up delay-200">
-                <p class="text-gray-300 text-sm italic mb-6 leading-relaxed">
-                    "Great attention to detail and a true professional. It was a pleasure working with him."
-                </p>
-                <div class="flex items-center justify-between border-t border-gray-800 pt-4">
-                    <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop" alt="Priya" class="w-10 h-10 rounded-full object-cover transition-transform duration-300 hover:scale-110">
-                        <div>
-                            <h4 class="text-sm font-semibold">Priya Sharma</h4>
-                            <p class="text-[10px] text-gray-500">Product Manager</p>
+        const App = () => {
+            // Cursor Glow Effect
+            React.useEffect(() => {
+                const glow = document.getElementById('cursor-glow');
+                const moveGlow = (e) => {
+                    glow.style.left = e.clientX + 'px';
+                    glow.style.top = e.clientY + 'px';
+                };
+                document.addEventListener('mousemove', moveGlow);
+                return () => document.removeEventListener('mousemove', moveGlow);
+            }, []);
+
+            return (
+                <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+                    <Navbar />
+                    <Hero />
+                    <Skills />
+                    <Experience />
+                    <Projects />
+                    {/* Add About, Testimonials, and Contact sections here following the same patterns */}
+                    
+                    <section id="contact" className="py-10 mb-10">
+                        <div className="glass-card p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden hover:shadow-2xl hover:shadow-brand-gold/10 transition-shadow duration-500">
+                            <div className="relative z-10 max-w-xl text-center md:text-left">
+                                <p className="text-brand-gold text-sm font-semibold tracking-wider mb-3">LET'S CONNECT</p>
+                                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Have a Project<br/>in Mind?</h2>
+                                <p className="text-gray-400 text-sm max-w-md mx-auto md:mx-0">
+                                    I'm always open to discussing new opportunities, interesting projects, or just a friendly chat.
+                                </p>
+                            </div>
+                            <div className="relative z-10 flex flex-col sm:flex-row items-center gap-4">
+                                <button onClick={handleStripeCheckout} className="bg-brand-gold text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-brand-goldLight transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto transform hover:scale-105">
+                                    Get In Touch <i className="fas fa-arrow-right"></i>
+                                </button>
+                                <div className="text-brand-gold text-3xl transform -rotate-12 opacity-80 hidden sm:block animate-bounce">
+                                    <i className="fas fa-paper-plane"></i>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="text-brand-gold text-xs">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
+                    </section>
+                    
+                    <footer className="text-center py-6 text-xs text-gray-600 border-t border-gray-900 mt-10">
+                        &copy; 2026 Aarav Raj. All rights reserved.
+                    </footer>
                 </div>
-            </div>
+            );
+        };
 
-            <!-- Testimonial 3 -->
-            <div class="glass-card p-5 sm:p-6 flex flex-col justify-between reveal reveal-up delay-300">
-                <p class="text-gray-300 text-sm italic mb-6 leading-relaxed">
-                    "Creative, reliable, and skilled. Aarav brought our ideas to life perfectly."
-                </p>
-                <div class="flex items-center justify-between border-t border-gray-800 pt-4">
-                    <div class="flex items-center gap-3">
-                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop" alt="Kunal" class="w-10 h-10 rounded-full object-cover transition-transform duration-300 hover:scale-110">
-                        <div>
-                            <h4 class="text-sm font-semibold">Kunal Verma</h4>
-                            <p class="text-[10px] text-gray-500">Founder, Digital Hub</p>
-                        </div>
-                    </div>
-                    <div class="text-brand-gold text-xs">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Contact CTA Section -->
-    <section id="contact" class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-10 mb-10 reveal reveal-up">
-        <div class="glass-card p-6 sm:p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
-            
-            <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-brand-gold/10 rounded-full filter blur-[80px]"></div>
-            
-            <div class="relative z-10 max-w-xl text-center md:text-left">
-                <p class="text-brand-gold text-sm font-semibold tracking-wider mb-3">LET'S CONNECT</p>
-                <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">Have a Project<br>in Mind?</h2>
-                <p class="text-gray-400 text-sm max-w-md mx-auto md:mx-0">
-                    I'm always open to discussing new opportunities, interesting projects, or just a friendly chat.
-                </p>
-            </div>
-            
-            <div class="relative z-10 flex flex-col sm:flex-row items-center gap-4">
-                <a href="mailto:aaravraj@email.com" class="bg-brand-gold text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold hover:bg-brand-goldLight transition-all duration-300 flex items-center justify-center gap-2 whitespace-nowrap w-full sm:w-auto transform hover:scale-105 btn-hover-effect">
-                    Get In Touch <i class="fas fa-arrow-right"></i>
-                </a>
-                <div class="text-brand-gold text-3xl transform -rotate-12 opacity-80 hidden sm:block animate-bounce">
-                    <i class="fas fa-paper-plane"></i>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Simple Footer -->
-    <footer class="relative z-10 text-center py-6 text-xs text-gray-600 border-t border-gray-900 mt-10">
-        &copy; 2026 Aarav Raj. All rights reserved.
-    </footer>
-
-    <!-- JavaScript for Animations & Interactions -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            
-            // --- 1. Custom Cursor Glow ---
-            const cursorGlow = document.getElementById('cursor-glow');
-            document.addEventListener('mousemove', (e) => {
-                cursorGlow.style.left = e.clientX + 'px';
-                cursorGlow.style.top = e.clientY + 'px';
-            });
-
-            // --- 2. Typewriter Effect ---
-            const textElement = document.getElementById('typewriter-text');
-            const textToType = "Web Developer & UI/UX Enthusiast";
-            let i = 0;
-            
-            function typeWriter() {
-                if (i < textToType.length) {
-                    textElement.innerHTML += textToType.charAt(i);
-                    i++;
-                    setTimeout(typeWriter, 50);
-                }
-            }
-            // Start typing after a slight delay
-            setTimeout(typeWriter, 500);
-
-            // --- 3. Mobile Menu Toggle ---
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const icon = menuToggle.querySelector('i');
-
-            menuToggle.addEventListener('click', function() {
-                mobileMenu.classList.toggle('open');
-                
-                if (mobileMenu.classList.contains('open')) {
-                    icon.classList.remove('fa-bars');
-                    icon.classList.add('fa-times');
-                } else {
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                }
-            });
-
-            const mobileLinks = mobileMenu.querySelectorAll('a');
-            mobileLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.remove('open');
-                    icon.classList.remove('fa-times');
-                    icon.classList.add('fa-bars');
-                });
-            });
-
-            // --- 4. Intersection Observer for Scroll Reveal Animations ---
-            const revealElements = document.querySelectorAll('.reveal');
-            
-            const revealObserver = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('active');
-                        // Optional: Stop observing once revealed
-                        // observer.unobserve(entry.target); 
-                    }
-                });
-            }, {
-                threshold: 0.1, // Trigger when 10% of element is visible
-                rootMargin: "0px 0px -50px 0px"
-            });
-
-            revealElements.forEach(el => {
-                revealObserver.observe(el);
-            });
-
-            // --- 5. Timeline Line & Dot Animation on Scroll ---
-            const timelineLines = document.querySelectorAll('.timeline-line');
-            const timelineDots = document.querySelectorAll('.timeline-dot');
-
-            const timelineObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if(entry.target.classList.contains('timeline-line')) {
-                            entry.target.classList.add('animate');
-                        }
-                        if(entry.target.classList.contains('timeline-dot')) {
-                            entry.target.classList.add('animate');
-                        }
-                    }
-                });
-            }, { threshold: 0.5 });
-
-            timelineLines.forEach(line => timelineObserver.observe(line));
-            timelineDots.forEach(dot => timelineObserver.observe(dot));
-
-        });
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
     </script>
-
 </body>
 </html>
