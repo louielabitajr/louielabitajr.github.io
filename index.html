@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sophia Martinez - Portfolio</title>
-    <!-- Fonts -->
+    
+    <!-- SVG Favicon to prevent 404 request -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👩‍💻</text></svg>">
+
+    <!-- Preconnect for faster font loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Optimized Google Fonts with display=swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Asynchronous loading of FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
     <style>
-        /* CSS Variables - Exact colors from image */
         :root {
             --bg-color: #F8F6F0;
             --text-dark: #2D2D2D;
@@ -24,7 +31,6 @@
             --num-color: #B8B2A6;
         }
 
-        /* Reset & Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -40,38 +46,50 @@
             min-height: 100vh;
             padding: 20px;
             color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+            overflow: hidden; /* Prevents outer scroll */
         }
 
-        /* Main Window */
+        /* Main Window - Compacted Full View */
         .window {
             width: 100%;
-            max-width: 1280px;
+            max-width: 1360px; /* Slightly wider to utilize space efficiently */
+            height: calc(100vh - 40px); /* Fits within the viewport minus body padding */
+            max-height: 900px; /* Prevents it from getting too tall on large monitors */
             background-color: var(--bg-color);
             border-radius: 8px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            contain: content;
         }
 
-        /* Main Content Area */
+        /* Main Content Area - Dynamic Padding */
         .content {
-            padding: 48px;
+            padding: clamp(20px, 4vh, 48px) clamp(20px, 3vw, 48px);
             display: grid;
             grid-template-columns: 1fr 1.35fr 1fr;
-            gap: 48px;
+            gap: clamp(20px, 3vw, 48px);
             background-color: var(--bg-color);
+            height: 100%; /* Fills the window */
+            overflow: hidden; /* Prevents internal scroll */
         }
 
         /* --- LEFT COLUMN --- */
         .left-col {
             display: flex;
             flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
         }
 
         .profile-pic-wrapper {
             position: relative;
-            width: 200px;
-            height: 260px;
-            margin: 0 auto 24px auto;
+            width: clamp(140px, 15vh, 180px);
+            height: clamp(180px, 20vh, 240px);
+            margin: 0 auto clamp(10px, 2vh, 20px) auto;
+            flex-shrink: 0;
         }
 
         .profile-pic-wrapper img {
@@ -84,12 +102,12 @@
 
         .partnership-btn {
             position: absolute;
-            bottom: -14px;
+            bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
             background-color: #FFFFFF;
             border: 1px solid var(--border-color);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 10px;
             font-weight: 500;
@@ -101,37 +119,39 @@
 
         .name {
             font-family: 'Playfair Display', serif;
-            font-size: 24px;
+            font-size: clamp(18px, 2.2vh, 24px);
             font-weight: 500;
             letter-spacing: 1.5px;
-            margin-bottom: 6px;
-            margin-top: 16px;
+            margin-bottom: 4px;
             text-transform: uppercase;
+            text-align: center;
         }
 
         .role {
             font-size: 11px;
             color: var(--text-light);
-            margin-bottom: 24px;
-            letter-spacing: 0.2px;
+            margin-bottom: clamp(10px, 2vh, 20px);
+            text-align: center;
         }
 
         .bio {
-            font-size: 13px;
-            line-height: 1.6;
+            font-size: clamp(11px, 1.5vh, 13px);
+            line-height: 1.5;
             color: var(--text-light);
-            margin-bottom: 32px;
+            margin-bottom: clamp(15px, 3vh, 32px);
+            text-align: center;
         }
 
         .actions {
             display: flex;
             gap: 12px;
-            margin-bottom: 48px;
+            margin-bottom: clamp(15px, 3vh, 40px);
+            justify-content: center;
         }
 
         .btn {
-            padding: 10px 0;
-            width: 120px;
+            padding: 8px 0;
+            width: 110px;
             border-radius: 20px;
             font-size: 10px;
             font-weight: 500;
@@ -156,10 +176,12 @@
         .social-footer {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: center;
+            gap: 10px;
             font-size: 10px;
             color: var(--text-light);
             margin-top: auto;
+            padding-top: 10px;
         }
 
         .social-footer i {
@@ -172,41 +194,43 @@
         .mid-col {
             border-left: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
-            padding: 0 40px;
+            padding: 0 clamp(15px, 2vw, 30px);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 16px;
+            font-size: clamp(14px, 1.8vh, 16px);
             letter-spacing: 1px;
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             text-transform: uppercase;
             font-weight: 500;
         }
 
         .section-number {
             font-family: 'Playfair Display', serif;
-            font-size: 20px;
+            font-size: clamp(16px, 2vh, 20px);
             color: var(--num-color);
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             display: block;
             font-weight: 500;
         }
 
-        /* Experience Timeline */
         .timeline-item {
             display: flex;
-            gap: 16px;
-            margin-bottom: 28px;
+            gap: 12px;
+            margin-bottom: clamp(10px, 2vh, 20px);
             position: relative;
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: 14px;
-            top: 32px;
-            bottom: -28px;
+            left: 13px;
+            top: 28px;
+            bottom: -20px;
             width: 1px;
             background-color: var(--border-color);
         }
@@ -216,30 +240,30 @@
         }
 
         .company-logo {
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             background-color: #EAE6DD;
             border-radius: 6px;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 11px;
+            font-size: 10px;
             color: var(--text-dark);
             flex-shrink: 0;
             z-index: 1;
         }
 
         .timeline-content h4 {
-            font-size: 13px;
+            font-size: clamp(11px, 1.5vh, 13px);
             font-weight: 500;
             margin-bottom: 2px;
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         .timeline-date {
             font-size: 10px;
             color: var(--text-light);
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .timeline-content ul {
@@ -248,12 +272,12 @@
         }
 
         .timeline-content ul li {
-            font-size: 11px;
+            font-size: clamp(10px, 1.3vh, 11px);
             color: var(--text-light);
             position: relative;
             padding-left: 10px;
-            margin-bottom: 4px;
-            line-height: 1.4;
+            margin-bottom: 2px;
+            line-height: 1.3;
         }
 
         .timeline-content ul li::before {
@@ -264,20 +288,20 @@
             font-size: 12px;
         }
 
-        /* Capabilities */
         .capabilities {
-            margin-top: 48px;
+            margin-top: auto; /* Pushes to bottom if space allows */
+            padding-top: 10px;
         }
 
         .tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .tag {
             border: 1px solid var(--border-color);
-            padding: 8px 16px;
+            padding: 6px 14px;
             border-radius: 20px;
             font-size: 11px;
             color: var(--text-dark);
@@ -288,13 +312,18 @@
         .right-col {
             display: flex;
             flex-direction: column;
-            gap: 40px;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        .projects {
+            flex-grow: 1;
         }
 
         .projects-list {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: clamp(8px, 1.5vh, 16px);
         }
 
         .project-card {
@@ -303,7 +332,7 @@
             padding: 10px;
             display: flex;
             align-items: center;
-            gap: 16px;
+            gap: 14px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
         }
@@ -313,23 +342,27 @@
             box-shadow: 0 8px 16px rgba(0,0,0,0.04);
         }
 
+        /* Optimized: Replaced heavy images with CSS gradients */
         .project-img {
-            width: 80px;
-            height: 56px;
+            width: 70px;
+            height: 50px;
             border-radius: 4px;
-            background-color: #FFFFFF;
             flex-shrink: 0;
-            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
         
-        .project-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .project-img.img-1 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+        .project-img.img-1::after { content: ''; position: absolute; width: 25px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 4px; transform: rotate(-15deg); }
+
+        .project-img.img-2 { background: linear-gradient(to bottom, #f0f2f5 0%, #e1e5eb 100%); }
+        .project-img.img-2::after { content: ''; position: absolute; width: 35px; height: 25px; background: rgba(255,255,255,0.8); border-radius: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+        .project-img.img-3 { background: linear-gradient(135deg, #e8e0d5 0%, #d6cdbf 100%); }
+        .project-img.img-3::after { content: ''; position: absolute; width: 20px; height: 20px; background: #c4b8a8; border-radius: 50%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1); }
 
         .project-info h4 {
             font-size: 12px;
@@ -337,9 +370,10 @@
             margin-bottom: 2px;
         }
 
-        /* Education */
         .education {
-            margin-top: 0;
+            margin-top: 10px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
         }
 
         .education p {
@@ -352,99 +386,80 @@
         
         /* Tablet Layout */
         @media (max-width: 1024px) {
+            body { overflow: auto; }
+            .window { height: auto; max-height: none; }
             .content {
                 grid-template-columns: 1fr 1fr;
-                gap: 32px;
                 padding: 32px;
+                height: auto;
             }
             .right-col {
                 grid-column: span 2;
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 32px;
+                height: auto;
             }
             .mid-col {
                 border-right: none;
                 padding-right: 0;
+                height: auto;
             }
+            .left-col { height: auto; }
+            .social-footer { margin-top: 20px; }
         }
 
         /* Mobile Layout */
         @media (max-width: 768px) {
-            body {
-                padding: 0;
-                background-color: var(--bg-color);
-            }
-            .window {
-                border-radius: 0;
-                box-shadow: none;
-                min-height: 100vh;
-            }
+            body { padding: 0; background-color: var(--bg-color); overflow: auto; }
+            .window { border-radius: 0; box-shadow: none; height: auto; }
             .content {
                 grid-template-columns: 1fr;
                 padding: 24px;
                 gap: 40px;
+                height: auto;
+                overflow: visible;
             }
             .mid-col {
                 border-left: none;
-                padding: 0;
+                padding: 40px 0;
                 border-top: 1px solid var(--border-color);
                 border-bottom: 1px solid var(--border-color);
-                padding: 40px 0;
+                height: auto;
             }
             .right-col {
                 grid-column: span 1;
                 display: flex;
                 flex-direction: column;
                 gap: 40px;
+                height: auto;
             }
-            .name {
-                text-align: center;
-                font-size: 22px;
-            }
-            .role {
-                text-align: center;
-            }
-            .actions {
-                justify-content: center;
-                margin-bottom: 32px;
-            }
-            .social-footer {
-                justify-content: center;
-                margin-top: 20px;
-            }
-            .profile-pic-wrapper {
-                width: 180px;
-                height: 230px;
-            }
-            .section-title {
-                text-align: center;
-            }
-            .section-number {
-                text-align: center;
-            }
-            .tags {
-                justify-content: center;
-            }
-            .timeline-item {
-                gap: 12px;
-            }
-            .timeline-item::before {
-                left: 13px;
-            }
+            .name { font-size: 22px; text-align: center; }
+            .role { text-align: center; }
+            .bio { text-align: center; }
+            .actions { justify-content: center; margin-bottom: 32px; }
+            .social-footer { justify-content: center; margin-top: 20px; }
+            .profile-pic-wrapper { width: 160px; height: 200px; }
+            .section-title { text-align: center; }
+            .section-number { text-align: center; }
+            .tags { justify-content: center; }
+            .timeline-item { gap: 12px; }
+            .timeline-item::before { left: 13px; }
+            .capabilities { margin-top: 20px; }
+            .education { border-top: none; padding-top: 0; margin-top: 20px; }
+            .project-img { width: 80px; height: 60px; }
         }
     </style>
 </head>
 <body>
 
     <div class="window">
-        <!-- Main Content -->
         <main class="content">
             
             <!-- Left Column: Profile -->
             <div class="left-col">
                 <div class="profile-pic-wrapper">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sophia Martinez">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sophia Martinez" fetchpriority="high" decoding="async">
                     <button class="partnership-btn">Open to Select Partnerships</button>
                 </div>
                 
@@ -518,25 +533,19 @@
                     <h2 class="section-title">03 / SELECTED PROJECTS</h2>
                     <div class="projects-list">
                         <div class="project-card">
-                            <div class="project-img">
-                                <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="Mobile App">
-                            </div>
+                            <div class="project-img img-1"></div>
                             <div class="project-info">
                                 <h4>Fintech Mobile App</h4>
                             </div>
                         </div>
                         <div class="project-card">
-                            <div class="project-img">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="SaaS Dashboard">
-                            </div>
+                            <div class="project-img img-2"></div>
                             <div class="project-info">
                                 <h4>SaaS Platform Redesign</h4>
                             </div>
                         </div>
                         <div class="project-card">
-                            <div class="project-img">
-                                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80" alt="eCommerce">
-                            </div>
+                            <div class="project-img img-3"></div>
                             <div class="project-info">
                                 <h4>eCommerce Experience</h4>
                             </div>
