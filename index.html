@@ -18,16 +18,16 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
-        /* --- PURE WHITE & BLACK PALETTE --- */
+        /* --- STRICT WHITE BACKGROUND & BLACK FONT PALETTE --- */
         :root {
             --bg-color: #FFFFFF;          /* Pure White Background */
             --text-dark: #000000;         /* Pure Black Font */
-            --text-light: #333333;        /* Dark Grey for secondary text */
-            --border-color: #E0E0E0;      /* Light Grey Border */
+            --text-light: #000000;        /* Pure Black for secondary text (strictly as requested) */
+            --border-color: #E0E0E0;      /* Light Grey Border to keep layout visible on white */
             --btn-dark: #000000;          /* Black Button */
-            --btn-text: #FFFFFF;
-            --card-bg: #F9F9F9;           /* Very Light Grey for cards */
-            --num-color: #CCCCCC;         /* Light Grey for numbers */
+            --btn-text: #FFFFFF;          /* White Text for Black Button */
+            --card-bg: #FFFFFF;           /* White Cards */
+            --num-color: #000000;         /* Black Numbers */
         }
 
         * {
@@ -44,7 +44,7 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px;
-            color: var(--text-dark);
+            color: var(--text-dark); /* Pure Black */
             -webkit-font-smoothing: antialiased;
             overflow: hidden;
         }
@@ -113,7 +113,7 @@
             white-space: nowrap;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            color: var(--text-dark);
+            color: var(--text-dark); /* Pure Black */
         }
 
         .name {
@@ -129,7 +129,7 @@
 
         .role {
             font-size: 11px;
-            color: var(--text-light);
+            color: var(--text-light); /* Pure Black */
             margin-bottom: clamp(10px, 2vh, 20px);
             text-align: center;
         }
@@ -137,7 +137,7 @@
         .bio {
             font-size: clamp(11px, 1.5vh, 13px);
             line-height: 1.5;
-            color: var(--text-light);
+            color: var(--text-light); /* Pure Black */
             margin-bottom: clamp(15px, 3vh, 32px);
             text-align: center;
         }
@@ -181,7 +181,7 @@
             justify-content: center;
             gap: 10px;
             font-size: 10px;
-            color: var(--text-light);
+            color: var(--text-light); /* Pure Black */
             margin-top: auto;
             padding-top: 10px;
         }
@@ -189,7 +189,7 @@
         .social-footer i {
             font-size: 12px;
             cursor: pointer;
-            color: var(--text-dark); /* Black */
+            color: var(--text-dark); /* Pure Black */
         }
 
         /* --- MIDDLE COLUMN --- */
@@ -215,7 +215,7 @@
         .section-number {
             font-family: 'Playfair Display', serif;
             font-size: clamp(16px, 2vh, 20px);
-            color: var(--num-color);
+            color: var(--num-color); /* Pure Black */
             margin-bottom: 12px;
             display: block;
             font-weight: 500;
@@ -243,13 +243,13 @@
         .company-logo {
             width: 26px;
             height: 26px;
-            background-color: var(--card-bg);
+            background-color: #F5F5F5; /* Very light grey to stand out from white */
             border-radius: 6px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 10px;
-            color: var(--text-dark); /* Black */
+            color: var(--text-dark); /* Pure Black */
             flex-shrink: 0;
             z-index: 1;
         }
@@ -264,7 +264,7 @@
 
         .timeline-date {
             font-size: 10px;
-            color: var(--text-light);
+            color: var(--text-light); /* Pure Black */
             margin-bottom: 4px;
         }
 
@@ -272,7 +272,7 @@
 
         .timeline-content ul li {
             font-size: clamp(10px, 1.3vh, 11px);
-            color: var(--text-light);
+            color: var(--text-light); /* Pure Black */
             position: relative;
             padding-left: 10px;
             margin-bottom: 2px;
@@ -283,7 +283,7 @@
             content: '•';
             position: absolute;
             left: 0;
-            color: var(--text-light);
+            color: var(--text-light); /* Pure Black */
             font-size: 12px;
         }
 
@@ -299,11 +299,11 @@
             padding: 6px 14px;
             border-radius: 20px;
             font-size: 11px;
-            color: var(--text-dark); /* Black */
+            color: var(--text-dark); /* Pure Black */
             background-color: transparent;
             transition: background 0.2s;
         }
-        .tag:hover { background-color: var(--card-bg); }
+        .tag:hover { background-color: #F5F5F5; }
 
         /* --- RIGHT COLUMN --- */
         .right-col {
@@ -322,7 +322,7 @@
         }
 
         .project-card {
-            background-color: var(--card-bg);
+            background-color: var(--card-bg); /* White */
             border-radius: 8px;
             padding: 10px;
             display: flex;
@@ -330,13 +330,12 @@
             gap: 14px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
-            border: 1px solid transparent;
+            border: 1px solid var(--border-color); /* Border to define card on white */
         }
 
         .project-card:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
-            border-color: var(--border-color);
         }
 
         /* Clean CSS Gradients for White/Black Theme */
