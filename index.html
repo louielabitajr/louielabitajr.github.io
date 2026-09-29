@@ -5,30 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sophia Martinez - Portfolio</title>
     
-    <!-- SVG Favicon to prevent 404 request -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👩‍💻</text></svg>">
+    <!-- SVG Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
 
-    <!-- Preconnect for faster font loading -->
+    <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Optimized Google Fonts with display=swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
     
-    <!-- Asynchronous loading of FontAwesome -->
+    <!-- Async FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
+        /* --- NEW COLOR PALETTE: Warm Sage & Terracotta --- */
         :root {
-            --bg-color: #F8F6F0;
-            --text-dark: #2D2D2D;
-            --text-light: #6A6A6A;
-            --border-color: #E6E2D8;
-            --btn-dark: #333333;
+            --bg-color: #F0F2EF;          /* Soft Sage Background */
+            --text-dark: #2A3A32;         /* Deep Forest Green for text */
+            --text-light: #6B7A70;        /* Muted Sage for secondary text */
+            --border-color: #DCE0DB;      /* Subtle Sage Border */
+            --btn-dark: #D17A5A;          /* Terracotta Button */
             --btn-text: #FFFFFF;
-            --card-bg: #F1EDE4;
-            --num-color: #B8B2A6;
+            --card-bg: #E4E8E3;           /* Slightly darker sage for cards */
+            --num-color: #A3B1A8;         /* Pale Sage for numbers */
         }
 
         * {
@@ -47,33 +46,33 @@
             padding: 20px;
             color: var(--text-dark);
             -webkit-font-smoothing: antialiased;
-            overflow: hidden; /* Prevents outer scroll */
+            overflow: hidden;
         }
 
         /* Main Window - Compacted Full View */
         .window {
             width: 100%;
-            max-width: 1360px; /* Slightly wider to utilize space efficiently */
-            height: calc(100vh - 40px); /* Fits within the viewport minus body padding */
-            max-height: 900px; /* Prevents it from getting too tall on large monitors */
+            max-width: 1360px;
+            height: calc(100vh - 40px);
+            max-height: 900px;
             background-color: var(--bg-color);
             border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(42, 58, 50, 0.15); /* Green-tinted shadow */
             overflow: hidden;
             display: flex;
             flex-direction: column;
             contain: content;
         }
 
-        /* Main Content Area - Dynamic Padding */
+        /* Main Content Area */
         .content {
             padding: clamp(20px, 4vh, 48px) clamp(20px, 3vw, 48px);
             display: grid;
             grid-template-columns: 1fr 1.35fr 1fr;
             gap: clamp(20px, 3vw, 48px);
             background-color: var(--bg-color);
-            height: 100%; /* Fills the window */
-            overflow: hidden; /* Prevents internal scroll */
+            height: 100%;
+            overflow: hidden;
         }
 
         /* --- LEFT COLUMN --- */
@@ -97,7 +96,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 100px 100px 0 0;
-            border: 1px solid var(--border-color);
+            border: 2px solid var(--border-color);
         }
 
         .partnership-btn {
@@ -105,7 +104,7 @@
             bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #FFFFFF;
+            background-color: var(--bg-color);
             border: 1px solid var(--border-color);
             padding: 6px 14px;
             border-radius: 20px;
@@ -113,7 +112,7 @@
             font-weight: 500;
             white-space: nowrap;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            box-shadow: 0 4px 12px rgba(42, 58, 50, 0.08);
             color: var(--text-dark);
         }
 
@@ -166,12 +165,14 @@
             color: var(--btn-text);
             border: 1px solid var(--btn-dark);
         }
+        .btn-dark:hover { background-color: #B86A4A; }
 
         .btn-outline {
             background-color: transparent;
             color: var(--text-dark);
             border: 1px solid var(--text-dark);
         }
+        .btn-outline:hover { background-color: var(--text-dark); color: var(--bg-color); }
 
         .social-footer {
             display: flex;
@@ -207,6 +208,7 @@
             margin-bottom: 8px;
             text-transform: uppercase;
             font-weight: 500;
+            color: var(--text-dark);
         }
 
         .section-number {
@@ -235,14 +237,12 @@
             background-color: var(--border-color);
         }
 
-        .timeline-item:last-child::before {
-            display: none;
-        }
+        .timeline-item:last-child::before { display: none; }
 
         .company-logo {
             width: 26px;
             height: 26px;
-            background-color: #EAE6DD;
+            background-color: var(--card-bg);
             border-radius: 6px;
             display: flex;
             justify-content: center;
@@ -266,10 +266,7 @@
             margin-bottom: 4px;
         }
 
-        .timeline-content ul {
-            list-style: none;
-            padding-left: 0;
-        }
+        .timeline-content ul { list-style: none; padding-left: 0; }
 
         .timeline-content ul li {
             font-size: clamp(10px, 1.3vh, 11px);
@@ -289,15 +286,11 @@
         }
 
         .capabilities {
-            margin-top: auto; /* Pushes to bottom if space allows */
+            margin-top: auto;
             padding-top: 10px;
         }
 
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
+        .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 
         .tag {
             border: 1px solid var(--border-color);
@@ -306,7 +299,9 @@
             font-size: 11px;
             color: var(--text-dark);
             background-color: transparent;
+            transition: background 0.2s;
         }
+        .tag:hover { background-color: var(--card-bg); }
 
         /* --- RIGHT COLUMN --- */
         .right-col {
@@ -316,9 +311,7 @@
             justify-content: space-between;
         }
 
-        .projects {
-            flex-grow: 1;
-        }
+        .projects { flex-grow: 1; }
 
         .projects-list {
             display: flex;
@@ -339,10 +332,10 @@
 
         .project-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.04);
+            box-shadow: 0 8px 16px rgba(42, 58, 50, 0.1);
         }
 
-        /* Optimized: Replaced heavy images with CSS gradients */
+        /* NEW CSS GRADIENTS TO MATCH THEME */
         .project-img {
             width: 70px;
             height: 50px;
@@ -355,14 +348,17 @@
             overflow: hidden;
         }
         
-        .project-img.img-1 { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
-        .project-img.img-1::after { content: ''; position: absolute; width: 25px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 4px; transform: rotate(-15deg); }
+        /* Fintech Mobile App (Dark Sage) */
+        .project-img.img-1 { background: linear-gradient(135deg, #2A3A32 0%, #1A261F 100%); }
+        .project-img.img-1::after { content: ''; position: absolute; width: 25px; height: 40px; background: rgba(255,255,255,0.15); border-radius: 4px; transform: rotate(-15deg); }
 
-        .project-img.img-2 { background: linear-gradient(to bottom, #f0f2f5 0%, #e1e5eb 100%); }
-        .project-img.img-2::after { content: ''; position: absolute; width: 35px; height: 25px; background: rgba(255,255,255,0.8); border-radius: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        /* SaaS Platform (Light Sage) */
+        .project-img.img-2 { background: linear-gradient(to bottom, #E4E8E3 0%, #D0D6D1 100%); }
+        .project-img.img-2::after { content: ''; position: absolute; width: 35px; height: 25px; background: rgba(255,255,255,0.7); border-radius: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 
-        .project-img.img-3 { background: linear-gradient(135deg, #e8e0d5 0%, #d6cdbf 100%); }
-        .project-img.img-3::after { content: ''; position: absolute; width: 20px; height: 20px; background: #c4b8a8; border-radius: 50%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1); }
+        /* eCommerce (Terracotta accent) */
+        .project-img.img-3 { background: linear-gradient(135deg, #F2D5C4 0%, #D17A5A 100%); }
+        .project-img.img-3::after { content: ''; position: absolute; width: 20px; height: 20px; background: #B86A4A; border-radius: 50%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1); }
 
         .project-info h4 {
             font-size: 12px;
@@ -384,7 +380,6 @@
 
         /* --- RESPONSIVE DESIGN --- */
         
-        /* Tablet Layout */
         @media (max-width: 1024px) {
             body { overflow: auto; }
             .window { height: auto; max-height: none; }
@@ -409,7 +404,6 @@
             .social-footer { margin-top: 20px; }
         }
 
-        /* Mobile Layout */
         @media (max-width: 768px) {
             body { padding: 0; background-color: var(--bg-color); overflow: auto; }
             .window { border-radius: 0; box-shadow: none; height: auto; }
@@ -456,7 +450,7 @@
     <div class="window">
         <main class="content">
             
-            <!-- Left Column: Profile -->
+            <!-- Left Column -->
             <div class="left-col">
                 <div class="profile-pic-wrapper">
                     <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Sophia Martinez" fetchpriority="high" decoding="async">
@@ -483,7 +477,7 @@
                 </div>
             </div>
 
-            <!-- Middle Column: Experience & Capabilities -->
+            <!-- Middle Column -->
             <div class="mid-col">
                 
                 <h2 class="section-title">BACKGROUND & EXPERIENCE</h2>
@@ -526,7 +520,7 @@
                 </div>
             </div>
 
-            <!-- Right Column: Projects & Education -->
+            <!-- Right Column -->
             <div class="right-col">
                 
                 <div class="projects">
