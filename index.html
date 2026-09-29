@@ -6,7 +6,7 @@
     <title>Sophia Martinez - Portfolio</title>
     
     <!-- SVG Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👩‍💻</text></svg>">
 
     <!-- Preconnect & Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,16 +18,16 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
-        /* --- NEW COLOR PALETTE: Warm Sage & Terracotta --- */
+        /* --- WHITE BACKGROUND PALETTE --- */
         :root {
-            --bg-color: #F0F2EF;          /* Soft Sage Background */
-            --text-dark: #2A3A32;         /* Deep Forest Green for text */
-            --text-light: #6B7A70;        /* Muted Sage for secondary text */
-            --border-color: #DCE0DB;      /* Subtle Sage Border */
-            --btn-dark: #D17A5A;          /* Terracotta Button */
+            --bg-color: #FFFFFF;          /* Pure White Background */
+            --text-dark: #1A1A1A;         /* Almost Black for strong contrast */
+            --text-light: #666666;        /* Medium Grey for secondary text */
+            --border-color: #E5E5E5;      /* Light Grey Border */
+            --btn-dark: #1A1A1A;          /* Dark Button */
             --btn-text: #FFFFFF;
-            --card-bg: #E4E8E3;           /* Slightly darker sage for cards */
-            --num-color: #A3B1A8;         /* Pale Sage for numbers */
+            --card-bg: #F8F8F8;           /* Very Light Grey for cards */
+            --num-color: #C0C0C0;         /* Light Grey for numbers */
         }
 
         * {
@@ -38,7 +38,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #DCDCDC;
+            background-color: #E0E0E0; /* Outer monitor background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -57,7 +57,7 @@
             max-height: 900px;
             background-color: var(--bg-color);
             border-radius: 8px;
-            box-shadow: 0 20px 50px rgba(42, 58, 50, 0.15); /* Green-tinted shadow */
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -96,7 +96,7 @@
             height: 100%;
             object-fit: cover;
             border-radius: 100px 100px 0 0;
-            border: 2px solid var(--border-color);
+            border: 1px solid var(--border-color);
         }
 
         .partnership-btn {
@@ -104,7 +104,7 @@
             bottom: -12px;
             left: 50%;
             transform: translateX(-50%);
-            background-color: var(--bg-color);
+            background-color: #FFFFFF;
             border: 1px solid var(--border-color);
             padding: 6px 14px;
             border-radius: 20px;
@@ -112,7 +112,7 @@
             font-weight: 500;
             white-space: nowrap;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(42, 58, 50, 0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
             color: var(--text-dark);
         }
 
@@ -165,7 +165,7 @@
             color: var(--btn-text);
             border: 1px solid var(--btn-dark);
         }
-        .btn-dark:hover { background-color: #B86A4A; }
+        .btn-dark:hover { background-color: #333; }
 
         .btn-outline {
             background-color: transparent;
@@ -328,14 +328,16 @@
             gap: 14px;
             cursor: pointer;
             transition: transform 0.2s, box-shadow 0.2s;
+            border: 1px solid transparent;
         }
 
         .project-card:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(42, 58, 50, 0.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+            border-color: var(--border-color);
         }
 
-        /* NEW CSS GRADIENTS TO MATCH THEME */
+        /* Clean CSS Gradients for White Theme */
         .project-img {
             width: 70px;
             height: 50px;
@@ -346,19 +348,20 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
+            border: 1px solid var(--border-color);
         }
         
-        /* Fintech Mobile App (Dark Sage) */
-        .project-img.img-1 { background: linear-gradient(135deg, #2A3A32 0%, #1A261F 100%); }
+        /* Fintech Mobile App (Dark Grey) */
+        .project-img.img-1 { background: linear-gradient(135deg, #333333 0%, #1A1A1A 100%); }
         .project-img.img-1::after { content: ''; position: absolute; width: 25px; height: 40px; background: rgba(255,255,255,0.15); border-radius: 4px; transform: rotate(-15deg); }
 
-        /* SaaS Platform (Light Sage) */
-        .project-img.img-2 { background: linear-gradient(to bottom, #E4E8E3 0%, #D0D6D1 100%); }
-        .project-img.img-2::after { content: ''; position: absolute; width: 35px; height: 25px; background: rgba(255,255,255,0.7); border-radius: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        /* SaaS Platform (Light Grey) */
+        .project-img.img-2 { background: linear-gradient(to bottom, #F0F0F0 0%, #E0E0E0 100%); }
+        .project-img.img-2::after { content: ''; position: absolute; width: 35px; height: 25px; background: rgba(255,255,255,0.9); border-radius: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 
-        /* eCommerce (Terracotta accent) */
-        .project-img.img-3 { background: linear-gradient(135deg, #F2D5C4 0%, #D17A5A 100%); }
-        .project-img.img-3::after { content: ''; position: absolute; width: 20px; height: 20px; background: #B86A4A; border-radius: 50%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1); }
+        /* eCommerce (Warm Grey) */
+        .project-img.img-3 { background: linear-gradient(135deg, #F5F5F5 0%, #D4D4D4 100%); }
+        .project-img.img-3::after { content: ''; position: absolute; width: 20px; height: 20px; background: #A0A0A0; border-radius: 50%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1); }
 
         .project-info h4 {
             font-size: 12px;
