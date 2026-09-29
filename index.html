@@ -18,16 +18,16 @@
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
 
     <style>
-        /* --- WHITE BACKGROUND PALETTE --- */
+        /* --- PURE WHITE & BLACK PALETTE --- */
         :root {
             --bg-color: #FFFFFF;          /* Pure White Background */
-            --text-dark: #1A1A1A;         /* Almost Black for strong contrast */
-            --text-light: #666666;        /* Medium Grey for secondary text */
-            --border-color: #E5E5E5;      /* Light Grey Border */
-            --btn-dark: #1A1A1A;          /* Dark Button */
+            --text-dark: #000000;         /* Pure Black Font */
+            --text-light: #333333;        /* Dark Grey for secondary text (readable on white) */
+            --border-color: #E0E0E0;      /* Light Grey Border */
+            --btn-dark: #000000;          /* Black Button */
             --btn-text: #FFFFFF;
-            --card-bg: #F8F8F8;           /* Very Light Grey for cards */
-            --num-color: #C0C0C0;         /* Light Grey for numbers */
+            --card-bg: #F9F9F9;           /* Very Light Grey for cards */
+            --num-color: #CCCCCC;         /* Light Grey for numbers */
         }
 
         * {
@@ -165,7 +165,7 @@
             color: var(--btn-text);
             border: 1px solid var(--btn-dark);
         }
-        .btn-dark:hover { background-color: #333; }
+        .btn-dark:hover { background-color: #333; border-color: #333; }
 
         .btn-outline {
             background-color: transparent;
@@ -337,7 +337,7 @@
             border-color: var(--border-color);
         }
 
-        /* Clean CSS Gradients for White Theme */
+        /* Clean CSS Gradients for White/Black Theme */
         .project-img {
             width: 70px;
             height: 50px;
@@ -351,17 +351,17 @@
             border: 1px solid var(--border-color);
         }
         
-        /* Fintech Mobile App (Dark Grey) */
-        .project-img.img-1 { background: linear-gradient(135deg, #333333 0%, #1A1A1A 100%); }
+        /* Fintech Mobile App (Dark) */
+        .project-img.img-1 { background: linear-gradient(135deg, #333333 0%, #000000 100%); }
         .project-img.img-1::after { content: ''; position: absolute; width: 25px; height: 40px; background: rgba(255,255,255,0.15); border-radius: 4px; transform: rotate(-15deg); }
 
         /* SaaS Platform (Light Grey) */
         .project-img.img-2 { background: linear-gradient(to bottom, #F0F0F0 0%, #E0E0E0 100%); }
         .project-img.img-2::after { content: ''; position: absolute; width: 35px; height: 25px; background: rgba(255,255,255,0.9); border-radius: 3px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
 
-        /* eCommerce (Warm Grey) */
-        .project-img.img-3 { background: linear-gradient(135deg, #F5F5F5 0%, #D4D4D4 100%); }
-        .project-img.img-3::after { content: ''; position: absolute; width: 20px; height: 20px; background: #A0A0A0; border-radius: 50%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1); }
+        /* eCommerce (Mid Grey) */
+        .project-img.img-3 { background: linear-gradient(135deg, #E0E0E0 0%, #B0B0B0 100%); }
+        .project-img.img-3::after { content: ''; position: absolute; width: 20px; height: 20px; background: #808080; border-radius: 50%; box-shadow: inset -2px -2px 5px rgba(0,0,0,0.1); }
 
         .project-info h4 {
             font-size: 12px;
